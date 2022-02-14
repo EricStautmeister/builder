@@ -1,0 +1,90 @@
+/* #f1f1f1 */
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: 20px;
+  scrollbar-color: #888;
+  scrollbar-track-color: #292d30;
+}
+html ::-webkit-scrollbar {
+  width: 20px;
+}
+html ::-webkit-scrollbar-track {
+  background: #292d30;
+}
+html ::-webkit-scrollbar-thumb {
+  background: #888;
+}
+html ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+#root {
+  height: 100vh;
+  width: 100%;
+}
+#root #Header {
+  padding: 0px;
+  margin: 0px;
+  background-color: #ffffff;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#root #Body {
+  background: #ffffff;
+  padding: 1%;
+  background-size: 100% 100%;
+  min-height: 100vh;
+  width: 100%;
+  overflow: auto;
+}
+#root #Footer {
+  background-color: #ffffff;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #ffffff;
+}
+
+div h1,
+div p {
+  color: #000000;
+}
+
+.icon {
+  padding: 0;
+}
+
+.btn {
+  background-color: #8a8888;
+  text-decoration-color: #000000;
+  border: 1;
+  padding: 20px;
+  border-radius: 5px;
+  color: #fefbef;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.button {
+  margin-left: 6px;
+  margin-right: 6px;
+  width: 100px;
+  height: auto;
+  position: relative;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.004em;
+}
+
+/*# sourceMappingURL=index.css.map */

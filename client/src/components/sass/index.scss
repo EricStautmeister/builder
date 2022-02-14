@@ -1,0 +1,106 @@
+$site-width: 100% /* variable */;
+$scrollbar-width: 20px;
+$scrolltrack-color: #292d30; /* #f1f1f1 */
+$scrollbar-color: #888;
+$scrollbar-color-onhover: #555;
+
+@mixin wrapperFlex($justify: space-evenly, $align: center) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin display($sideMargin: 6px, $addLeft: 0px, $addRight: 0px) {
+    margin-left: $sideMargin + $addLeft;
+    margin-right: $sideMargin + $addRight;
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: $scrollbar-width;
+    scrollbar-color: $scrollbar-color;
+    scrollbar-track-color: $scrolltrack-color;
+    ::-webkit-scrollbar {
+        width: $scrollbar-width;
+    }
+    ::-webkit-scrollbar-track {
+        background: $scrolltrack-color;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: $scrollbar-color;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: $scrollbar-color-onhover;
+    }
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+#root {
+    height: 100vh;
+    width: 100%;
+
+    #Header {
+        padding: 0px;
+        margin: 0px;
+        background-color: #ffffff;
+        height: 100px;
+        width: $site-width;
+        @include wrapperFlex($justify: space-between);
+    }
+    
+    #Body {
+        background: #ffffff;
+        padding: 1%;
+        background-size: 100% 100%;
+        min-height: 100vh;
+        width: $site-width;
+        overflow: auto;
+    }
+    
+    #Footer {
+        background-color: #ffffff;
+        height: 100px;
+        width: $site-width;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        color: #ffffff;
+    }
+}
+
+div {
+    h1,
+    p {
+        color: #000000;
+    }
+}
+
+.icon {
+    padding: 0;
+}
+
+.btn {
+    background-color: #8a8888;
+    text-decoration-color: #000000;
+    border: 1;
+    padding: 20px;
+    border-radius: 5px;
+    color: #fefbef;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.button {
+    @include display();
+    width: 100px;
+    height: auto;
+    position: relative;
+    cursor: pointer;
+    border: none;
+    border-radius: .004em;
+}

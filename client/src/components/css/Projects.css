@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.right-align {
+  padding: 1%;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+.no-deco {
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=Projects.css.map */

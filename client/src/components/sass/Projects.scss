@@ -1,0 +1,35 @@
+$site-width: 100% /* variable */;
+
+@mixin wrapperFlex($justify: space-evenly, $align: center) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    width: $site-width;
+}
+
+.btnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.right-align {
+    padding: 1%;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+}
+
+.no-deco {
+    text-decoration: none;
+}
