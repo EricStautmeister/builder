@@ -27,6 +27,7 @@ import githubIcon from './components/media/github.png';
 import youtubeIcon from './components/media/youtube.png';
 import LogoIcon from './components/media/logo.png';
 import { ReactComponent as MenuIcon } from './components/media/menu.svg';
+import reportWebVitals from './reportWebVitals';
 
 //TODO: Rename project to portfolio builder (comes with appropriate changes)
 //TODO: needs theme color changer and shit
@@ -143,9 +144,7 @@ class Projects extends Component {
         return (
             <div id="Body">
                 <div className="btnContainer">
-                    <NavLink
-                        className="no-deco"
-                        to={`/projects/add`}>
+                    <NavLink className="no-deco" to={`/projects/add`}>
                         <button className="btn right-align">Add</button>
                     </NavLink>
                 </div>
@@ -196,7 +195,7 @@ class ProjectList extends Component {
     render() {
         const { projectList } = this.state;
         this.storeDataToLocalStorage(projectList);
-        console.dir(projectList); //FIXME: This runs twice per render, find out why and potentially fix it
+        // console.dir(projectList); //FIXME: This runs twice per render, find out why and potentially fix it
         return (
             <div className="container">
                 {projectList !== null && projectList.length ? (
@@ -235,7 +234,9 @@ class Blog extends Component {
             <div id="Body">
                 <div className="btnContainer">
                     <NavLink className="no-deco" to={`/blog/new`}>
-                        <button className="btn right-align">Create new Post</button>
+                        <button className="btn right-align">
+                            Create new Post
+                        </button>
                     </NavLink>
                 </div>
                 <Outlet />
@@ -304,27 +305,27 @@ class SignUp extends Component {
 }
 
 export default class App extends Component {
-    render() { 
+    render() {
         return (
             <Router>
-            <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/projects" element={<Projects />}>
-                    <Route path="" element={<ProjectList />} />
-                    <Route path="add" element={<NewProject />} />
-                    <Route path=":id" element={<FullPage />} />
-                </Route>
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/blog" element={<Blog />}>
-                    <Route path="" element={<Posts />} />
-                    <Route path="new" element={<NewPost />} />
-                    <Route path="i?postSlug" element={<Post />} />
-                </Route>
-            </Routes>
-            <Footer />
-        </Router>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/projects" element={<Projects />}>
+                        <Route path="" element={<ProjectList />} />
+                        <Route path="add" element={<NewProject />} />
+                        <Route path=":id" element={<FullPage />} />
+                    </Route>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/blog" element={<Blog />}>
+                        <Route path="" element={<Posts />} />
+                        <Route path="new" element={<NewPost />} />
+                        <Route path="i?postSlug" element={<Post />} />
+                    </Route>
+                </Routes>
+                <Footer />
+            </Router>
         );
     }
 }

@@ -5,6 +5,7 @@
 }
 .contentWrapper p {
   margin-left: 6%;
+  white-space: pre-line;
 }
 
 /*# sourceMappingURL=FullPage.css.map */

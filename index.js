@@ -6,31 +6,30 @@ require('dotenv').config();
 const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet');
-const csrf = require('csurf');
+// const csrf = require('csurf');
 const { Deta } = require('deta');
 
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-
 const app = express().disable('x-powered-by');
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
-app.use(csrf({ cookie: true }));
+// app.use(csrf({ cookie: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'client/build')));
+
+const deta = Deta(process.env.DETA_PROJECT_KEY);
+const projectData = deta.Drive('Projects');
+const postData = deta.Drive('Posts');
+
 app.use(
     cors({
         origin: 'http://localhost:3000',
         // exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar']
     })
 );
-
-const deta = Deta(process.env.DETA_PROJECT_KEY);
-
-const projectData = deta.Drive('Projects');
-const postData = deta.Drive('Posts');
 
 //TODO: Add api router
 //TODO: Add CSRF verification to routes
@@ -72,7 +71,6 @@ app.get(`/getPosts`, async (req, res) => {
 });
 
 app.get(`/getProjects`, async (req, res) => {
-    console.log('req received');
     const response = await getDataFromDrive(projectData);
     res.json({ response });
 });
@@ -88,6 +86,7 @@ app.post('/uploadPost', async (req, res) => {
 });
 
 app.post('/uploadProject', async (req, res) => {
+    console.log("Request received");
     const parsedTitle = req.body.title.replace(
         /\s+(.)/g,
         function (match, group) {
