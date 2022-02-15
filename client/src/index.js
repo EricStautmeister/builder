@@ -155,7 +155,7 @@ class Projects extends Component {
     }
 }
 
-class Projects extends Component {
+class ProjectList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -308,7 +308,7 @@ ReactDOM.render(
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/projects" element={<Projects />}>
-                    <Route path="" element={<Projects />} />
+                    <Route path="" element={<ProjectList />} />
                     <Route path="add" element={<NewProject />} />
                     <Route path=":id" element={<FullPage />} />
                 </Route>
