@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 
 import { Post, Posts, NewPost, NewProject, Card, FullPage } from './components';
+import reportWebVitals from './reportWebVitals';
 
 import './components/css/normalise.css';
 import './components/css/index.css';
@@ -154,7 +155,7 @@ class Projects extends Component {
     }
 }
 
-class AllProjects extends Component {
+class Projects extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -307,7 +308,7 @@ ReactDOM.render(
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/projects" element={<Projects />}>
-                    <Route path="" element={<AllProjects />} />
+                    <Route path="" element={<Projects />} />
                     <Route path="add" element={<NewProject />} />
                     <Route path=":id" element={<FullPage />} />
                 </Route>
@@ -324,3 +325,6 @@ ReactDOM.render(
     </React.StrictMode>,
     document.getElementById('root')
 );
+
+// reportWebVitals(Projects.storeDataToLocalStorage)
+// reportWebVitals(console.log)

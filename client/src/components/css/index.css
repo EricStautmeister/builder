@@ -1,15 +1,15 @@
-/* #f1f1f1 */
+/* #f1f1f1 #292d30 */
 html {
   scroll-behavior: smooth;
   scrollbar-width: 20px;
   scrollbar-color: #888;
-  scrollbar-track-color: #292d30;
+  scrollbar-track-color: #ffffff;
 }
 html ::-webkit-scrollbar {
   width: 20px;
 }
 html ::-webkit-scrollbar-track {
-  background: #292d30;
+  background: #ffffff;
 }
 html ::-webkit-scrollbar-thumb {
   background: #888;
