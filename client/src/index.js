@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react'; //useEffect, useState
 import ReactDOM from 'react-dom';
 import {
