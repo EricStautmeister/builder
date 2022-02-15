@@ -104,3 +104,21 @@ div {
     border: none;
     border-radius: .004em;
 }
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    width: $site-width;
+}
+
+.right-align {
+    justify-self: flex-end;
+}
+
+.no-deco {
+    text-decoration: none;
+}

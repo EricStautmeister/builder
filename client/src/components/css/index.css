@@ -87,4 +87,22 @@ div p {
   border-radius: 0.004em;
 }
 
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+}
+
+.right-align {
+  justify-self: flex-end;
+}
+
+.no-deco {
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=index.css.map */

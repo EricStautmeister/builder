@@ -6,16 +6,6 @@ $site-width: 100% /* variable */;
     align-items: $align;
 }
 
-.wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    align-content: center;
-    width: $site-width;
-}
-
 .btnContainer {
     display: flex;
     flex-direction: row;
@@ -28,8 +18,4 @@ $site-width: 100% /* variable */;
     display: flex;
     justify-content: flex-end;
     align-content: center;
-}
-
-.no-deco {
-    text-decoration: none;
 }

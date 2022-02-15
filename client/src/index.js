@@ -146,7 +146,7 @@ class Projects extends Component {
             <div id="Body">
                 <div className="btnContainer">
                     <NavLink
-                        className="right-align no-deco"
+                        className="no-deco"
                         to={`/projects/add`}>
                         <button className="btn right-align">Add</button>
                     </NavLink>
@@ -235,9 +235,11 @@ class Blog extends Component {
     render() {
         return (
             <div id="Body">
-                <NavLink className="right-align" to={`/blog/new`}>
-                    <button className="btn right-align">Create new Post</button>
-                </NavLink>
+                <div className="btnContainer">
+                    <NavLink className="no-deco" to={`/blog/new`}>
+                        <button className="btn right-align">Create new Post</button>
+                    </NavLink>
+                </div>
                 <Outlet />
             </div>
         );
@@ -329,4 +331,4 @@ ReactDOM.render(
 );
 
 // reportWebVitals(Projects.storeDataToLocalStorage)
-// reportWebVitals(console.log)
+reportWebVitals(console.log)

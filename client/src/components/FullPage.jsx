@@ -13,7 +13,7 @@ const FullPage = () => {
     const { title, content } = data;
     return (
         <div id="Body">
-            <div className="contentWrapper">
+            <div className="contentWrapper no-deco">
                 <h1>{title}</h1>
                 <p>{content}</p>
             </div>
