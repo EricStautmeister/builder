@@ -55,6 +55,12 @@ body {
   color: #ffffff;
 }
 
+h1, h6 {
+  margin: 10px;
+  margin-left: 20px;
+  color: #fff;
+}
+
 div h1,
 div p {
   color: #000000;
@@ -62,6 +68,10 @@ div p {
 
 .icon {
   padding: 0;
+}
+
+.iconWrapper {
+  display: inline-flex;
 }
 
 .btn {

@@ -1,10 +1,7 @@
 import React, { Component } from 'react'; //useEffect, useState
+import { Card } from './';
 
-import { Card } from './components';
-
-import './components/css/normalise.css';
-import './components/css/index.css';
-import './components/css/Projects.css';
+import './css/Projects.css';
 
 export default class ProjectList extends Component {
     constructor(props) {

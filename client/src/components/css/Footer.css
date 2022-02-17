@@ -21,10 +21,6 @@ body {
   background: linear-gradient(315deg, #ffffff, #d7e1ec);
 }
 
-.iconWrapper {
-  display: inline-flex;
-}
-
 .iconWrapper .icon {
   position: relative;
   background-color: #ffffff;

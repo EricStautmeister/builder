@@ -1,8 +1,6 @@
 import React, { Component } from 'react'; //useEffect, useState
 
-import './components/css/normalise.css';
-import './components/css/index.css';
-import './components/css/Login.css';
+import './css/Login.css';
 
 export default class Login extends Component {
     constructor() {

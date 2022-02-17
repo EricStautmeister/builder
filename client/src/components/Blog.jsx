@@ -4,9 +4,7 @@ import {
     NavLink,
 } from 'react-router-dom';
 
-import './components/css/normalise.css';
-import './components/css/index.css';
-import './components/css/Blog.css';
+import './css/Blog.css';
 
 export default class Blog extends Component {
     render() {

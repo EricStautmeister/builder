@@ -1,9 +1,7 @@
 import React, { Component } from 'react'; //useEffect, useState
 import { Outlet, NavLink } from 'react-router-dom';
 
-import './components/css/normalise.css';
-import './components/css/index.css';
-import './components/css/Projects.css';
+import './css/Projects.css';
 
 export default class Projects extends Component {
     render() {

@@ -72,6 +72,12 @@ body {
     }
 }
 
+h1, h6 {
+    margin: 10px;
+    margin-left: 20px;
+    color: #fff;
+}
+
 div {
     h1,
     p {
@@ -82,6 +88,10 @@ div {
 .icon {
     padding: 0;
 }
+
+.iconWrapper {
+    display: inline-flex;
+  }
 
 .btn {
     background-color: #8a8888;

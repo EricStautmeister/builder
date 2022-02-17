@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 
+//Adjust css
+
 function Post() {
   //TODO: Implement Post from Api fetching using Post slug
   let { postSlug } = useParams();

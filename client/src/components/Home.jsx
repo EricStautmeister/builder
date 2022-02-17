@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; //useEffect, useState
 
-import './components/css/normalise.css';
+import './css/Home.css';
 
 export default class Home extends Component {
     render() {

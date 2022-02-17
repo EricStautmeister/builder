@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './css/Blog.css';
+import './css/Blog.css'; //Adjust css
 
 export default class NewProject extends Component {
     constructor() {

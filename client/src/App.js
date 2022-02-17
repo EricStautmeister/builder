@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react'; //useEffect, useState
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
 import { Post, Posts, NewPost, NewProject, FullPage } from './components'; //Card
 import {
     Header,
