@@ -20,6 +20,7 @@ import './components/css/index.css';
 //TODO: Rename project to portfolio builder (comes with appropriate changes)
 //TODO: needs theme color changer and shit
 
+//TODO: Post component should be replaced with FullPage
 export default class App extends Component {
     render() {
         return (

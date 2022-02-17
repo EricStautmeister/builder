@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
-//Adjust css
+//TODO: Adjust css
 
 export default class Posts extends Component {
   render() {
