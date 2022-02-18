@@ -7,7 +7,7 @@ export { default as ProjectList } from './ProjectList';
 export { default as Blog } from './Blog';
 export { default as Login } from './Login';
 export { default as SignUp } from './SignUp';
-export { default as Posts } from './Posts';
+export { default as PostList } from './PostList';
 export { default as NewPost } from './NewPost';
 export { default as NewProject } from './NewProject';
 

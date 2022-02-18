@@ -11,7 +11,7 @@ export default class Blog extends Component {
         return (
             <div id="Body">
                 <div className="btnContainer">
-                    <NavLink className="no-deco" to={`/blog/new`}>
+                    <NavLink className="no-deco" to={`/posts/add`}>
                         <button className="btn right-align">
                             Create new Post
                         </button>

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'; //useEffect, useState
-import { Card } from './';
+import { Card } from '.';
 
 import './css/Projects.css';
 
-export default class ProjectList extends Component {
+export default class PostList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            projectList: null,
+          postList: null,
         };
     }
 
@@ -24,18 +24,18 @@ export default class ProjectList extends Component {
     //TODO: Also, perhaps localstorage should be cleaned every now and then storage.clear(str) or .removeItem(str)
 
     fetchPosts = async () => {
-        const res = await fetch('http://localhost:5000/getProjects');
+        const res = await fetch('http://localhost:5000/getPosts');
         const data = await res.json();
         this.setState({
-            projectList: data.response,
+            postList: data.response,
         });
     };
 
-    storeDataToLocalStorage = (projectList) => {
-        if (projectList !== null && projectList.length) {
-            const { projectList } = this.state;
+    storeDataToLocalStorage = (postList) => {
+        if (postList !== null && postList.length) {
+            const { postList } = this.state;
             let index = 0;
-            for (const project of projectList) {
+            for (const project of postList) {
                 const data = JSON.stringify(project);
                 localStorage.setItem(`${index}`, data);
                 index++;
@@ -44,17 +44,17 @@ export default class ProjectList extends Component {
     };
 
     render() {
-        const { projectList } = this.state;
-        this.storeDataToLocalStorage(projectList);
-        // console.dir(projectList); //FIXME: This runs twice per render, find out why and potentially fix it
+        const { postList } = this.state;
+        this.storeDataToLocalStorage(postList);
+        // console.dir(postList); //FIXME: This runs twice per render, find out why and potentially fix it
         return (
             <div className="container">
-                {projectList !== null && projectList.length ? (
+                {postList !== null && postList.length ? (
                     <div className="wrapper">
-                        {projectList.map((item, index) => (
+                        {postList.map((item, index) => (
                             <Card
                                 key={index}
-                                anchor={'projects'}
+                                anchor={'posts'}
                                 to={index}
                                 data={JSON.stringify(item)}
                                 title={item.title}

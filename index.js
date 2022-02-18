@@ -34,6 +34,20 @@ app.use(
 //TODO: Add api router
 //TODO: Add CSRF verification to routes
 
+uploadToDrive = async (drive, title, content) => {
+    console.log('Request received');
+    const parsedTitle = title.replace(
+        /\s+(.)/g,
+        function (match, group) {
+            return group.toUpperCase();
+        }
+    );
+    const data = `${title}([//])${content}`;
+    const filename = `${parsedTitle}.json`;
+    const databaseRes = await drive.put(filename, { data });
+    return { file: filename, databaseRes };
+};
+
 getDataFromDrive = async (drive) => {
     const result = await drive.list();
     const allFiles = result.names;
@@ -65,38 +79,24 @@ getDataFromDrive = async (drive) => {
     return res;
 };
 
+app.post('/uploadPost', async (req, res) => {
+    const response = await uploadToDrive(postData, req.body.title, req.body.content);
+    res.json(response);
+});
+
+app.post('/uploadProject', async (req, res) => {
+    const response = await uploadToDrive(projectData, req.body.title, req.body.content);
+    res.json(response);
+});
+
 app.get(`/getPosts`, async (req, res) => {
     const response = await getDataFromDrive(postData);
     res.json({ response });
 });
 
 app.get(`/getProjects`, async (req, res) => {
-    const response = await getDataFromDrive(projectData);
-    res.json({ response });
-});
-
-app.post('/uploadPost', async (req, res) => {
-    const parsedTitle = req.body.replace(/\s+(.)/g, function (match, group) {
-        return group.toUpperCase();
-    });
-    const filename = `${parsedTitle}.json`;
-    const post = await postData.put(filename, {
-        data: req.body.text,
-    });
-});
-
-app.post('/uploadProject', async (req, res) => {
-    console.log("Request received");
-    const parsedTitle = req.body.title.replace(
-        /\s+(.)/g,
-        function (match, group) {
-            return group.toUpperCase();
-        }
-    );
-    const data = `${req.body.title}([//])${req.body.content}`;
-    const filename = `${parsedTitle}.json`;
-    const databaseRes = await projectData.put(filename, { data });
-    res.json({ file: filename, databaseRes });
+    const response = await getDataFromDrive(projectData, req);
+    res.json(response);
 });
 
 // Handles any requests that don't match the ones above

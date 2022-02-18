@@ -7,7 +7,7 @@ export default class NewPost extends Component {
         super();
         this.state = {
             title: '',
-            text: '',
+            content: '',
             postId: null,
         };
     }
@@ -20,7 +20,7 @@ export default class NewPost extends Component {
 
     handleText = (event) => {
         this.setState({
-            text: event.target.value,
+            content: event.target.value,
         });
     };
 
@@ -44,7 +44,7 @@ export default class NewPost extends Component {
         event.preventDefault();
         this.postReq('/uploadPost', {
             title: this.state.title,
-            text: this.state.text,
+            content: this.state.content,
         }).then((data) => {
             console.log(data);
         });
@@ -64,7 +64,7 @@ export default class NewPost extends Component {
                     <textarea
                         id="blogText"
                         type="text"
-                        value={this.state.text}
+                        value={this.state.content}
                         onChange={this.handleText}
                         placeholder="Type Entry Here"
                     />
