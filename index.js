@@ -1,12 +1,10 @@
-// @flow
-
 const express = require('express');
 require('dotenv').config();
 
 const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet');
-// const csrf = require('csurf');
+const csrf = require('csurf');
 const { Deta } = require('deta');
 
 const cookieParser = require('cookie-parser');
@@ -16,7 +14,7 @@ const app = express().disable('x-powered-by');
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
-// app.use(csrf({ cookie: true }));
+app.use(csrf({ cookie: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -24,24 +22,20 @@ const deta = Deta(process.env.DETA_PROJECT_KEY);
 const projectData = deta.Drive('Projects');
 const postData = deta.Drive('Posts');
 
-app.use(
-    cors({
-        origin: 'http://localhost:3000',
-        // exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar']
-    })
-);
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+    // exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar']
+};
+app.use(cors(corsOptions));
 
 //TODO: Add api router
-//TODO: Add CSRF verification to routes
 
 uploadToDrive = async (drive, title, content) => {
     console.log('Request received');
-    const parsedTitle = title.replace(
-        /\s+(.)/g,
-        function (match, group) {
-            return group.toUpperCase();
-        }
-    );
+    const parsedTitle = title.replace(/\s+(.)/g, function (match, group) {
+        return group.toUpperCase();
+    });
     const data = `${title}([//])${content}`;
     const filename = `${parsedTitle}.json`;
     const databaseRes = await drive.put(filename, { data });
@@ -79,13 +73,25 @@ getDataFromDrive = async (drive) => {
     return res;
 };
 
+app.get('/process', async (req, res) => {
+    res.send({ csrfToken: req.csrfToken() });
+});
+
 app.post('/uploadPost', async (req, res) => {
-    const response = await uploadToDrive(postData, req.body.title, req.body.content);
+    const response = await uploadToDrive(
+        postData,
+        req.body.title,
+        req.body.content
+    );
     res.json(response);
 });
 
 app.post('/uploadProject', async (req, res) => {
-    const response = await uploadToDrive(projectData, req.body.title, req.body.content);
+    const response = await uploadToDrive(
+        projectData,
+        req.body.title,
+        req.body.content
+    );
     res.json(response);
 });
 

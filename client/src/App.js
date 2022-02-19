@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'; //useEffect, useState
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Post, PostList, NewPost, NewProject, FullPage } from './components'; //Card
+import { PostList, NewItem, FullPage } from './components'; //Card
 import {
     Header,
     Footer,
@@ -30,14 +30,15 @@ export default class App extends Component {
                     <Route path="/" element={<Home />} />
                     <Route path="/projects" element={<Projects />}>
                         <Route path="" element={<ProjectList />} />
-                        <Route path="add" element={<NewProject />} />
+                        <Route path="add" element={<NewItem url={'/uploadProject'} />} />
                         <Route path=":id" element={<FullPage />} />
                     </Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/posts" element={<Blog />}>
                         <Route path="" element={<PostList />} />
-                        <Route path="add" element={<NewPost />} />
+                        <Route path="add" element={<NewItem url={'/uploadPost'} />} />
+                        {/* <Route path="add" element={<NewPost />} /> */}
                         <Route path=":id" element={<FullPage />} />
                     </Route>
                 </Routes>

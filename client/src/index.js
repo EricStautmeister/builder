@@ -12,4 +12,4 @@ ReactDOM.render(
 );
 
 // reportWebVitals(Projects.storeDataToLocalStorage)
-reportWebVitals(console.log)
+reportWebVitals(console.table)

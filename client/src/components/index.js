@@ -8,10 +8,8 @@ export { default as Blog } from './Blog';
 export { default as Login } from './Login';
 export { default as SignUp } from './SignUp';
 export { default as PostList } from './PostList';
-export { default as NewPost } from './NewPost';
-export { default as NewProject } from './NewProject';
+export { default as NewItem } from './NewItem';
 
 //Components
 export { default as Card } from './Card';
-export { default as Post } from './Post';
 export { default as FullPage } from './FullPage';
