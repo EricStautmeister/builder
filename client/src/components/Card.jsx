@@ -16,7 +16,6 @@ export default class Card extends Component {
 
     render() {
         const { title, id, content, anchor } = this.state;
-        console.log(content);
         return (
             <div id="cardAnchor">
                 <NavLink className="no-deco" to={`/${anchor}/i?id=${id}`}>

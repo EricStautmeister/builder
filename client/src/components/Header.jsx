@@ -38,7 +38,7 @@ export default class Header extends Component {
                     </div>
                 </div>
                 <div id="actionWrapper">
-                    {/* <div id="loginWrapper">
+                    <div id="loginWrapper">
                         <div id="isUser">
                             <NavLink className="button" to="/login">
                                 <button className="btn">Login</button>
@@ -49,7 +49,7 @@ export default class Header extends Component {
                                 <button className="btn">Sign Up</button>
                             </NavLink>
                         </div>
-                    </div> */}
+                    </div>
                     <div id="menu">
                         <MenuIcon />
                     </div>

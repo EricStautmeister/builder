@@ -11,7 +11,9 @@ export default class Projects extends Component {
             <div id="Body">
                 <div className="btnContainer">
                     <NavLink className="no-deco" to={`/projects/add`}>
-                        <button className="btn right-align">Add</button>
+                        <button className="btn right-align">
+                            Create new Project
+                        </button>
                     </NavLink>
                 </div>
                 <Outlet />

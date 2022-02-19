@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; //useEffect, useState
-import { Card } from '.';
+import { Card } from './';
 
 import './css/Projects.css';
 
@@ -32,11 +32,12 @@ export default class PostList extends Component {
     };
 
     storeDataToLocalStorage = (postList) => {
+        console.log('storeDataToLocalStorage:', postList)
         if (postList !== null && postList.length) {
             const { postList } = this.state;
             let index = 0;
-            for (const project of postList) {
-                const data = JSON.stringify(project);
+            for (const post of postList) {
+                const data = JSON.stringify(post);
                 localStorage.setItem(`${index}`, data);
                 index++;
             }

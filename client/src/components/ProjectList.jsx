@@ -32,7 +32,8 @@ export default class ProjectList extends Component {
     };
 
     storeDataToLocalStorage = (projectList) => {
-        if (projectList !== null && projectList.length) {
+        console.log('storeDataToLocalStorage:', projectList)
+        if (projectList !== null && projectList) {
             const { projectList } = this.state;
             let index = 0;
             for (const project of projectList) {

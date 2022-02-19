@@ -90,13 +90,13 @@ app.post('/uploadProject', async (req, res) => {
 });
 
 app.get(`/getPosts`, async (req, res) => {
-    const response = await getDataFromDrive(postData);
+    const response = await getDataFromDrive(postData, req);
     res.json({ response });
 });
 
 app.get(`/getProjects`, async (req, res) => {
     const response = await getDataFromDrive(projectData, req);
-    res.json(response);
+    res.json({ response });
 });
 
 // Handles any requests that don't match the ones above
