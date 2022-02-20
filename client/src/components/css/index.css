@@ -55,7 +55,8 @@ body {
   color: #ffffff;
 }
 
-h1, h6 {
+h1,
+h6 {
   margin: 10px;
   margin-left: 20px;
   color: #fff;
@@ -64,6 +65,63 @@ h1, h6 {
 div h1,
 div p {
   color: #000000;
+}
+
+#Anchor {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: 100% 100%;
+  height: 100vh;
+  width: 100%;
+}
+#Anchor .form #itemTitle {
+  width: 1000px;
+  padding: 10px;
+  cursor: text;
+  color: #000;
+  border: 4px solid #0095777c;
+  border-radius: 10px;
+  position: relative;
+  z-index: 3;
+  background: #fff;
+}
+#Anchor .form #itemTitle:focus-visible {
+  outline: none;
+}
+#Anchor .form .input {
+  margin-top: 0%;
+  width: 1000px;
+  padding: 10px;
+  cursor: text;
+  color: #000;
+  border: 4px solid #0095777c;
+  border-radius: 10px;
+  position: relative;
+  z-index: 3;
+  background: #fff;
+}
+#Anchor .form .textArea {
+  margin: 10px;
+  padding: 0;
+  background: #fff;
+  width: 100%;
+  height: 70%;
+  padding: 25px;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: text;
+  color: #000;
+  border: 4px solid #0095777c;
+  border-radius: 10px;
+  position: relative;
+  z-index: 3;
+}
+#Anchor .form #itemContent:focus-visible {
+  outline: none;
 }
 
 .icon {

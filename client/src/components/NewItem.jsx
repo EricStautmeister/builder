@@ -1,7 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
 
-import './css/Blog.css'; //TODO: Adjust css
-
 export default class NewProject extends Component {
     constructor(props) {
         super(props);
@@ -35,7 +33,7 @@ export default class NewProject extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props)
+        console.log(this.props);
         this.getCSRFToken('/process');
     }
 
@@ -70,7 +68,7 @@ export default class NewProject extends Component {
         );
         return await response.json();
     };
-    //
+
     handleSubmit = (event) => {
         event.preventDefault();
         this.postReq(this.props.url, {
@@ -82,20 +80,23 @@ export default class NewProject extends Component {
     };
 
     render() {
-        //TODO: Input IDs have to be changed, here and in Blog.jsx
         //TODO: Add text modifiers, maybe a markdown plugin or so
         return (
             <div id="Anchor">
-                <form id="loginForm" onSubmit={this.handleSubmit}>
+                <form
+                    id="loginForm"
+                    className="form"
+                    onSubmit={this.handleSubmit}>
                     <input
-                        id="blogTitle"
+                        id="itemTitle"
                         type="text"
                         value={this.state.formTitle}
                         onChange={this.handleTitle}
                         placeholder="Title"
                     />
                     <textarea
-                        id="blogText"
+                        id="itemContent"
+                        className="textArea"
                         type="text"
                         value={this.state.formContent}
                         onChange={this.handleContent}

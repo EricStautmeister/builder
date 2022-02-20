@@ -51,7 +51,7 @@ body {
         width: $site-width;
         @include wrapperFlex($justify: space-between);
     }
-    
+
     #Body {
         background: #ffffff;
         padding: 1%;
@@ -60,7 +60,7 @@ body {
         width: $site-width;
         overflow: auto;
     }
-    
+
     #Footer {
         background-color: #ffffff;
         height: 100px;
@@ -72,7 +72,8 @@ body {
     }
 }
 
-h1, h6 {
+h1,
+h6 {
     margin: 10px;
     margin-left: 20px;
     color: #fff;
@@ -85,13 +86,76 @@ div {
     }
 }
 
+#Anchor {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: 100% 100%;
+    height: 100vh;
+    width: $site-width;
+    .form {
+        #itemTitle {
+            width: 1000px;
+            padding: 10px;
+            cursor: text;
+            color: #000;
+            border: 4px solid #0095777c;
+            border-radius: 10px;
+            position: relative;
+            z-index: 3;
+            background: #fff;
+        }
+
+        #itemTitle:focus-visible {
+            outline: none;
+        }
+
+        .input {
+            margin-top: 0%;
+            width: 1000px;
+            padding: 10px;
+            cursor: text;
+            color: #000;
+            border: 4px solid #0095777c;
+            border-radius: 10px;
+            position: relative;
+            z-index: 3;
+            background: #fff;
+        }
+
+        .textArea {
+            margin: 10px;
+            padding: 0;
+            background: #fff;
+            width: 100%;
+            height: 70%;
+            padding: 25px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            cursor: text;
+            color: #000;
+            border: 4px solid #0095777c;
+            border-radius: 10px;
+            position: relative;
+            z-index: 3;
+        }
+
+        #itemContent:focus-visible {
+            outline: none;
+        }
+    }
+}
+
 .icon {
     padding: 0;
 }
 
 .iconWrapper {
     display: inline-flex;
-  }
+}
 
 .btn {
     background-color: #8a8888;
@@ -112,7 +176,7 @@ div {
     position: relative;
     cursor: pointer;
     border: none;
-    border-radius: .004em;
+    border-radius: 0.004em;
 }
 
 .wrapper {

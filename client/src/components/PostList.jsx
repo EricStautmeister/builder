@@ -14,13 +14,10 @@ export default class PostList extends Component {
     componentDidMount() {
         this.fetchPosts();
     }
-    //TODO: When you change to Blog or back, the component unmounts and resets state, project list is null then
 
     //TODO: Instead of localstorage, use session storage
 
     //TODO: Do not fetch if there is data in localstorage, only if data has been updated
-
-    //TODO: Also, perhaps localstorage should be cleaned every now and then storage.clear(str) or .removeItem(str)
 
     fetchPosts = async () => {
         const requestOptions = {

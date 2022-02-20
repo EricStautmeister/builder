@@ -17,5 +17,6 @@ $site-width: 100% /* variable */;
     @include wrapperFlex(center);
     flex-direction: column;
     height: 50%;
-
+    height: 70%;
+    margin-bottom: 10%;
 }
