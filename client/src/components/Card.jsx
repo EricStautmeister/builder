@@ -13,7 +13,8 @@ export default class Card extends Component {
             anchor: props.anchor,
         };
     }
-
+    
+    //FIXME: Only text is clickable, add div
     render() {
         const { title, id, content, anchor } = this.state;
         return (

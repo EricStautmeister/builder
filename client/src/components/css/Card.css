@@ -8,6 +8,8 @@
   border-radius: 10px;
   border: 1px solid white;
   width: 22%;
+  min-width: 400px;
+  max-width: 900px;
   height: 30vh;
   overflow: auto;
 }
