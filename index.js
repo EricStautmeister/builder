@@ -79,7 +79,8 @@ app.get('/process', async (req, res) => {
 
 app.post('/login', async (req, res) => {
     res.json({ token: 'testToken' });
-});
+});//TODO: JWT token and better auth, maybe move auth to different middleware
+//TODO: Data comes in as {username, password} in req.body
 
 app.post('/uploadPost', async (req, res) => {
     const response = await uploadToDrive(

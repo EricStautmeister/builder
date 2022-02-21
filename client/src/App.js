@@ -20,7 +20,7 @@ import './components/css/index.css';
 //TODO: needs theme color changer and shit
 
 export default function App() {
-    const [JWT, setJWT] = useState();
+    const [JWT, setJWT] = useState(); //TODO: Does JWT hold a value after login
     return (
         <Router>
             <Header />
