@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import './css/FullPage.css'; //TODO: Padding on the right
+import '../css/FullPage.css'; //TODO: Padding on the right
 
 const FullPage = () => {
     const [searchParams] = useSearchParams();

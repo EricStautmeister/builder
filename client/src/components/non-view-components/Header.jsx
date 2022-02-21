@@ -1,10 +1,10 @@
 import React, { Component } from 'react'; //useEffect, useState
 import { NavLink } from 'react-router-dom';
 
-import './css/Header.css';
+import '../css/Header.css';
 
-import LogoIcon from './media/logo.png';
-import { ReactComponent as MenuIcon } from './media/menu.svg';
+import LogoIcon from '../media/logo.png';
+import { ReactComponent as MenuIcon } from '../media/menu.svg';
 
 export default class Header extends Component {
     constructor(props) {

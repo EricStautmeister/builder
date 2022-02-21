@@ -1,12 +1,12 @@
 import React, { Component } from 'react'; //useEffect, useState
 
-import './css/Footer.css';
+import '../css/Footer.css';
 
-import facebookIcon from './media/facebook.png';
-import twitterIcon from './media/twitter.png';
-import instagramIcon from './media/instagram.png';
-import githubIcon from './media/github.png';
-import youtubeIcon from './media/youtube.png';
+import facebookIcon from '../media/facebook.png';
+import twitterIcon from '../media/twitter.png';
+import instagramIcon from '../media/instagram.png';
+import githubIcon from '../media/github.png';
+import youtubeIcon from '../media/youtube.png';
 
 export default class Footer extends Component {
     constructor(props) {

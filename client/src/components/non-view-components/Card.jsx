@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './css/Card.css';
+import '../css/Card.css';
 
 export default class Card extends Component {
     constructor(props) {

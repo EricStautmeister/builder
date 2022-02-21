@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component } from 'react';
 
 export default class NewProject extends Component {
     constructor(props) {
