@@ -54,7 +54,6 @@ export default class PostList extends Component {
     render() {
         const { postList } = this.state;
         this.storeDataToLocalStorage(postList);
-        // console.dir(postList); //FIXME: This runs twice per render, find out why and potentially fix it
         return (
             <div className="container">
                 {postList !== null && postList.length ? (

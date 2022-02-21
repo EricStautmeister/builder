@@ -74,7 +74,11 @@ getDataFromDrive = async (drive) => {
 };
 
 app.get('/process', async (req, res) => {
-    res.send({ csrfToken: req.csrfToken() });
+    res.json({ csrfToken: req.csrfToken() });
+});
+
+app.post('/login', async (req, res) => {
+    res.json({ token: 'testToken' });
 });
 
 app.post('/uploadPost', async (req, res) => {

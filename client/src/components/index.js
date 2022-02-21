@@ -6,6 +6,7 @@ export { default as Blog } from './Blog';
 export { default as Login } from './Login';
 export { default as SignUp } from './SignUp';
 export { default as PostList } from './PostList';
+export { default as Dashboard } from './Dashboard';
 
 //Components
 export { default as Header } from './non-view-components/Header';
