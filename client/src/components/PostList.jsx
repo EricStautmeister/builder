@@ -10,9 +10,9 @@ export default class PostList extends Component {
             postList: null,
         };
     }
+    
 
     componentDidMount() {
-        console.log("JWT:", this.props.JWT)
         this.fetchPosts();
     }
 
