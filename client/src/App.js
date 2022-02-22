@@ -24,6 +24,7 @@ export default function App() {
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/projects" element={<Projects JWT={JWT} />}>
                     <Route path="" element={<ProjectList JWT={JWT} />} />
                     <Route

@@ -6,7 +6,7 @@ import './css/Blog.css';
 export default function Blog({ JWT }) {
     useEffect(() => {
         console.log(JWT);
-    }, []);
+    }, [JWT]);
 
     return (
         <div id="Body">

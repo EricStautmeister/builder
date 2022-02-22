@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; //useEffect, useState
+import React from 'react'; //useEffect, useState
 
 import './css/Dashboard.css';
 

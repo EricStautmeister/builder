@@ -1,28 +1,18 @@
-import React, { Component } from 'react'; //useEffect, useState
+import React, { useEffect, useState } from 'react';
 import { Card } from './';
 
 import './css/Projects.css';
 
-export default class ProjectList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            projectList: null,
-        };
-    }
+export default function ProjectList({ JWT }){
+    const [projectList, setProjectList] = useState(null);
 
-    componentDidMount() {
-        this.fetchPosts();
-    }
-    //TODO: When you change to Blog or back, the component unmounts and resets state, project list is null then
-
-    //TODO: Instead of localstorage, use session storage
+    useEffect(() => {
+        fetchPosts();
+    }, []);
+    //TODO: Memory leak or so, cancel all subscriptions and asynchronous tasks on component unmount
 
     //TODO: Do not fetch if there is data in localstorage, only if data has been updated
-
-    //TODO: Also, perhaps localstorage should be cleaned every now and then storage.clear(str) or .removeItem(str)
-
-    fetchPosts = async () => {
+    const fetchPosts = async () => {
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -37,55 +27,48 @@ export default class ProjectList extends Component {
             requestOptions
         );
         const data = await res.json();
-        this.setState({
-            projectList: data.response,
-        });
+        setProjectList(data.response);
     };
 
-    storeDataToSessionStorage = (projectList) => {
-        if (projectList !== null && projectList) {
-            const { projectList } = this.state;
+    const storeDataToSessionStorage = (projectList) => {
+        if (projectList !== null && projectList.length) {
             let index = 0;
-            for (const project of projectList) {
-                const data = JSON.stringify(project);
+            for (const post of projectList) {
+                const data = JSON.stringify(post);
                 sessionStorage.setItem(`${index}`, data);
                 index++;
             }
         }
     };
 
-    render() {
-        const { projectList } = this.state;
-        this.storeDataToSessionStorage(projectList);
-        // console.dir(projectList); //FIXME: This runs twice per render, find out why and potentially fix it
-        return (
-            <div className="container">
-                {projectList !== null && projectList.length ? (
-                    <div className="wrapper">
-                        {projectList.map((item, index) => (
-                            <Card
-                                key={index}
-                                anchor={'projects'}
-                                to={index}
-                                data={JSON.stringify(item)}
-                                title={item.title}
-                                content={item.content}
-                            />
-                        ))}
-                    </div>
-                ) : (
-                    <div className="wrapper">
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                    </div>
-                )}
-            </div>
-        );
-    }
+    storeDataToSessionStorage(projectList);
+    return (
+        <div className="container">
+            {projectList !== null && projectList.length ? (
+                <div className="wrapper">
+                    {projectList.map((item, index) => (
+                        <Card
+                            key={index}
+                            anchor={'projects'}
+                            to={index}
+                            data={JSON.stringify(item)}
+                            title={item.title}
+                            content={item.content}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className="wrapper">
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                </div>
+            )}
+        </div>
+    );
 }

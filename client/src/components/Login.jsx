@@ -3,38 +3,10 @@ import PropTypes from 'prop-types';
 
 import './css/Login.css';
 
-export default function Login({ setJWT }) {
+export default function Login({ setJWT, JWT }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const [csrfToken, setCsrfToken] = useState();
-
-    // const handleUser = (event) => {
-    // this.setState({
-    // user: event.target.value,
-    // });
-    // console.log(event.target.value);
-    // };
-    //
-    // const handlePassword = (event) => {
-    // this.setState({
-    // password: event.target.value,
-    // });
-    // console.log(event.target.value);
-    // };
-
-    async function loginUser(credentials) {
-        return fetch('http://localhost:5000/login', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'xsrf-token': csrfToken,
-            },
-            mode: 'cors',
-            credentials: 'include',
-            body: JSON.stringify(credentials),
-        }).then((data) => data.json());
-    }
 
     const getCSRFToken = async (httpAnchor) => {
         const serverUrl = 'http://localhost:5000';
@@ -60,6 +32,20 @@ export default function Login({ setJWT }) {
         getCSRFToken('/process');
     }, []);
 
+    async function loginUser(credentials) {
+        return fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'xsrf-token': csrfToken,
+            },
+            mode: 'cors',
+            credentials: 'include',
+            body: JSON.stringify(credentials),
+        }).then((data) => data.json());
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const token = await loginUser({
@@ -67,7 +53,6 @@ export default function Login({ setJWT }) {
             password,
         });
         setJWT(token);
-        debugger;
     };
 
     return (
