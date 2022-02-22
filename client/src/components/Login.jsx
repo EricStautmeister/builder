@@ -66,8 +66,8 @@ export default function Login({ setJWT }) {
             username,
             password,
         });
-        debugger;
         setJWT(token);
+        debugger;
     };
 
     return (

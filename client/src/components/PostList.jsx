@@ -12,6 +12,7 @@ export default class PostList extends Component {
     }
 
     componentDidMount() {
+        console.log("JWT:", this.props.JWT)
         this.fetchPosts();
     }
 
@@ -39,13 +40,13 @@ export default class PostList extends Component {
         });
     };
 
-    storeDataToLocalStorage = (postList) => {
+    storeDataToSessionStorage = (postList) => {
         if (postList !== null && postList.length) {
             const { postList } = this.state;
             let index = 0;
             for (const post of postList) {
                 const data = JSON.stringify(post);
-                localStorage.setItem(`${index}`, data);
+                sessionStorage.setItem(`${index}`, data);
                 index++;
             }
         }
@@ -53,7 +54,7 @@ export default class PostList extends Component {
 
     render() {
         const { postList } = this.state;
-        this.storeDataToLocalStorage(postList);
+        this.storeDataToSessionStorage(postList);
         return (
             <div className="container">
                 {postList !== null && postList.length ? (

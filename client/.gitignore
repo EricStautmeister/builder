@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# templates
+/redux-js-template
+
 # testing
 /coverage
 

@@ -6,7 +6,7 @@ import '../css/FullPage.css'; //TODO: Padding on the right
 const FullPage = () => {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
-    const passedData = localStorage.getItem(`${id}`);
+    const passedData = sessionStorage.getItem(`${id}`);
     const data = JSON.parse(passedData);
     //TODO: Some styling pls, this looks uglier than a mf
 

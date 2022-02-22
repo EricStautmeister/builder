@@ -42,13 +42,13 @@ export default class ProjectList extends Component {
         });
     };
 
-    storeDataToLocalStorage = (projectList) => {
+    storeDataToSessionStorage = (projectList) => {
         if (projectList !== null && projectList) {
             const { projectList } = this.state;
             let index = 0;
             for (const project of projectList) {
                 const data = JSON.stringify(project);
-                localStorage.setItem(`${index}`, data);
+                sessionStorage.setItem(`${index}`, data);
                 index++;
             }
         }
@@ -56,7 +56,7 @@ export default class ProjectList extends Component {
 
     render() {
         const { projectList } = this.state;
-        this.storeDataToLocalStorage(projectList);
+        this.storeDataToSessionStorage(projectList);
         // console.dir(projectList); //FIXME: This runs twice per render, find out why and potentially fix it
         return (
             <div className="container">
