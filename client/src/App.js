@@ -18,7 +18,7 @@ import './components/css/index.css';
 //TODO: needs theme color changer and shit
 
 export default function App() {
-    const [JWT, setJWT] = useState(''); //TODO: Does JWT hold a value after login
+    const [JWT, setJWT] = useState('');
     return (
         <Router>
             <Header />
@@ -32,15 +32,15 @@ export default function App() {
                     />
                     <Route path=":id" element={<FullPage />} />
                 </Route>
-                <Route path="/login" element={<Login setJWT={setJWT} />} />
+                <Route path="/login" element={<Login setJWT={setJWT} JWT={JWT} />} />
                 <Route path="/signup" element={<SignUp setJWT={setJWT}  JWT={JWT} />} />
                 <Route path="/posts" element={<Blog JWT={JWT}/>}>
-                    <Route path="" element={<PostList />} />
+                    <Route path="" element={<PostList JWT={JWT}/>} />
                     <Route
                         path="add"
                         element={<NewItem url={'/uploadPost'} JWT={JWT} />}
                     />
-                    <Route path=":id" element={<FullPage />} />
+                    <Route path=":id" element={<FullPage JWT={JWT} />} />
                 </Route>
             </Routes>
             <Footer />
