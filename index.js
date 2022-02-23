@@ -5,7 +5,6 @@ const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet');
 const csrf = require('csurf');
-const { Deta } = require('deta');
 
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -18,9 +17,8 @@ app.use(csrf({ cookie: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-const deta = Deta(process.env.DETA_PROJECT_KEY);
-const projectData = deta.Drive('Projects');
-const postData = deta.Drive('Posts');
+// const projectData = deta.Drive('Projects');
+// const postData = deta.Drive('Posts');
 
 const corsOptions = {
     origin: 'http://localhost:3000',
@@ -29,93 +27,36 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-//TODO: Add api router
-
-uploadToDrive = async (drive, title, content) => {
-    console.log('Request received');
-    const parsedTitle = title.replace(/\s+(.)/g, function (match, group) {
-        return group.toUpperCase();
-    });
-    const data = `${title}([//])${content}`;
-    const filename = `${parsedTitle}.json`;
-    const databaseRes = await drive.put(filename, { data });
-    return { file: filename, databaseRes };
-};
-
-getDataFromDrive = async (drive) => {
-    const result = await drive.list();
-    const allFiles = result.names;
-    const len = allFiles.length;
-    const parsedFileNames = allFiles.map((item) => item.replace('.json', ''));
-    const contents = [];
-    const res = [];
-
-    let counter = 0;
-    for (const file of allFiles) {
-        await drive
-            .get(file)
-            .then(async (responce) => await responce.text())
-            .then((content) => content.split('([//])'))
-            .then((data) =>
-                contents.push({ title: data[0], content: data[1] })
-            );
-        counter++;
-        if (counter == len) {
-            parsedFileNames.forEach((_name, index) => {
-                filedata = contents[index];
-                const title = filedata.title;
-                const content = filedata.content;
-                const response = { title, content };
-                res.push(response);
-            });
-        }
-    }
-    return res;
-};
-
 app.get('/process', async (req, res) => {
     res.json({ csrfToken: req.csrfToken() });
 });
 
+app.post('/authorize', (req, res) => {
+    
+});
+
 app.post('/login', async (req, res) => {
-    res.json({ token: 'testToken' });
-});//TODO: JWT token and better auth, maybe move auth to different middleware
-//TODO: Data comes in as {username, password} in req.body
+    
+});
 
 app.post('/uploadPost', async (req, res) => {
-    const response = await uploadToDrive(
-        postData,
-        req.body.title,
-        req.body.content
-    );
-    res.json(response);
+
 });
 
 app.post('/uploadProject', async (req, res) => {
-    const response = await uploadToDrive(
-        projectData,
-        req.body.title,
-        req.body.content
-    );
-    res.json(response);
+
 });
 
 app.get(`/getPosts`, async (req, res) => {
-    const response = await getDataFromDrive(postData, req);
-    res.json({ response });
 });
 
 app.get(`/getProjects`, async (req, res) => {
-    const response = await getDataFromDrive(projectData, req);
-    res.json({ response });
 });
 
-// Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
     res.sendFile(path.join(`${__dirname}/client/public/index.html`));
 });
 
-const port = process.env.PORT || 5000;
-app.listen(port, () => {
-    console.log(`Local: http://localhost:${port}`); // \nOn Your Network: http://172.20.10.2:${port}
+app.listen(5000, () => {
+    console.log(`Local: http://localhost:${5000}`);
 });

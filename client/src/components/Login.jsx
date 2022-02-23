@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { GoogleAuthProvider } from "firebase/auth";
 
 import './css/Login.css';
 
@@ -7,6 +8,8 @@ export default function Login({ setJWT, JWT }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const [csrfToken, setCsrfToken] = useState();
+
+    const providerGoogle = new GoogleAuthProvider();
 
     const getCSRFToken = async (httpAnchor) => {
         const serverUrl = 'http://localhost:5000';
