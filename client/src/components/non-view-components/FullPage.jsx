@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import '../css/FullPage.css'; //TODO: Padding on the right
 
-const FullPage = () => {
+export default function FullPage({ CSRFToken }) {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
     const passedData = sessionStorage.getItem(`${id}`);
@@ -19,6 +19,4 @@ const FullPage = () => {
             </div>
         </div>
     );
-};
-
-export default FullPage;
+}

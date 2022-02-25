@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react'; //useEffect, useState
+import React from 'react'; //useEffect, useState
 import { Outlet, NavLink } from 'react-router-dom';
 
 import './css/Blog.css';
 
-export default function Blog({ JWT }) {
-    useEffect(() => {
-        console.log(JWT);
-    }, [JWT]);
-
+export default function Blog({ CSRFToken }) {
     return (
         <div id="Body">
             <div className="btnContainer">

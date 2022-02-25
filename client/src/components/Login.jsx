@@ -1,61 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { GoogleAuthProvider } from "firebase/auth";
+import React, { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
+import { auth } from '../fire.js';
 
 import './css/Login.css';
 
-export default function Login({ setJWT, JWT }) {
-    const [username, setUserName] = useState();
+export default function Login({ CSRFToken }) {
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const [csrfToken, setCsrfToken] = useState();
 
-    const providerGoogle = new GoogleAuthProvider();
-
-    const getCSRFToken = async (httpAnchor) => {
-        const serverUrl = 'http://localhost:5000';
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                mode: 'cors',
-            },
-            mode: 'cors',
-            credentials: 'include',
-        };
-        const response = await fetch(
-            `${serverUrl}${httpAnchor}`,
-            requestOptions
-        );
-        const data = await response.json();
-        setCsrfToken(data.csrfToken);
-    };
-
-    useEffect(() => {
-        getCSRFToken('/process');
-    }, []);
-
-    async function loginUser(credentials) {
-        return fetch('http://localhost:5000/login', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'xsrf-token': csrfToken,
-            },
-            mode: 'cors',
-            credentials: 'include',
-            body: JSON.stringify(credentials),
-        }).then((data) => data.json());
-    }
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const token = await loginUser({
-            username,
-            password,
-        });
-        setJWT(token);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user
+                console.log({ email: user.user.email })
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error(`${errorCode}: ${errorMessage}`)
+            });
     };
 
     return (
@@ -63,23 +29,22 @@ export default function Login({ setJWT, JWT }) {
             <form id="loginForm" className="form" onSubmit={handleSubmit}>
                 <input
                     id="itemTitle"
-                    type="text"
-                    onChange={(e) => setUserName(e.target.value)}
-                    placeholder="@user"
+                    type="email"
+                    onChange={({ target }) => setEmail(target.value)}
+                    placeholder="Email"
+                    required
                 />
+                <br />
                 <input
                     id="itemContent"
                     className="input"
                     type="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="********"
+                    onChange={({ target }) => setPassword(target.value)}
+                    placeholder="Password"
+                    required
                 />
-                <input type="submit" value="Submit" className="btn" />
+                <input type="submit" value="Sign In" className="btn" />
             </form>
         </div>
     );
 }
-
-Login.propTypes = {
-    setJWT: PropTypes.func.isRequired,
-};

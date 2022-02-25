@@ -1,5 +1,7 @@
-import React, { useState } from 'react'; //useEffect, useState
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from './fire';
 
 import { ProjectList, PostList, NewItem, FullPage } from './components'; //Card
 import {
@@ -19,39 +21,115 @@ import './components/css/index.css';
 //TODO: needs theme color changer and shit
 
 export default function App() {
-    const [JWT, setJWT] = useState('');
+    const [CSRFToken, setCSRFToken] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const getCSRFToken = async (httpAnchor) => {
+        const serverUrl = 'http://localhost:5000';
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                mode: 'cors',
+            },
+            mode: 'cors',
+            credentials: 'include',
+        };
+        const response = await fetch(
+            `${serverUrl}${httpAnchor}`,
+            requestOptions
+        );
+        const data = await response.json();
+        setCSRFToken(data.csrfToken);
+    };
+
+    useEffect(() => {
+        getCSRFToken('/process');
+    }, []);
+
+    onAuthStateChanged(auth, (user) => {
+        return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
+    });
+
+    console.log('logged in?', isLoggedIn);
+
     return (
         <Router>
-            <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/projects" element={<Projects JWT={JWT} />}>
-                    <Route path="" element={<ProjectList JWT={JWT} />} />
-                    <Route
-                        path="add"
-                        element={<NewItem url={'/uploadProject'} JWT={JWT} />}
-                    />
-                    <Route path=":id" element={<FullPage />} />
-                </Route>
-                <Route
-                    path="/login"
-                    element={<Login setJWT={setJWT} JWT={JWT} />}
-                />
-                <Route
-                    path="/signup"
-                    element={<SignUp setJWT={setJWT} JWT={JWT} />}
-                />
-                <Route path="/posts" element={<Blog JWT={JWT} />}>
-                    <Route path="" element={<PostList JWT={JWT} />} />
-                    <Route
-                        path="add"
-                        element={<NewItem url={'/uploadPost'} JWT={JWT} />}
-                    />
-                    <Route path=":id" element={<FullPage JWT={JWT} />} />
-                </Route>
-            </Routes>
-            <Footer />
+            {isLoggedIn ? (
+                <>
+                    <Header isLoggedIn={isLoggedIn} />
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<Home CSRFToken={CSRFToken} />}
+                        />
+                        <Route
+                            path="/dashboard"
+                            element={<Dashboard CSRFToken={CSRFToken} />}
+                        />
+                        <Route
+                            path="/projects"
+                            element={<Projects CSRFToken={CSRFToken} />}>
+                            <Route
+                                path=""
+                                element={<ProjectList CSRFToken={CSRFToken} />}
+                            />
+                            <Route
+                                path="add"
+                                element={
+                                    <NewItem
+                                        url={'/uploadProject'}
+                                        CSRFToken={CSRFToken}
+                                    />
+                                }
+                            />
+                            <Route
+                                path=":id"
+                                element={<FullPage CSRFToken={CSRFToken} />}
+                            />
+                        </Route>
+                        <Route
+                            path="/posts"
+                            element={<Blog CSRFToken={CSRFToken} />}>
+                            <Route
+                                path=""
+                                element={<PostList CSRFToken={CSRFToken} />}
+                            />
+                            <Route
+                                path="add"
+                                element={
+                                    <NewItem
+                                        url={'/uploadPost'}
+                                        CSRFToken={CSRFToken}
+                                    />
+                                }
+                            />
+                            <Route
+                                path=":id"
+                                element={<FullPage CSRFToken={CSRFToken} />}
+                            />
+                        </Route>
+                    </Routes>
+                    <Footer />
+                </>
+            ) : (
+                <>
+                    <Header isLoggedIn={isLoggedIn} />
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<Home CSRFToken={CSRFToken} />}
+                        />
+                        <Route
+                            path="/login"
+                            element={<Login CSRFToken={CSRFToken} />}
+                        />
+                        <Route path="/*" element={<Login CSRFToken={CSRFToken} />} />
+                    </Routes>
+                    <Footer />
+                </>
+            )}
         </Router>
     );
 }

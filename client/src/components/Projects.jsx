@@ -3,7 +3,7 @@ import { Outlet, NavLink } from 'react-router-dom';
 
 import './css/Projects.css';
 
-export default function Projects({ JWT }) {
+export default function Projects({ CSRFToken }) {
     //TODO: Add a delete and edit btn
     //TODO: Document crud only if you are admin
     return (

@@ -3,7 +3,7 @@ import { Card } from './';
 
 import './css/Projects.css';
 
-export default function PostList({ JWT }) {
+export default function PostList({ CSRFToken }) {
     const [postList, setPostList] = useState(null);
 
     useEffect(() => {

@@ -3,7 +3,7 @@ import { Card } from './';
 
 import './css/Projects.css';
 
-export default function ProjectList({ JWT }){
+export default function ProjectList({ CSRFToken }){
     const [projectList, setProjectList] = useState(null);
 
     useEffect(() => {

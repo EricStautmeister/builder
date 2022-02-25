@@ -12,7 +12,8 @@ $site-width: 100% /* variable */;
 }
 
 #navWrapper {
-    @include wrapperFlex();
+    @include wrapperFlex(space-between, center);
+    width: 100%;
     #icon {
         @include display(6px, 10px, 100px);
         p {
@@ -25,10 +26,20 @@ $site-width: 100% /* variable */;
     }
 }
 
+#loginWrapper {
+    @include wrapperFlex(flex-end);
+    @include display($addRight: 20px);
+    width: 100%;
+    #signup {
+        margin-right: 4%;
+    }
+
+}
+
 #actionWrapper {
     @include wrapperFlex();
 
-    #loginWrapper {
+    #logoutWrapper {
         @include wrapperFlex();
         @include display($addRight: 20px);
 

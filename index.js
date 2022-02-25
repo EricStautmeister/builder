@@ -31,14 +31,6 @@ app.get('/process', async (req, res) => {
     res.json({ csrfToken: req.csrfToken() });
 });
 
-app.post('/authorize', (req, res) => {
-    
-});
-
-app.post('/login', async (req, res) => {
-    
-});
-
 app.post('/uploadPost', async (req, res) => {
 
 });

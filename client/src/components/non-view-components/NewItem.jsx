@@ -1,61 +1,16 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-export default class NewProject extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            csrfToken: '',
-            formTitle: '',
-            formContent: '',
-        };
-    }
+export default function NewProject({ CSRFToken, url }) {
+    const [formTitle, setFormTitle] = useState('');
+    const [formContent, setFormContent] = useState('');
 
-    getCSRFToken = async (httpAnchor) => {
-        const serverUrl = 'http://localhost:5000';
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                mode: 'cors',
-            },
-            mode: 'cors',
-            credentials: 'include',
-        };
-        const response = await fetch(
-            `${serverUrl}${httpAnchor}`,
-            requestOptions
-        );
-        const data = await response.json();
-        this.setState({
-            csrfToken: data.csrfToken,
-        });
-    };
-
-    componentDidMount() {
-        console.log(this.props);
-        this.getCSRFToken('/process');
-    }
-
-    handleTitle = (event) => {
-        this.setState({
-            formTitle: event.target.value,
-        });
-    };
-
-    handleContent = (event) => {
-        this.setState({
-            formContent: event.target.value,
-        });
-    };
-
-    postReq = async (httpAnchor, data) => {
+    const postReq = async (httpAnchor, data) => {
         const requestOptions = {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'xsrf-token': this.state.csrfToken,
+                'xsrf-token': CSRFToken,
                 mode: 'cors',
             },
             mode: 'cors',
@@ -69,42 +24,37 @@ export default class NewProject extends Component {
         return await response.json();
     };
 
-    handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        this.postReq(this.props.url, {
-            title: this.state.formTitle,
-            content: this.state.formContent,
+        postReq(url, {
+            title: formTitle,
+            content: formContent,
         }).then((data) => {
             console.log(data);
         });
     };
 
-    render() {
-        //TODO: Add text modifiers, maybe a markdown plugin or so
-        return (
-            <div id="Anchor">
-                <form
-                    id="loginForm"
-                    className="form"
-                    onSubmit={this.handleSubmit}>
-                    <input
-                        id="itemTitle"
-                        type="text"
-                        value={this.state.formTitle}
-                        onChange={this.handleTitle}
-                        placeholder="Title"
-                    />
-                    <textarea
-                        id="itemContent"
-                        className="textArea"
-                        type="text"
-                        value={this.state.formContent}
-                        onChange={this.handleContent}
-                        placeholder="Type Entry Here"
-                    />
-                    <input type="submit" value="Submit" className="btn" />
-                </form>
-            </div>
-        );
-    }
+    //TODO: Add text modifiers, maybe a markdown plugin or so
+    return (
+        <div id="Anchor">
+            <form id="loginForm" className="form" onSubmit={handleSubmit}>
+                <input
+                    id="itemTitle"
+                    type="text"
+                    value={formTitle}
+                    onChange={({ target }) => setFormTitle(target.value)}
+                    placeholder="Title"
+                />
+                <textarea
+                    id="itemContent"
+                    className="textArea"
+                    type="text"
+                    value={formContent}
+                    onChange={({ target }) => setFormContent(target.value)}
+                    placeholder="Type Entry Here"
+                />
+                <input type="submit" value="Submit" className="btn" />
+            </form>
+        </div>
+    );
 }
