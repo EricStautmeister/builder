@@ -17,9 +17,6 @@ app.use(csrf({ cookie: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-// const projectData = deta.Drive('Projects');
-// const postData = deta.Drive('Posts');
-
 const corsOptions = {
     origin: 'http://localhost:3000',
     credentials: true,
@@ -29,20 +26,6 @@ app.use(cors(corsOptions));
 
 app.get('/process', async (req, res) => {
     res.json({ csrfToken: req.csrfToken() });
-});
-
-app.post('/uploadPost', async (req, res) => {
-
-});
-
-app.post('/uploadProject', async (req, res) => {
-
-});
-
-app.get(`/getPosts`, async (req, res) => {
-});
-
-app.get(`/getProjects`, async (req, res) => {
 });
 
 app.get('*', (req, res) => {

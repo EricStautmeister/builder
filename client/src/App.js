@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './fire';
 
 import { ProjectList, PostList, NewItem, FullPage } from './components'; //Card
@@ -22,6 +22,7 @@ import './components/css/index.css';
 
 export default function App() {
     const [CSRFToken, setCSRFToken] = useState('');
+    const [user, setUser] = useState();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const getCSRFToken = async (httpAnchor) => {
@@ -52,8 +53,6 @@ export default function App() {
         return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
     });
 
-    console.log('logged in?', isLoggedIn);
-
     return (
         <Router>
             {isLoggedIn ? (
@@ -62,10 +61,6 @@ export default function App() {
                     <Routes>
                         <Route
                             path="/"
-                            element={<Home CSRFToken={CSRFToken} />}
-                        />
-                        <Route
-                            path="/dashboard"
                             element={<Dashboard CSRFToken={CSRFToken} />}
                         />
                         <Route
@@ -123,9 +118,22 @@ export default function App() {
                         />
                         <Route
                             path="/login"
-                            element={<Login CSRFToken={CSRFToken} />}
+                            element={
+                                <Login
+                                    CSRFToken={CSRFToken}
+                                    setUser={setUser}
+                                />
+                            }
                         />
-                        <Route path="/*" element={<Login CSRFToken={CSRFToken} />} />
+                        <Route
+                            path="/*"
+                            element={
+                                <Login
+                                    CSRFToken={CSRFToken}
+                                    setUser={setUser}
+                                />
+                            }
+                        />
                     </Routes>
                     <Footer />
                 </>

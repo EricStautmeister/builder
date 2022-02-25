@@ -1,36 +1,37 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
+import { db } from '../../fire';
+import { addDoc, getDocs, collection } from 'firebase/firestore';
 
 export default function NewProject({ CSRFToken, url }) {
     const [formTitle, setFormTitle] = useState('');
     const [formContent, setFormContent] = useState('');
 
-    const postReq = async (httpAnchor, data) => {
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'xsrf-token': CSRFToken,
-                mode: 'cors',
-            },
-            mode: 'cors',
-            credentials: 'include',
-            body: JSON.stringify(data),
-        };
-        const response = await fetch(
-            `http://localhost:5000${httpAnchor}`,
-            requestOptions
-        );
-        return await response.json();
+    const upload = async (toCollection) => {
+        try {
+            const docRef = await addDoc(collection(db, toCollection), {
+                title: formTitle,
+                content: formContent,
+            });
+            console.info(
+                'Document written with ID: ',
+                docRef.id,
+                '\nFirestore responce:',
+                { docRef }
+            );
+        } catch (e) {
+            console.error('Error adding document: ', e);
+        }
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        postReq(url, {
-            title: formTitle,
-            content: formContent,
-        }).then((data) => {
-            console.log(data);
+        const toCollection = url.replace('/upload', '');
+        upload(toCollection);
+        const querySnapshot = await getDocs(collection(db, toCollection));
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${{ data: doc.data() }}`);
         });
     };
 
@@ -53,7 +54,9 @@ export default function NewProject({ CSRFToken, url }) {
                     onChange={({ target }) => setFormContent(target.value)}
                     placeholder="Type Entry Here"
                 />
-                <input type="submit" value="Submit" className="btn" />
+                <NavLink to="/">
+                    <input type="submit" value="Submit" className="btn" />
+                </NavLink>
             </form>
         </div>
     );
