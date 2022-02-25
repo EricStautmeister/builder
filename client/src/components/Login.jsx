@@ -51,6 +51,7 @@ export default function Login({ CSRFToken, setUser }) {
                         placeholder="Password"
                         required
                     />
+                    <br />
                     <button type="submit" className="btn" form="loginForm">
                         Login
                     </button>

@@ -22,6 +22,7 @@ import './components/css/index.css';
 
 export default function App() {
     const [CSRFToken, setCSRFToken] = useState('');
+    // eslint-disable-next-line no-unused-vars
     const [user, setUser] = useState();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -120,6 +121,15 @@ export default function App() {
                             path="/login"
                             element={
                                 <Login
+                                    CSRFToken={CSRFToken}
+                                    setUser={setUser}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/signup"
+                            element={
+                                <SignUp
                                     CSRFToken={CSRFToken}
                                     setUser={setUser}
                                 />

@@ -46,6 +46,7 @@ export default function SignUp({ CSRFToken }, props) {
                         placeholder="Password"
                         required
                     />
+                    <br />
                     <NavLink to='/' >
                         <button type="submit" className="btn" form='loginForm'>Sign Up</button>
                     </NavLink>
