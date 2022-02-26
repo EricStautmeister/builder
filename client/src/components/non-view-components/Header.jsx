@@ -49,7 +49,7 @@ export default function Header({ isLoggedIn }, props) {
                                     </div>
                                 </NavLink>
                             </div>
-                            <Menu />
+                            <Menu isLoggedIn={isLoggedIn} />
                         </div>
                     </div>
                 </>
@@ -71,7 +71,7 @@ export default function Header({ isLoggedIn }, props) {
                                 <button className="btn">Sign Up</button>
                             </NavLink>
                         </div>
-                        <Menu />
+                        <Menu isLoggedIn={isLoggedIn} />
                     </div>
                 </>
             )}

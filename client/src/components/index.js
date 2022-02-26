@@ -7,6 +7,10 @@ export { default as Login } from './Login';
 export { default as SignUp } from './SignUp';
 export { default as PostList } from './PostList';
 export { default as Dashboard } from './Dashboard';
+export { default as Profile } from './Profile';
+export { default as Preferences } from './Preferences';
+export { default as Integrations } from './Integrations';
+export { default as Settings } from './Settings';
 
 //Components
 export { default as Header } from './non-view-components/Header';
