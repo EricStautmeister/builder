@@ -4,9 +4,9 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../fire';
 
 import '../css/Header.css';
+import Menu from './Menu.jsx'
 
 import LogoIcon from '../media/logo.png';
-import { ReactComponent as MenuIcon } from '../media/menu.svg';
 
 export default function Header({ isLoggedIn }, props) {
     const signout = () => {
@@ -49,9 +49,7 @@ export default function Header({ isLoggedIn }, props) {
                                     </div>
                                 </NavLink>
                             </div>
-                            <div id="menu">
-                                <MenuIcon />
-                            </div>
+                            <Menu />
                         </div>
                     </div>
                 </>
@@ -73,9 +71,7 @@ export default function Header({ isLoggedIn }, props) {
                                 <button className="btn">Sign Up</button>
                             </NavLink>
                         </div>
-                        <div id="menu">
-                            <MenuIcon />
-                        </div>
+                        <Menu />
                     </div>
                 </>
             )}
