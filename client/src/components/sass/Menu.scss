@@ -1,0 +1,19 @@
+$site-width: 100% /* variable */;
+
+@mixin wrapperFlex($justify: space-evenly, $align: center){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin display($sideMargin: 6px, $addLeft: 0px, $addRight: 0px) {
+    margin-left: $sideMargin + $addLeft;
+    margin-right: $sideMargin + $addRight;
+}
+
+#menu {
+    @include display(10px, 0px, 40px);
+    height: 20px;
+    width: 20px;
+    color: white;
+}

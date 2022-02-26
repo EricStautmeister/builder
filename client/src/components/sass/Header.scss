@@ -57,10 +57,4 @@ $site-width: 100% /* variable */;
             }
         }
     }
-    #menu {
-        @include display(10px, 0px, 40px);
-        height: 20px;
-        width: 20px;
-        color: white;
-    }
 }
