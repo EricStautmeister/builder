@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
 import '../css/Menu.css';
 
 import { ReactComponent as MenuIcon } from '../media/menu.svg';
@@ -27,10 +29,18 @@ export default function Menu({ isLoggedIn }) {
                 <div id="dropdown" className={dropdownClass}>
                     <div id="menu-list">
                         <ul>
-                            <li>Profile</li>
-                            <li>Preferences</li>
-                            <li>Integrations</li>
-                            <li>Settings</li>
+                            <li>
+                                <NavLink className="link" to="/profile">Profile</NavLink>
+                            </li>
+                            <li>
+                                <NavLink className="link" to="/preferences">Preferences</NavLink>
+                            </li>
+                            <li>
+                                <NavLink className="link" to="/integrations">Integrations</NavLink>
+                            </li>
+                            <li>
+                                <NavLink className="link" to="/settings">Settings</NavLink>
+                            </li>
                         </ul>
                     </div>
                 </div>

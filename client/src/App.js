@@ -19,8 +19,6 @@ import {
     Settings,
 } from './components';
 
-import Menu from './components/non-view-components/Menu'
-
 import './components/css/normalise.css';
 import './components/css/index.css';
 
@@ -112,10 +110,31 @@ export default function App() {
                                 element={<FullPage CSRFToken={CSRFToken} />}
                             />
                         </Route>
-                        <Route path="/profile" element={<Profile CSRFToken={CSRFToken} />} />
-                        <Route path="/preferences" element={<Preferences CSRFToken={CSRFToken} />} />
-                        <Route path="/integrations" element={<Integrations CSRFToken={CSRFToken} />} />
-                        <Route path="/settings" element={<Settings CSRFToken={CSRFToken} />} />
+                        <Route
+                            path="/profile"
+                            element={<Profile CSRFToken={CSRFToken} />}
+                        />
+                        <Route
+                            path="/preferences"
+                            element={<Preferences CSRFToken={CSRFToken} />}
+                        />
+                        <Route
+                            path="/integrations"
+                            element={<Integrations CSRFToken={CSRFToken} />}
+                        />
+                        <Route
+                            path="/settings"
+                            element={<Settings CSRFToken={CSRFToken} />}
+                        />
+                        <Route
+                            path="/*"
+                            element={
+                                <Dashboard
+                                    CSRFToken={CSRFToken}
+                                    setUser={setUser}
+                                />
+                            }
+                        />
                     </Routes>
                     <Footer />
                 </>

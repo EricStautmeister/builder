@@ -6,9 +6,9 @@ import './css/Projects.css';
 export default function ProjectList({ CSRFToken }){
     const [projectList, setProjectList] = useState(null);
 
-    useEffect(() => {
-        fetchPosts();
-    }, []);
+    // useEffect(() => {
+        // fetchPosts();
+    // }, []);
     //TODO: Memory leak or so, cancel all subscriptions and asynchronous tasks on component unmount
 
     //TODO: Do not fetch if there is data in localstorage, only if data has been updated
