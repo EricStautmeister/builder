@@ -19,6 +19,7 @@ html ::-webkit-scrollbar-thumb:hover {
 }
 
 body {
+  background-color: #fff;
   margin: 0px;
   padding: 0px;
 }
@@ -124,6 +125,10 @@ div p {
   outline: none;
 }
 
+ul li {
+  color: #000;
+}
+
 .icon {
   padding: 0;
 }
@@ -133,9 +138,9 @@ div p {
 }
 
 .btn {
-  background-color: #8a8888;
-  text-decoration-color: #000000;
-  border: 1;
+  background-color: #aaa;
+  text-decoration-color: #555;
+  border: 1px solid #555;
   padding: 20px;
   border-radius: 5px;
   color: #fefbef;

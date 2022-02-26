@@ -1,6 +1,6 @@
 $site-width: 100% /* variable */;
 
-@mixin wrapperFlex($justify: space-evenly, $align: center){
+@mixin wrapperFlex($justify: space-evenly, $align: center) {
     display: flex;
     justify-content: $justify;
     align-items: $align;
@@ -13,7 +13,56 @@ $site-width: 100% /* variable */;
 
 #menu {
     @include display(10px, 0px, 40px);
-    height: 20px;
-    width: 20px;
+    height: 30px;
+    width: 40px;
     color: white;
+    z-index: 2;
+}
+
+.dropdown-active {
+    transition: all 0.5s;
+    display: flex;
+    border: 2px solid black;
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-130px, 20px);
+    background-color: #aaa;
+    width: 160px;
+    height: 160px;
+    margin: 14px;
+    padding: 15px;
+    overflow: hidden;
+
+
+    ul {
+        list-style-type: none;
+        li {
+            margin-top: 10%;
+            margin-bottom: 10%;
+            cursor: pointer;
+        }
+    }
+}
+
+.dropdown-inactive {
+    transition: all 0.5s;
+    display: flex;
+    opacity: 0;
+    align-items: center;
+    justify-content: center;
+    transform: translate(0px, -50px);
+    margin: 20px;
+    padding: 0px;
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+
+    ul {
+        list-style-type: none;
+        li {
+            margin-top: 0%;
+            margin-bottom: 0%;
+        }
+    }
 }

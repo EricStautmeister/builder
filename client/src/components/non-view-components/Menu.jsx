@@ -1,12 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/Menu.css';
 
 import { ReactComponent as MenuIcon } from '../media/menu.svg';
 
 export default function Menu() {
+    const [dropdownClass, setDropdownClass] = useState('dropdown-inactive');
+    const [isActive, setIsActive] = useState(false);
+
+    const unfoldMenu = () => {
+        setIsActive(!isActive)
+    }
+
+    useEffect(() => {
+        if (isActive) {
+            setDropdownClass('dropdown-active')
+        }
+        if (isActive === false) {
+            setDropdownClass('dropdown-inactive')
+        }
+    }, [isActive])
+
     return (
-        <div id="menu">
+        <div id="menu" onClick={unfoldMenu}>
             <MenuIcon />
+            <div id="dropdown" className={dropdownClass}>
+                <div id="menu-list">
+                    <ul>
+                        <li>Profile</li>
+                        <li>Preferences</li>
+                        <li>Integrations</li>
+                        <li>Settings</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     );
 }
