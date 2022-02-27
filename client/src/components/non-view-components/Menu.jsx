@@ -5,7 +5,7 @@ import '../css/Menu.css';
 
 import { ReactComponent as MenuIcon } from '../media/menu.svg';
 
-export default function Menu({ isLoggedIn }) {
+function Menu({ isLoggedIn }) {
     const [dropdownClass, setDropdownClass] = useState('dropdown-inactive');
     const [isActive, setIsActive] = useState(false);
 
@@ -56,3 +56,5 @@ export default function Menu({ isLoggedIn }) {
         </div>
     );
 }
+
+export default React.memo(Menu);

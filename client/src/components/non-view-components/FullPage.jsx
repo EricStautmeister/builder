@@ -7,10 +7,9 @@ export default function FullPage({ CSRFToken }) {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
     const passedData = sessionStorage.getItem(`${id}`);
-    const data = JSON.parse(passedData);
     //TODO: Some styling pls, this looks uglier than a mf
 
-    const { title, content } = data;
+    const { title, content } = JSON.parse(passedData);
     return (
         <div id="Body">
             <div className="contentWrapper no-deco">

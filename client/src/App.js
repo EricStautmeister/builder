@@ -112,19 +112,19 @@ export default function App() {
                         </Route>
                         <Route
                             path="/profile"
-                            element={<Profile CSRFToken={CSRFToken} />}
+                            element={<Profile CSRFToken={CSRFToken} user={user} />}
                         />
                         <Route
                             path="/preferences"
-                            element={<Preferences CSRFToken={CSRFToken} />}
+                            element={<Preferences CSRFToken={CSRFToken} user={user} />}
                         />
                         <Route
                             path="/integrations"
-                            element={<Integrations CSRFToken={CSRFToken} />}
+                            element={<Integrations CSRFToken={CSRFToken} user={user} />}
                         />
                         <Route
                             path="/settings"
-                            element={<Settings CSRFToken={CSRFToken} />}
+                            element={<Settings CSRFToken={CSRFToken} user={user} />}
                         />
                         <Route
                             path="/*"

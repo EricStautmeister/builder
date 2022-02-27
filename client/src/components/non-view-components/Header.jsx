@@ -5,7 +5,6 @@ import { auth } from '../../fire';
 
 import '../css/Header.css';
 import Menu from './Menu.jsx'
-
 import LogoIcon from '../media/logo.png';
 
 export default function Header({ isLoggedIn }, props) {

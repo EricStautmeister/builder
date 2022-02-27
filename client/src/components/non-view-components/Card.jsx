@@ -1,29 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import '../css/Card.css';
 
-export default class Card extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: props.title,
-            id: props.to,
-            content: props.content,
-            anchor: props.anchor,
-        };
-    }
-    
+function Card(props) {
     //FIXME: Only text is clickable, add div
-    render() {
-        const { title, id, content, anchor } = this.state;
-        return (
-            <div id="cardAnchor">
-                <NavLink className="no-deco" to={`/${anchor}/i?id=${id}`}>
-                    <h1>{title}</h1>
-                    <p>{content}</p>
-                </NavLink>
-            </div>
-        );
-    }
+    return (
+        <div id="cardAnchor">
+            <NavLink className="no-deco" to={`/${props.anchor}/i?id=${props.id}`}>
+                <h1>{props.title}</h1>
+                <p>{props.content}</p>
+            </NavLink>
+        </div>
+    );
 }
+
+export default React.memo(Card);
