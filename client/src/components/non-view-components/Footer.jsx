@@ -7,7 +7,7 @@ import instagramIcon from '../media/instagram.png';
 import githubIcon from '../media/github.png';
 import youtubeIcon from '../media/youtube.png';
 
-export default function Footer() {
+function Footer() {
     return (
         <div id="Footer">
             <div className="iconWrapper">
@@ -42,3 +42,5 @@ export default function Footer() {
         </div>
     );
 }
+
+export default React.memo(Footer);

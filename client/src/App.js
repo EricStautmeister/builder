@@ -24,7 +24,7 @@ import './components/css/index.css';
 
 //TODO: needs theme color changer and shit
 
-export default function App() {
+function App() {
     const [CSRFToken, setCSRFToken] = useState('');
     // eslint-disable-next-line no-unused-vars
     const [user, setUser] = useState();
@@ -180,3 +180,5 @@ export default function App() {
         </Router>
     );
 }
+
+export default React.memo(App);

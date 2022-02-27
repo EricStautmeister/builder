@@ -4,10 +4,10 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../fire';
 
 import '../css/Header.css';
-import Menu from './Menu.jsx'
+import Menu from './Menu.jsx';
 import LogoIcon from '../media/logo.png';
 
-export default function Header({ isLoggedIn }, props) {
+function Header({ isLoggedIn }, props) {
     const signout = () => {
         signOut(auth)
             .then(() => {})
@@ -77,3 +77,5 @@ export default function Header({ isLoggedIn }, props) {
         </div>
     );
 }
+
+export default React.memo(Header);
