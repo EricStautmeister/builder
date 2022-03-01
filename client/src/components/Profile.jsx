@@ -1,17 +1,23 @@
 import React from 'react'; //useEffect, useState
+import { useSelector, useDispatch } from 'react-redux';
+import { auth } from '../fire.js';
 
 import './css/Profile.css';
 
-export default function Profile({ CSRFToken, user }) {
-    const email = user.user.email;
-    const displayName = user.user.displayName;
-    const phoneNumber = user.user.phoneNumber;
+export default function Profile({ CSRFToken }, props) {
+    // const email = user.user.email;
+    // const displayName = user.user.displayName;
+    // const phoneNumber = user.user.phoneNumber;
+
+
     // const email = JSON.stringify(user.email);
 
     const displayData = (value) => {
         if (value === null) return 'Empty';
         return value;
     };
+
+    console.log(props)
 
     return (
         <div id="Body">
@@ -31,19 +37,19 @@ export default function Profile({ CSRFToken, user }) {
                             <input
                                 className="settings"
                                 type="text"
-                                placeholder={displayData(displayName)}
+                                // placeholder={displayData(displayName)}
                             />
                             <br />
                             <input
                                 className="settings"
                                 type="text"
-                                placeholder={displayData(email)}
+                                // placeholder={displayData(email)}
                             />
                             <br />
                             <input
                                 className="settings"
                                 type="text"
-                                placeholder={displayData(phoneNumber)}
+                                // placeholder={displayData(phoneNumber)}
                             />
                         </ul>
                     </div>
