@@ -18,6 +18,7 @@ export default function Login({ CSRFToken, setUser }) {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
+                setUser(userCredential)
                 updateProfile(auth.currentUser, {
                     displayName: 'Hans',
                 });

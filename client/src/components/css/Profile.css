@@ -1,3 +1,53 @@
+ul {
+  list-style-type: none;
+}
 
+#body-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+#body-container #settings-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000;
+  border-radius: 5px;
+  max-width: 50%;
+  min-width: 40%;
+  padding: 2%;
+}
+#body-container .settings-labels {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#body-container .settings-labels li {
+  margin-top: 10px;
+}
+#body-container .settings-inputs {
+  width: 100%;
+}
+#body-container .settings-inputs ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10vh;
+}
+#body-container .settings-inputs ul li {
+  margin: 100px;
+}
+#body-container .settings {
+  padding: 5px;
+}
+#body-container li {
+  margin-top: 15%;
+  margin-bottom: 15%;
+}
 
 /*# sourceMappingURL=Profile.css.map */
