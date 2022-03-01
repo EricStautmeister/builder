@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import '../css/FullPage.css'; //TODO: Padding on the right
+import '../styling/css/FullPage.css'; //TODO: Padding on the right
 
 export default function FullPage({ CSRFToken }) {
     const [searchParams] = useSearchParams();

@@ -1,8 +1,9 @@
 import React from 'react'; //useEffect, useState
 import { useSelector, useDispatch } from 'react-redux';
-import { auth } from '../fire.js';
+import { auth } from '../../fire.js';
 
-import './css/Profile.css';
+
+import '../styling/css/Profile.css';
 
 export default function Profile({ CSRFToken }, props) {
     // const email = user.user.email;

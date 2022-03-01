@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUser, setLoggedIn } from '../actions';
+import { setUser, setLoggedIn } from '../../actions';
 import { signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../fire.js';
-import './css/Login.css';
+import { auth } from '../../fire.js';
+import '../styling/css/Login.css';
 
 export default function Login({ CSRFToken }, props) {
     const [email, setEmail] = useState();

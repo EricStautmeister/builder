@@ -3,24 +3,28 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './fire';
 
-import { ProjectList, PostList, NewItem, FullPage } from './components'; //Card
+import { Header } from './components/Header';
 import {
-    Header,
-    Footer,
-    Home,
-    Dashboard,
-    Projects,
     Blog,
-    Login,
-    SignUp,
-    Profile,
-    Preferences,
+    Dashboard,
+    Home,
     Integrations,
+    Login,
+    PostList,
+    Preferences,
+    Profile,
+    ProjectList,
+    Projects,
     Settings,
-} from './components';
+    SignUp,
+    Card,
+    FullPage,
+    NewItem,
+} from './components/Body';
+import { Footer } from './components/Footer';
 
-import './components/css/normalise.css';
-import './components/css/index.css';
+import './components/styling/css/normalise.css';
+import './components/styling/css/index.css';
 
 //TODO: needs theme color changer and shit
 
@@ -112,19 +116,33 @@ function App() {
                         </Route>
                         <Route
                             path="/profile"
-                            element={<Profile CSRFToken={CSRFToken} user={user} />}
+                            element={
+                                <Profile CSRFToken={CSRFToken} user={user} />
+                            }
                         />
                         <Route
                             path="/preferences"
-                            element={<Preferences CSRFToken={CSRFToken} user={user} />}
+                            element={
+                                <Preferences
+                                    CSRFToken={CSRFToken}
+                                    user={user}
+                                />
+                            }
                         />
                         <Route
                             path="/integrations"
-                            element={<Integrations CSRFToken={CSRFToken} user={user} />}
+                            element={
+                                <Integrations
+                                    CSRFToken={CSRFToken}
+                                    user={user}
+                                />
+                            }
                         />
                         <Route
                             path="/settings"
-                            element={<Settings CSRFToken={CSRFToken} user={user} />}
+                            element={
+                                <Settings CSRFToken={CSRFToken} user={user} />
+                            }
                         />
                         <Route
                             path="/*"

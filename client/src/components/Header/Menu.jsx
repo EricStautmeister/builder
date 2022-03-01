@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import '../css/Menu.css';
-
-import { ReactComponent as MenuIcon } from '../media/menu.svg';
+import '../styling/css/Menu.css';
+import { ReactComponent as MenuIcon } from '../styling/media/menu.svg';
 
 function Menu({ isLoggedIn }) {
     const [dropdownClass, setDropdownClass] = useState('dropdown-inactive');

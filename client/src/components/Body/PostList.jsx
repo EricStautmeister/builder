@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Card } from './';
 
-import './css/Projects.css';
+import '../styling/css/Projects.css';
 
-function ProjectList({ CSRFToken }){
-    const [projectList, setProjectList] = useState(null);
+function PostList({ CSRFToken }) {
+    const [postList, setPostList] = useState(null);
 
     return (
         <div className="container">
-            {projectList !== null && projectList.length ? (
+            {postList !== null && postList.length ? (
                 <div className="wrapper">
-                    {projectList.map((item, index) => (
+                    {postList.map((item, index) => (
                         <Card
                             key={index}
-                            anchor={'projects'}
+                            anchor={'posts'}
                             to={index}
                             data={JSON.stringify(item)}
                             title={item.title}
@@ -37,4 +37,4 @@ function ProjectList({ CSRFToken }){
     );
 }
 
-export default React.memo(ProjectList);
+export default React.memo(PostList);

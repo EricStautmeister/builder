@@ -1,7 +1,7 @@
 import React from 'react'; //useEffect, useState
 import { Outlet, NavLink } from 'react-router-dom';
 
-import './css/Blog.css';
+import '../styling/css/Blog.css';
 
 export default function Blog({ CSRFToken }) {
     return (

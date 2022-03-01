@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../fire.js';
+import { auth } from '../../fire.js';
 
-import './css/SignUp.css';
+
+import '../styling/css/SignUp.css';
 
 export default function SignUp({ CSRFToken }, props) {
     const [email, setEmail] = useState();

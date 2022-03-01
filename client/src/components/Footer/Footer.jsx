@@ -1,11 +1,11 @@
 import React from 'react';
 
-import '../css/Footer.css';
-import facebookIcon from '../media/facebook.png';
-import twitterIcon from '../media/twitter.png';
-import instagramIcon from '../media/instagram.png';
-import githubIcon from '../media/github.png';
-import youtubeIcon from '../media/youtube.png';
+import '../styling/css/Footer.css';
+import facebookIcon from '../styling/media/facebook.png';
+import twitterIcon from '../styling/media/twitter.png';
+import instagramIcon from '../styling/media/instagram.png';
+import githubIcon from '../styling/media/github.png';
+import youtubeIcon from '../styling/media/youtube.png';
 
 function Footer() {
     return (

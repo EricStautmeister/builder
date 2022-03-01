@@ -2,15 +2,21 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../fire';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser, setLoggedOut } from '../../actions';
 
-import '../css/Header.css';
+import '../styling/css/Header.css';
 import Menu from './Menu.jsx';
-import LogoIcon from '../media/logo.png';
+import LogoIcon from '../styling/media/logo.png';
 
 function Header({ isLoggedIn }, props) {
+    const dispatch = useDispatch();
+
     const signout = () => {
         signOut(auth)
-            .then(() => {})
+            .then(() => {
+                dispatch(setLoggedOut())
+            })
             .catch((error) => {
                 console.error(error);
             });
