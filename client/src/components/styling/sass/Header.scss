@@ -1,6 +1,6 @@
 $site-width: 100% /* variable */;
 
-@mixin wrapperFlex($justify: space-evenly, $align: center){
+@mixin wrapperFlex($justify: space-evenly, $align: center) {
     display: flex;
     justify-content: $justify;
     align-items: $align;
@@ -16,6 +16,16 @@ $site-width: 100% /* variable */;
     width: 100%;
     #icon {
         @include display(6px, 10px, 100px);
+
+        // content: 'Beta';
+        // position: absolute;
+        // top: -20px;
+        // right: -20px;
+        // padding: 3px 5px;
+        // border-radius: 3px;
+        // background-color: #ff7bda;
+        // font-size: 0.8em;
+
         p {
             color: white;
         }
@@ -33,7 +43,6 @@ $site-width: 100% /* variable */;
     #signup {
         margin-right: 4%;
     }
-
 }
 
 #actionWrapper {
@@ -45,7 +54,7 @@ $site-width: 100% /* variable */;
 
         #isUser {
             @include display();
-        
+
             p {
                 color: white;
             }

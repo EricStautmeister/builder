@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser, setLoggedIn } from '../../actions';
 import { signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
@@ -34,7 +34,7 @@ export default function Login({ CSRFToken }, props) {
                 dispatch(setLoggedIn());
             })
             .then((data) => {
-                // console.log({ user });
+                console.log({ user });
                 return navigate('/');
             })
             .catch((error) => {
@@ -48,22 +48,24 @@ export default function Login({ CSRFToken }, props) {
         <div id="Body">
             <div id="Anchor">
                 <form id="loginForm" className="form" onSubmit={handleSubmit}>
-                    <input
-                        id="itemTitle"
-                        type="email"
-                        onChange={({ target }) => setEmail(target.value)}
-                        placeholder="Email"
-                        required
-                    />
-                    <br />
-                    <input
-                        id="itemContent"
-                        className="input"
-                        type="password"
-                        onChange={({ target }) => setPassword(target.value)}
-                        placeholder="Password"
-                        required
-                    />
+                    <div className="input-wrapper">
+                        <input
+                            id="itemTitle"
+                            type="email"
+                            onChange={({ target }) => setEmail(target.value)}
+                            placeholder="Email"
+                            required
+                        />
+                        <br />
+                        <input
+                            id="itemContent"
+                            className="input"
+                            type="password"
+                            onChange={({ target }) => setPassword(target.value)}
+                            placeholder="Password"
+                            required
+                        />
+                    </div>
                     <br />
                     <button type="submit" className="btn" form="loginForm">
                         Login

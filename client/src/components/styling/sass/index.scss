@@ -43,6 +43,7 @@ body {
 #root {
     height: 100vh;
     width: 100%;
+    overflow-x: hidden;
 
     #Header {
         padding: 0px;
@@ -59,7 +60,7 @@ body {
         background-size: 100% 100%;
         min-height: 100vh;
         width: $site-width;
-        overflow: auto;
+        overflow-x: hidden;
     }
 
     #Footer {
@@ -97,61 +98,74 @@ div {
     height: 100vh;
     width: $site-width;
     .form {
-        #itemTitle {
-            width: 1000px;
-            padding: 10px;
-            cursor: text;
-            color: #000;
-            border: 4px solid #0095777c;
-            border-radius: 10px;
-            position: relative;
-            z-index: 3;
-            background: #fff;
-        }
+        display: flex;
+        align-items: space-around;
+        padding: 3%;
+        height: 50vh;
+        border: 2px solid #0095777c;
+        justify-content: space-around;
+        flex-wrap: nowrap;
+        flex-direction: column;
 
-        #itemTitle:focus-visible {
-            outline: none;
-        }
+        .input-wrapper {
+            #itemTitle {
+                width: 500px;
+                padding: 10px;
+                // padding-top: 1%;
+                // padding-bottom: 1%;
+                cursor: text;
+                color: #000;
+                border: 4px solid #0095777c;
+                // border-radius: 10px;
+                position: relative;
+                z-index: 3;
+                background: #fff;
+            }
 
-        .input {
-            margin-top: 0%;
-            width: 1000px;
-            padding: 10px;
-            cursor: text;
-            color: #000;
-            border: 4px solid #0095777c;
-            border-radius: 10px;
-            position: relative;
-            z-index: 3;
-            background: #fff;
-        }
+            #itemTitle:focus-visible {
+                outline: none;
+            }
 
-        .textArea {
-            margin: 10px;
-            padding: 0;
-            background: #fff;
-            width: 100%;
-            height: 70%;
-            padding: 25px;
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 500;
-            font-size: 20px;
-            cursor: text;
-            color: #000;
-            border: 4px solid #0095777c;
-            border-radius: 10px;
-            position: relative;
-            z-index: 3;
-        }
+            .input {
+                margin-top: 0%;
+                width: 500px;
+                padding: 10px;
+                cursor: text;
+                color: #000;
+                border: 4px solid #0095777c;
+                // border-radius: 10px;
+                position: relative;
+                z-index: 3;
+                background: #fff;
+            }
 
-        #itemContent:focus-visible {
-            outline: none;
+            .textArea {
+                margin: 10px;
+                padding: 0;
+                background: #fff;
+                width: 100%;
+                height: 70%;
+                padding: 25px;
+                font-family: 'Quicksand', sans-serif;
+                font-weight: 500;
+                font-size: 20px;
+                cursor: text;
+                color: #000;
+                border: 4px solid #0095777c;
+                border-radius: 10px;
+                position: relative;
+                z-index: 3;
+            }
+
+            #itemContent:focus-visible {
+                outline: none;
+            }
         }
     }
 }
 
-ul{
-    li{
+ul {
+    li {
         color: #000;
     }
 }
@@ -165,11 +179,11 @@ ul{
 }
 
 .btn {
-    background-color: #aaa;
+    background-color: #01755e7c;
     text-decoration-color: #555;
-    border: 1px solid #555;
+    // border: 1px solid #555;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 4px;
     color: #fefbef;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;

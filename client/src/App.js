@@ -17,7 +17,7 @@ import {
     Projects,
     Settings,
     SignUp,
-    Card,
+    // Card,
     FullPage,
     NewItem,
 } from './components/Body';

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../fire.js';
-
 
 import '../styling/css/SignUp.css';
 
 export default function SignUp({ CSRFToken }, props) {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+
+    let navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,7 +19,10 @@ export default function SignUp({ CSRFToken }, props) {
                 // Signed in
                 const user = userCredential.user;
                 console.log(`User ${user}:`, { userCredential });
-                props.history.push('/')
+                props.history.push('/');
+            })
+            .then((data) => {
+                return navigate('/');
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -31,26 +35,28 @@ export default function SignUp({ CSRFToken }, props) {
         <div id="Body">
             <div id="Anchor">
                 <form id="loginForm" className="form" onSubmit={handleSubmit}>
-                    <input
-                        id="itemTitle"
-                        type="email"
-                        onChange={({ target }) => setEmail(target.value)}
-                        placeholder="Email"
-                        required
-                    />
+                    <div className="input-wrapper">
+                        <input
+                            id="itemTitle"
+                            type="email"
+                            onChange={({ target }) => setEmail(target.value)}
+                            placeholder="Email"
+                            required
+                        />
+                        <br />
+                        <input
+                            id="itemContent"
+                            className="input"
+                            type="password"
+                            onChange={({ target }) => setPassword(target.value)}
+                            placeholder="Password"
+                            required
+                        />
+                    </div>
                     <br />
-                    <input
-                        id="itemContent"
-                        className="input"
-                        type="password"
-                        onChange={({ target }) => setPassword(target.value)}
-                        placeholder="Password"
-                        required
-                    />
-                    <br />
-                    <NavLink to='/' >
-                        <button type="submit" className="btn" form='loginForm'>Sign Up</button>
-                    </NavLink>
+                    <button type="submit" className="btn" form="loginForm">
+                        Sign Up
+                    </button>
                 </form>
             </div>
         </div>

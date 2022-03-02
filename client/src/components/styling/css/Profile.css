@@ -8,44 +8,54 @@ ul {
   align-items: center;
   width: 100vw;
 }
-#body-container #settings-wrapper {
+
+#settingsForm {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+#settingsForm #settings-wrapper {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 2px solid #000;
   border-radius: 5px;
   max-width: 50%;
-  min-width: 40%;
-  padding: 2%;
+  min-width: 30%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin-top: 10vh;
 }
-#body-container .settings-labels {
+#settingsForm #settings-wrapper #data {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 5%;
+}
+#settingsForm #settings-wrapper #data .settings-labels {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-#body-container .settings-labels li {
-  margin-top: 10px;
+#settingsForm #settings-wrapper #data .settings-labels p {
+  margin-top: 20%;
 }
-#body-container .settings-inputs {
+#settingsForm #settings-wrapper #data .settings-inputs {
   width: 100%;
 }
-#body-container .settings-inputs ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10vh;
+#settingsForm #settings-wrapper #data .settings-inputs input {
+  margin-top: 20%;
 }
-#body-container .settings-inputs ul li {
-  margin: 100px;
-}
-#body-container .settings {
+#settingsForm .settings {
   padding: 5px;
 }
-#body-container li {
+#settingsForm li {
   margin-top: 15%;
   margin-bottom: 15%;
 }

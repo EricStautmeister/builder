@@ -27,6 +27,7 @@ body {
 #root {
   height: 100vh;
   width: 100%;
+  overflow-x: hidden;
 }
 #root #Header {
   padding: 0px;
@@ -44,7 +45,7 @@ body {
   background-size: 100% 100%;
   min-height: 100vh;
   width: 100%;
-  overflow: auto;
+  overflow-x: hidden;
 }
 #root #Footer {
   background-color: #ffffff;
@@ -78,33 +79,41 @@ div p {
   height: 100vh;
   width: 100%;
 }
-#Anchor .form #itemTitle {
-  width: 1000px;
+#Anchor .form {
+  display: flex;
+  align-items: space-around;
+  padding: 3%;
+  height: 50vh;
+  border: 2px solid #0095777c;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+#Anchor .form .input-wrapper #itemTitle {
+  width: 500px;
   padding: 10px;
   cursor: text;
   color: #000;
   border: 4px solid #0095777c;
-  border-radius: 10px;
   position: relative;
   z-index: 3;
   background: #fff;
 }
-#Anchor .form #itemTitle:focus-visible {
+#Anchor .form .input-wrapper #itemTitle:focus-visible {
   outline: none;
 }
-#Anchor .form .input {
+#Anchor .form .input-wrapper .input {
   margin-top: 0%;
-  width: 1000px;
+  width: 500px;
   padding: 10px;
   cursor: text;
   color: #000;
   border: 4px solid #0095777c;
-  border-radius: 10px;
   position: relative;
   z-index: 3;
   background: #fff;
 }
-#Anchor .form .textArea {
+#Anchor .form .input-wrapper .textArea {
   margin: 10px;
   padding: 0;
   background: #fff;
@@ -121,7 +130,7 @@ div p {
   position: relative;
   z-index: 3;
 }
-#Anchor .form #itemContent:focus-visible {
+#Anchor .form .input-wrapper #itemContent:focus-visible {
   outline: none;
 }
 
@@ -138,11 +147,10 @@ ul li {
 }
 
 .btn {
-  background-color: #aaa;
+  background-color: #01755e7c;
   text-decoration-color: #555;
-  border: 1px solid #555;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #fefbef;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
