@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUser, setLoggedIn } from '../../actions';
+import { setUser } from '../../actions';
 import { signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../fire.js';
 import '../styling/css/Login.css';
@@ -20,21 +20,18 @@ export default function Login({ CSRFToken }, props) {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
-                const userAuth = auth.currentUser;
                 // updateProfile(auth.currentUser, {
                 //     displayName: 'Hans',
                 // });
                 dispatch(
                     setUser({
                         displayName: 'Hans',
-                        email: userAuth.email,
-                        phoneNumber: userAuth.phoneNumber,
+                        email: auth.currentUser.email,
+                        phoneNumber: auth.currentUser.phoneNumber,
                     })
                 );
-                dispatch(setLoggedIn());
             })
             .then((data) => {
-                console.log({ user });
                 return navigate('/');
             })
             .catch((error) => {

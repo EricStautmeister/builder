@@ -4,8 +4,6 @@ import { Outlet, NavLink } from 'react-router-dom';
 import '../styling/css/Projects.css';
 
 export default function Projects({ CSRFToken }) {
-    //TODO: Add a delete and edit btn
-    //TODO: Document crud only if you are admin
     return (
         <div id="Body">
             <div className="btnContainer">

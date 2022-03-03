@@ -1,13 +1,12 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import '../styling/css/FullPage.css'; //TODO: Padding on the right
+import '../styling/css/FullPage.css';
 
 export default function FullPage({ CSRFToken }) {
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
     const passedData = sessionStorage.getItem(`${id}`);
-    //TODO: Some styling pls, this looks uglier than a mf
 
     const { title, content } = JSON.parse(passedData);
     return (

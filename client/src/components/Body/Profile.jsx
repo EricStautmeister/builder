@@ -1,10 +1,11 @@
 import React, { useState } from 'react'; //useEffect, useState
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { setUser } from '../../actions';
 import { auth } from '../../fire.js';
 
 import '../styling/css/Profile.css';
 
-export default function Profile({ CSRFToken }, props) {
+function Profile({ CSRFToken }, props) {
     const user = useSelector((state) => state.user);
 
     const [displayName, setDisplayName] = useState();
@@ -79,3 +80,5 @@ export default function Profile({ CSRFToken }, props) {
         </div>
     );
 }
+
+export default React.memo(Profile);
