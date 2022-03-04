@@ -70,7 +70,7 @@ function Profile({ CSRFToken }, props) {
                         </div>
                         <button
                             type="submit"
-                            className="btn"
+                            className="form-btn"
                             form="settingsForm">
                             Save
                         </button>

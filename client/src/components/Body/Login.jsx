@@ -64,7 +64,7 @@ export default function Login({ CSRFToken }, props) {
                         />
                     </div>
                     <br />
-                    <button type="submit" className="btn" form="loginForm">
+                    <button type="submit" className="form-btn" form="loginForm">
                         Login
                     </button>
                 </form>

@@ -31,6 +31,9 @@ function Header() {
                                     width={80}
                                 />
                             </NavLink>
+                            <NavLink className="button" to="/homepage">
+                                <button className="btn">Homepage</button>
+                            </NavLink>
                             <NavLink className="button" to="/projects">
                                 <button className="btn">Projects</button>
                             </NavLink>

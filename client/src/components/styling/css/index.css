@@ -149,6 +149,19 @@ ul li {
 .btn {
   background-color: #01755e7c;
   text-decoration-color: #555;
+  width: 100%;
+  padding: 20px;
+  border-radius: 4px;
+  color: #fefbef;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.form-btn {
+  background-color: #01755e7c;
+  text-decoration-color: #555;
+  width: auto;
   padding: 20px;
   border-radius: 4px;
   color: #fefbef;
@@ -160,7 +173,7 @@ ul li {
 .button {
   margin-left: 6px;
   margin-right: 6px;
-  width: 100px;
+  width: 120px;
   height: auto;
   position: relative;
   cursor: pointer;
