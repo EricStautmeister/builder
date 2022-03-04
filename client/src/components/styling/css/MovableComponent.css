@@ -1,0 +1,8 @@
+.movable {
+  width: auto;
+  height: 50px;
+  background-color: blueviolet;
+  z-index: 1;
+}
+
+/*# sourceMappingURL=MovableComponent.css.map */

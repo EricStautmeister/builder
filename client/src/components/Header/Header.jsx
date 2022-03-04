@@ -20,9 +20,9 @@ function Header() {
     return (
         <div id="Header">
             {isLoggedIn ? (
-                <>
+                <header>
                     <div id="navWrapper">
-                        <div id="navBar">
+                        <nav id="navBar">
                             <NavLink id="icon" className="icon" to="/">
                                 <img
                                     src={LogoIcon}
@@ -30,6 +30,7 @@ function Header() {
                                     height={80}
                                     width={80}
                                 />
+                                <p id='app-version'></p>
                             </NavLink>
                             <NavLink className="button" to="/homepage">
                                 <button className="btn">Homepage</button>
@@ -40,30 +41,28 @@ function Header() {
                             <NavLink className="button" to="/posts">
                                 <button className="btn">Blog</button>
                             </NavLink>
-                        </div>
-                        <div id="actionWrapper" className="right-align">
-                            <div id="logoutWrapper">
-                                <NavLink to={'/'}>
-                                    <div id="isUser">
-                                        <button
-                                            className="btn"
-                                            onClick={signout}>
-                                            Sign Out
-                                        </button>
-                                    </div>
-                                </NavLink>
-                            </div>
-                            <Menu isLoggedIn={isLoggedIn} />
-                        </div>
+                        </nav>
                     </div>
-                </>
+                    <div id="actionWrapper" className="right-align">
+                        <div id="logoutWrapper">
+                            <NavLink to={'/'}>
+                                <div id="isUser" className="button">
+                                    <button className="btn" onClick={signout}>
+                                        Sign Out
+                                    </button>
+                                </div>
+                            </NavLink>
+                        </div>
+                        <Menu isLoggedIn={isLoggedIn} />
+                    </div>
+                </header>
             ) : (
-                <>
-                    <div id="navBar">
+                <header>
+                    <nav id="navBar">
                         <NavLink id="icon" className="icon" to="/">
                             <img src={LogoIcon} alt="" height={80} width={80} />
                         </NavLink>
-                    </div>
+                    </nav>
                     <div id="loginWrapper">
                         <div id="login">
                             <NavLink className="button" to="/login">
@@ -77,7 +76,7 @@ function Header() {
                         </div>
                         <Menu isLoggedIn={isLoggedIn} />
                     </div>
-                </>
+                </header>
             )}
         </div>
     );

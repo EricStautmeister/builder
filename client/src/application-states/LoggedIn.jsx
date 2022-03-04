@@ -21,70 +21,80 @@ function LoggedIn({ CSRFToken }) {
     return (
         <>
             <Header />
-            <Routes>
-                <Route path="/" element={<Dashboard CSRFToken={CSRFToken} />} />
-                <Route path="/homepage" element={<Homepage CSRFToken={CSRFToken} />} />
-                <Route
-                    path="/projects"
-                    element={<Projects CSRFToken={CSRFToken} />}>
+            <main>
+                <Routes>
                     <Route
-                        path=""
-                        element={<ProjectList CSRFToken={CSRFToken} />}
+                        path="/"
+                        element={<Dashboard CSRFToken={CSRFToken} />}
                     />
                     <Route
-                        path="add"
-                        element={
-                            <NewItem
-                                url={'/uploadProject'}
-                                CSRFToken={CSRFToken}
-                            />
-                        }
+                        path="/homepage"
+                        element={<Homepage CSRFToken={CSRFToken} />}
                     />
                     <Route
-                        path=":id"
-                        element={<FullPage CSRFToken={CSRFToken} />}
-                    />
-                </Route>
-                <Route path="/posts" element={<Blog CSRFToken={CSRFToken} />}>
+                        path="/projects"
+                        element={<Projects CSRFToken={CSRFToken} />}>
+                        <Route
+                            path=""
+                            element={<ProjectList CSRFToken={CSRFToken} />}
+                        />
+                        <Route
+                            path="add"
+                            element={
+                                <NewItem
+                                    url={'/uploadProject'}
+                                    CSRFToken={CSRFToken}
+                                />
+                            }
+                        />
+                        <Route
+                            path=":id"
+                            element={<FullPage CSRFToken={CSRFToken} />}
+                        />
+                    </Route>
                     <Route
-                        path=""
-                        element={<PostList CSRFToken={CSRFToken} />}
+                        path="/posts"
+                        element={<Blog CSRFToken={CSRFToken} />}>
+                        <Route
+                            path=""
+                            element={<PostList CSRFToken={CSRFToken} />}
+                        />
+                        <Route
+                            path="add"
+                            element={
+                                <NewItem
+                                    url={'/uploadPost'}
+                                    CSRFToken={CSRFToken}
+                                />
+                            }
+                        />
+                        <Route
+                            path=":id"
+                            element={<FullPage CSRFToken={CSRFToken} />}
+                        />
+                    </Route>
+                    <Route
+                        path="/profile"
+                        element={<Profile CSRFToken={CSRFToken} />}
                     />
                     <Route
-                        path="add"
-                        element={
-                            <NewItem
-                                url={'/uploadPost'}
-                                CSRFToken={CSRFToken}
-                            />
-                        }
+                        path="/preferences"
+                        element={<Preferences CSRFToken={CSRFToken} />}
                     />
                     <Route
-                        path=":id"
-                        element={<FullPage CSRFToken={CSRFToken} />}
+                        path="/integrations"
+                        element={<Integrations CSRFToken={CSRFToken} />}
                     />
-                </Route>
-                <Route
-                    path="/profile"
-                    element={<Profile CSRFToken={CSRFToken} />}
-                />
-                <Route
-                    path="/preferences"
-                    element={<Preferences CSRFToken={CSRFToken} />}
-                />
-                <Route
-                    path="/integrations"
-                    element={<Integrations CSRFToken={CSRFToken} />}
-                />
-                <Route
-                    path="/settings"
-                    element={<Settings CSRFToken={CSRFToken} />}
-                />
-                <Route
-                    path="/*"
-                    element={<Dashboard CSRFToken={CSRFToken} />}
-                />
-            </Routes>
+                    <Route
+                        path="/settings"
+                        element={<Settings CSRFToken={CSRFToken} />}
+                    />
+                    <Route
+                        path="/*"
+                        element={<Dashboard CSRFToken={CSRFToken} />}
+                    />
+                </Routes>
+            </main>
             <Footer />
         </>
     );

@@ -11,25 +11,35 @@ $site-width: 100% /* variable */;
     margin-right: $sideMargin + $addRight;
 }
 
+header {
+    width: $site-width;
+    display: flex;
+    flex-direction: row;
+}
+
 #navWrapper {
     @include wrapperFlex(space-between, center);
     width: 100%;
     #icon {
         @include display(6px, 10px, 100px);
 
+        // #app-version {
         // content: 'Beta';
-        // position: absolute;
-        // top: -20px;
-        // right: -20px;
+        // position: relative;
         // padding: 3px 5px;
         // border-radius: 3px;
         // background-color: #ff7bda;
         // font-size: 0.8em;
+        // z-index: 1;
+        // top: -2px;
+        // right: -1px;
+        // }
 
         p {
             color: white;
         }
     }
+
     #navBar {
         @include wrapperFlex();
         @include display($addLeft: 20px);
