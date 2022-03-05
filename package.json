@@ -22,7 +22,8 @@
     "express": "^4.17.2",
     "helmet": "^5.0.2",
     "jsonwebtoken": "^8.5.1",
-    "react-beautiful-dnd": "^13.1.0"
+    "react-dnd": "^15.1.1",
+    "react-dnd-html5-backend": "^15.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

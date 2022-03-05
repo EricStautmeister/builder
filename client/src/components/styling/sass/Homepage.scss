@@ -8,20 +8,27 @@
     #sidebar {
         height: 100%;
         width: 20vw;
-        background-color: yellow;
+        background-color: #fff;
+        border: 5px solid #000;
+        border-radius: 10px;
     }
 
     #homepage-view {
         margin-left: 2vw;
         height: 100%;
         width: 75vw;
-        background-color: red;
+        background-color: #fff;
+        border: 2px solid #000;
+        border-radius: 5px;
     }
 
     #homepage-window {
         width: 100%;
         height: 100%;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        // justify-content: center;
+        overflow: hidden;
     }
 }

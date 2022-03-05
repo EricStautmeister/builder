@@ -1,71 +1,53 @@
 import React, { useState } from 'react'; //useEffect, useState
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import MovableComponent from './MovableComponent';
+import { DndProvider, useDrag } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { Sidebar, MainWindow, MovableItem } from './Homepage/index';
 import '../styling/css/Homepage.css';
 
 export default function Homepage({ CSRFToken }) {
     const buildComponents = [
         {
-            id: 'title',
+            id: 1,
+            name: 'title',
             content: 'Title',
+            column: 'Sidebar',
+            displayContext: 'Sidebar',
+            position: 0,
         },
         {
-            id: 'text',
+            id: 2,
+            name: 'text',
             content: 'Text',
+            column: 'Sidebar',
+            displayContext: 'Sidebar',
+            position: 1,
         },
     ];
-    const [components, updateComponents] = useState(buildComponents);
-    function handleOnDragEnd(result) {
-        const items = Array.from(components);
-        const [reorderedItem] = items.splice(result.source.index, 1);
-        items.splice(result.destination.index, 0, reorderedItem);
+    const [Items, setItems] = useState(buildComponents);
 
-        updateComponents(items);
-    }
+    const parseDisplay = (displayContext) => {
+        return Items.filter(
+            (item) => item.displayContext === displayContext
+        ).map((item) => (
+            <MovableItem
+                key={item.id}
+                name={item.name}
+                className="movable-item"
+                setItems={setItems}></MovableItem>
+        ));
+    };
+
     return (
         <div id="Body">
             <div id="homepage-wrapper">
-                <DragDropContext onDragEnd={handleOnDragEnd}>
-                    <div id="sidebar"></div>
-                    <section id="homepage-view">
-                        <Droppable droppableId="movable">
-                            {(provided) => (
-                                <div
-                                    id="homepage-window"
-                                    {...provided.droppableProps}
-                                    ref={provided.innerRef}>
-                                    {components.map(
-                                        ({ id, content }, index) => {
-                                            return (
-                                                <Draggable
-                                                    key={id}
-                                                    draggableId={id}
-                                                    index={index}>
-                                                    {(provided) => (
-                                                        <div
-                                                            {...provided.draggableProps}
-                                                            {...provided.dragHandleProps}
-                                                            ref={
-                                                                provided.innerRef
-                                                            }>
-                                                            <MovableComponent
-                                                                className="movable"
-                                                                content={
-                                                                    content
-                                                                }
-                                                            />
-                                                        </div>
-                                                    )}
-                                                </Draggable>
-                                            );
-                                        }
-                                    )}
-                                    {provided.placeholder}
-                                </div>
-                            )}
-                        </Droppable>
-                    </section>
-                </DragDropContext>
+                <DndProvider backend={HTML5Backend}>
+                    <Sidebar title="Sidebar">
+                        {parseDisplay('Sidebar')}
+                    </Sidebar>
+                    <MainWindow title="MainWindow">
+                        {parseDisplay('MainWindow')}
+                    </MainWindow>
+                </DndProvider>
             </div>
         </div>
     );
