@@ -30,7 +30,7 @@ function Header() {
                                     height={80}
                                     width={80}
                                 />
-                                <p id='app-version'></p>
+                                <p id='app-version'>Pre-Alpha</p>
                             </NavLink>
                             <NavLink className="button" to="/homepage">
                                 <button className="btn">Homepage</button>

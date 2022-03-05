@@ -13,6 +13,17 @@ header {
 #navWrapper #icon {
   margin-left: 16px;
   margin-right: 106px;
+  text-decoration: none;
+}
+#navWrapper #icon #app-version {
+  position: relative;
+  padding: 3px 5px;
+  border-radius: 3px;
+  background-color: #ff7bda;
+  font-size: 0.8em;
+  z-index: 1;
+  top: -70px;
+  right: -40px;
 }
 #navWrapper #icon p {
   color: white;
