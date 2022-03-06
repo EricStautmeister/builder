@@ -12,4 +12,32 @@
   cursor: pointer;
 }
 
+.title-item {
+  font-size: 1.1rem;
+  padding: 2%;
+}
+
+.text-item {
+  padding: 2%;
+  font-size: 1.1rem;
+  height: auto;
+  display: wrap;
+  flex-wrap: wrap;
+}
+
+.MainWindow .title-item {
+  margin-top: 8%;
+  margin-bottom: 2%;
+  height: 6rem;
+  min-width: 500px;
+  max-width: 70%;
+  width: auto;
+  font-size: 4rem;
+}
+.MainWindow .text-item {
+  height: auto;
+  display: wrap;
+  flex-wrap: wrap;
+}
+
 /*# sourceMappingURL=MovableComponent.css.map */

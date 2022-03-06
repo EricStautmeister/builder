@@ -12,14 +12,17 @@ export default function Homepage({ CSRFToken }) {
             content: 'Title',
             column: 'Sidebar',
             displayContext: 'Sidebar',
+            className: 'movable-item title-item',
             position: 0,
         },
         {
             id: 2,
             name: 'text',
-            content: 'Text',
+            content:
+                'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam hic dolore perspiciatis repellendus voluptatibus architecto quam animi, ex reprehenderit laboriosam harum aliquam cum officiis asperiores, consequuntur nostrum, possimus veritatis distinctio.',
             column: 'Sidebar',
             displayContext: 'Sidebar',
+            className: 'movable-item text-item',
             position: 1,
         },
     ];
@@ -32,7 +35,8 @@ export default function Homepage({ CSRFToken }) {
             <MovableItem
                 key={item.id}
                 name={item.name}
-                className="movable-item"
+                className={item.className}
+                content={item.content}
                 setItems={setItems}></MovableItem>
         ));
     };
@@ -41,10 +45,8 @@ export default function Homepage({ CSRFToken }) {
         <div id="Body">
             <div id="homepage-wrapper">
                 <DndProvider backend={HTML5Backend}>
-                    <Sidebar title="Sidebar">
-                        {parseDisplay('Sidebar')}
-                    </Sidebar>
-                    <MainWindow title="MainWindow">
+                    <Sidebar title="Sidebar">{parseDisplay('Sidebar')}</Sidebar>
+                    <MainWindow title="MainWindow" className="MainWindow">
                         {parseDisplay('MainWindow')}
                     </MainWindow>
                 </DndProvider>

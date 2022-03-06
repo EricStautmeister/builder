@@ -2,7 +2,7 @@ import React from 'react';
 import { useDrag } from 'react-dnd';
 import '../../styling/css/MovableComponent.css';
 
-export default function MovableItem({ className, name, setItems }) {
+export default function MovableItem({ className, name, content, setItems }) {
     const changePosition = (currentItem, displayContext) => {
         setItems((previousState) => {
             console.log(console.log({ className, name, setItems, previousState, currentItem, displayContext }));
@@ -37,7 +37,7 @@ export default function MovableItem({ className, name, setItems }) {
 
     return (
         <div ref={drag} className={className} style={{ opacity }}>
-            {name}
+            {content}
         </div>
     );
 }
