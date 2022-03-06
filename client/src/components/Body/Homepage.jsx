@@ -10,7 +10,6 @@ export default function Homepage({ CSRFToken }) {
             id: 1,
             name: 'title',
             content: 'Title',
-            column: 'Sidebar',
             displayContext: 'Sidebar',
             className: 'movable-item title-item',
             position: 0,
@@ -18,12 +17,18 @@ export default function Homepage({ CSRFToken }) {
         {
             id: 2,
             name: 'text',
-            content:
-                'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam hic dolore perspiciatis repellendus voluptatibus architecto quam animi, ex reprehenderit laboriosam harum aliquam cum officiis asperiores, consequuntur nostrum, possimus veritatis distinctio.',
-            column: 'Sidebar',
+            content: 'Text',
             displayContext: 'Sidebar',
             className: 'movable-item text-item',
             position: 1,
+        },
+        {
+            id: 3,
+            name: 'image',
+            content: 'Image',
+            displayContext: 'Sidebar',
+            className: 'movable-item image-item',
+            position: 2,
         },
     ];
     const [Items, setItems] = useState(buildComponents);

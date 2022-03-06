@@ -23,6 +23,7 @@
   height: auto;
   display: wrap;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 .MainWindow .title-item {
@@ -36,8 +37,16 @@
 }
 .MainWindow .text-item {
   height: auto;
-  display: wrap;
+  max-width: 60%;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+}
+.MainWindow .image-item {
+  max-width: 40%;
+  max-height: 40%;
 }
 
 /*# sourceMappingURL=MovableComponent.css.map */
