@@ -1,13 +1,19 @@
+#Toolbar {
+    width: auto;
+    padding: 5px;
+    background-color: #fff777;
+    border: 5px solid #000;
+}
+
 #homepage-wrapper {
     width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    height: 90%;
+    display: grid;
+    grid-template-columns: 20vw 75vh;
+    grid-template-rows: auto;
 
     #sidebar {
         height: 100%;
-        width: 20vw;
         background-color: #fff;
         border: 5px solid #000;
         border-radius: 10px;

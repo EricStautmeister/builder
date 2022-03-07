@@ -1,7 +1,7 @@
 import React, { useState } from 'react'; //useEffect, useState
 import { DndProvider, useDrag } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { Sidebar, MainWindow, MovableItem } from './Homepage/index';
+import { Toolbar, Sidebar, MainWindow, MovableItem } from './Homepage/index';
 import '../styling/css/Homepage.css';
 
 export default function Homepage({ CSRFToken }) {
@@ -48,6 +48,7 @@ export default function Homepage({ CSRFToken }) {
 
     return (
         <div id="Body">
+            <Toolbar />
             <div id="homepage-wrapper">
                 <DndProvider backend={HTML5Backend}>
                     <Sidebar title="Sidebar">{parseDisplay('Sidebar')}</Sidebar>
