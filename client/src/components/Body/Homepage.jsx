@@ -31,7 +31,18 @@ export default function Homepage({ CSRFToken }) {
             position: 2,
         },
     ];
+
     const [Items, setItems] = useState(buildComponents);
+
+    const moveItemHandler = (dragIndex, hoverIndex) => {
+        const dragItem = Items[dragIndex]
+
+        if(dragItem) {
+            setItems()
+        }
+    }
+
+    
 
     const parseDisplay = (displayContext) => {
         return Items.filter(
