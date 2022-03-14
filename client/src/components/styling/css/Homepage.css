@@ -1,43 +1,29 @@
-#Toolbar {
-  width: auto;
+#homepage-wrapper {
+  padding-left: 1vh;
+  padding-right: 1vh;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-rows: 5rem 75vh;
+}
+#homepage-wrapper #Toolbar {
   padding: 5px;
   background-color: #fff777;
   border: 5px solid #000;
 }
-
-#homepage-wrapper {
-  width: 100%;
-  height: 90%;
+#homepage-wrapper #homepage-builder {
   display: grid;
-  margin-top: 1%;
-  grid-template-columns: 20vw 75vh;
-  grid-template-rows: auto;
+  gap: 1.5rem;
+  grid-template-columns: 20vw auto;
 }
-#homepage-wrapper #sidebar {
-  height: 100%;
+#homepage-wrapper #homepage-builder #sidebar {
   background-color: #fff;
   border: 5px solid #000;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
 }
-#homepage-wrapper #homepage-view {
-  margin-left: 2vw;
-  height: 100%;
-  width: 75vw;
+#homepage-wrapper #homepage-builder #homepage-view {
   background-color: #fff;
   border: 2px solid #000;
   border-radius: 5px;
-}
-#homepage-wrapper #homepage-window {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
 }
 
 /*# sourceMappingURL=Homepage.css.map */

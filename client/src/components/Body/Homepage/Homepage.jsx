@@ -59,14 +59,16 @@ export default function Homepage({ CSRFToken }) {
 
     return (
         <div id="Body">
-            <Toolbar />
             <div id="homepage-wrapper">
-                <DndProvider backend={HTML5Backend}>
-                    <Sidebar title="Sidebar">{parseDisplay('Sidebar')}</Sidebar>
-                    <MainWindow title="MainWindow" className="MainWindow">
-                        {parseDisplay('MainWindow')}
-                    </MainWindow>
-                </DndProvider>
+                <Toolbar />
+                <div id="homepage-builder">
+                    <DndProvider backend={HTML5Backend}>
+                        <Sidebar title="Sidebar">{parseDisplay('Sidebar')}</Sidebar>
+                        <MainWindow title="MainWindow" className="MainWindow">
+                            {parseDisplay('MainWindow')}
+                        </MainWindow>
+                    </DndProvider>
+                </div>
             </div>
         </div>
     );
