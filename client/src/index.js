@@ -4,10 +4,7 @@ import App from './App';
 import store from './store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-
-import reportWebVitals from './reportWebVitals';
-
-console.log(store.getState());
+import reportWebVitals from './testing/reportWebVitals';
 
 const root = document.getElementById('root')
 ReactDOM.render(
@@ -20,5 +17,4 @@ ReactDOM.render(
 );
 
 reportWebVitals(console.log);
-
 serviceWorker.unregister();
