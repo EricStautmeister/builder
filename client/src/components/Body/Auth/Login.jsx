@@ -1,25 +1,35 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from '../../../actions';
+import { signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from '../../../fire.js';
+import '../../styling/css/Login.css';
 
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../fire.js';
-
-import '../styling/css/SignUp.css';
-
-export default function SignUp({ CSRFToken }, props) {
+export default function Login({ CSRFToken }, props) {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
+    const user = useSelector((state) => state.user.user);
+    const isLoggedIn = useSelector((state) => state.isLoggedIn);
     let navigate = useNavigate();
+    let dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        createUserWithEmailAndPassword(auth, email, password)
+        signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
-                const user = userCredential.user;
-                console.log(`User ${user}:`, { userCredential });
-                props.history.push('/');
+                // updateProfile(auth.currentUser, {
+                //     displayName: 'Hans',
+                // });
+                dispatch(
+                    setUser({
+                        displayName: 'Hans',
+                        email: auth.currentUser.email,
+                        phoneNumber: auth.currentUser.phoneNumber,
+                    })
+                );
             })
             .then((data) => {
                 return navigate('/');
@@ -55,7 +65,7 @@ export default function SignUp({ CSRFToken }, props) {
                     </div>
                     <br />
                     <button type="submit" className="form-btn" form="loginForm">
-                        Sign Up
+                        Login
                     </button>
                 </form>
             </div>

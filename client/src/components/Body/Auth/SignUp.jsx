@@ -1,35 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { setUser } from '../../actions';
-import { signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../../fire.js';
-import '../styling/css/Login.css';
 
-export default function Login({ CSRFToken }, props) {
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../../fire.js';
+
+import '../../styling/css/SignUp.css';
+
+export default function SignUp({ CSRFToken }, props) {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
-    const user = useSelector((state) => state.user.user);
-    const isLoggedIn = useSelector((state) => state.isLoggedIn);
     let navigate = useNavigate();
-    let dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
-                // updateProfile(auth.currentUser, {
-                //     displayName: 'Hans',
-                // });
-                dispatch(
-                    setUser({
-                        displayName: 'Hans',
-                        email: auth.currentUser.email,
-                        phoneNumber: auth.currentUser.phoneNumber,
-                    })
-                );
+                const user = userCredential.user;
+                console.log(`User ${user}:`, { userCredential });
+                props.history.push('/');
             })
             .then((data) => {
                 return navigate('/');
@@ -65,7 +55,7 @@ export default function Login({ CSRFToken }, props) {
                     </div>
                     <br />
                     <button type="submit" className="form-btn" form="loginForm">
-                        Login
+                        Sign Up
                     </button>
                 </form>
             </div>

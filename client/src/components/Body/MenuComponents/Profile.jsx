@@ -1,9 +1,9 @@
 import React, { useState } from 'react'; //useEffect, useState
 import { useSelector } from 'react-redux';
-import { setUser } from '../../actions';
-import { auth } from '../../fire.js';
+import { setUser } from '../../../actions';
+import { auth } from '../../../fire.js';
 
-import '../styling/css/Profile.css';
+import '../../styling/css/Profile.css';
 
 function Profile({ CSRFToken }, props) {
     const user = useSelector((state) => state.user);

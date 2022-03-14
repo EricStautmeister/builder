@@ -1,8 +1,8 @@
 import React, { useState } from 'react'; //useEffect, useState
 import { DndProvider, useDrag } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { Toolbar, Sidebar, MainWindow, MovableItem } from './Homepage/index';
-import '../styling/css/Homepage.css';
+import { Toolbar, Sidebar, MainWindow, MovableItem } from './index';
+import '../../styling/css/Homepage.css';
 
 export default function Homepage({ CSRFToken }) {
     const buildComponents = [
