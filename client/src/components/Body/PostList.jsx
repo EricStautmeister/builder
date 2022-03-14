@@ -9,7 +9,7 @@ function PostList({ CSRFToken }) {
     return (
         <div className="container">
             {postList !== null && postList.length ? (
-                <div className="wrapper">
+                <div className="blogCards">
                     {postList.map((item, index) => (
                         <Card
                             key={index}
@@ -22,7 +22,7 @@ function PostList({ CSRFToken }) {
                     ))}
                 </div>
             ) : (
-                <div className="wrapper">
+                <div className="blogCards">
                     <Card />
                     <Card />
                     <Card />

@@ -5,3 +5,12 @@ $site-width: 100% /* variable */;
     justify-content: $justify;
     align-items: $align;
 }
+
+.blogCards {
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 3rem;
+    display: grid;
+    gap: 5rem;
+    grid-template-columns: repeat(2, 1fr);
+}

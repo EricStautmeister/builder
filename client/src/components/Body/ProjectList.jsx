@@ -9,7 +9,7 @@ function ProjectList({ CSRFToken }){
     return (
         <div className="container">
             {projectList !== null && projectList.length ? (
-                <div className="wrapper">
+                <div className="projectCards">
                     {projectList.map((item, index) => (
                         <Card
                             key={index}
@@ -22,7 +22,7 @@ function ProjectList({ CSRFToken }){
                     ))}
                 </div>
             ) : (
-                <div className="wrapper">
+                <div className="projectCards">
                     <Card />
                     <Card />
                     <Card />

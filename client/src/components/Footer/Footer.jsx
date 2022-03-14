@@ -9,7 +9,7 @@ import youtubeIcon from '../styling/media/youtube.png';
 
 function Footer() {
     return (
-        <footer id="Footer">
+        <footer>
             <div className="iconWrapper">
                 <a className="icon facebook" href="http://facebook.com">
                     <span>

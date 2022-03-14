@@ -1,4 +1,16 @@
 /* #f1f1f1 #292d30 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus,
+*:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-width: 20px;
@@ -20,41 +32,38 @@ html ::-webkit-scrollbar-thumb:hover {
 
 body {
   background-color: #fff;
-  margin: 0px;
-  padding: 0px;
+  font-family: "Poppins", sans-serif;
+  place-items: center;
+  background-size: 100% 100%;
 }
 
 #root {
-  height: 100vh;
+  height: auto;
   width: 100%;
-  overflow-x: hidden;
+  display: grid;
 }
-#root #Header {
+#root header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
   padding: 0px;
   margin: 0px;
   background-color: #ffffff;
   height: 100px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 #root #Body {
   background: #ffffff;
   padding: 1%;
-  background-size: 100% 100%;
   min-height: 100vh;
-  width: 100%;
   overflow-x: hidden;
 }
-#root #Footer {
+#root footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   background-color: #ffffff;
   height: 100px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  color: #ffffff;
 }
 
 h1,
@@ -72,22 +81,21 @@ div p {
 #Anchor {
   position: relative;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-size: 100% 100%;
-  height: 100vh;
-  width: 100%;
+  flex-direction: column;
+  min-height: 100%;
+  height: auto;
 }
 #Anchor .form {
   display: flex;
+  justify-content: space-around;
   align-items: space-around;
+  flex-wrap: nowrap;
+  flex-direction: column;
   padding: 3%;
   height: 50vh;
   border: 2px solid #0095777c;
-  justify-content: space-around;
-  flex-wrap: nowrap;
-  flex-direction: column;
 }
 #Anchor .form .input-wrapper #itemTitle {
   width: 500px;
@@ -96,8 +104,8 @@ div p {
   color: #000;
   border: 4px solid #0095777c;
   position: relative;
-  z-index: 3;
   background: #fff;
+  z-index: 3;
 }
 #Anchor .form .input-wrapper #itemTitle:focus-visible {
   outline: none;
@@ -179,16 +187,6 @@ ul li {
   cursor: pointer;
   border: none;
   border-radius: 0.004em;
-}
-
-.wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  align-content: center;
-  width: 100%;
 }
 
 .right-align {

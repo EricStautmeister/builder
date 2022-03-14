@@ -5,4 +5,13 @@
   align-items: center;
 }
 
+.projectCards {
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 3rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
 /*# sourceMappingURL=Projects.css.map */

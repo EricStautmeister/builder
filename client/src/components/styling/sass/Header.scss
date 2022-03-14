@@ -11,12 +11,6 @@ $site-width: 100% /* variable */;
     margin-right: $sideMargin + $addRight;
 }
 
-header {
-    width: $site-width;
-    display: flex;
-    flex-direction: row;
-}
-
 #navWrapper {
     @include wrapperFlex(space-between, center);
     width: 100%;

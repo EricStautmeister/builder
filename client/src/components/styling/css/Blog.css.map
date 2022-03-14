@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"Blog.css"}
+{"version":3,"sourceRoot":"","sources":["../sass/Blog.scss"],"names":[],"mappings":"AAQA;EACI;EACA;EACA;EACA;EACA;EACA","file":"Blog.css"}

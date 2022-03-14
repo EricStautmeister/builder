@@ -6,13 +6,6 @@ $site-width: 100% /* variable */;
     align-items: $align;
 }
 
-#Body {
-    background-color: grey;
-    background-size: 100% 100%;
-    height: 100vh;
-    width: $site-width;
-}
-
 #loginForm {
     @include wrapperFlex(center);
     flex-direction: column;

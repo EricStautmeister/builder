@@ -18,9 +18,9 @@ function Header() {
             });
     };
     return (
-        <div id="Header">
+        <header>
             {isLoggedIn ? (
-                <header>
+                <>
                     <div id="navWrapper">
                         <nav id="navBar">
                             <NavLink id="icon" className="icon" to="/">
@@ -30,7 +30,7 @@ function Header() {
                                     height={80}
                                     width={80}
                                 />
-                                <p id='app-version'>Pre-Alpha</p>
+                                <p id="app-version">Pre-Alpha</p>
                             </NavLink>
                             <NavLink className="button" to="/homepage">
                                 <button className="btn">Homepage</button>
@@ -55,9 +55,9 @@ function Header() {
                         </div>
                         <Menu isLoggedIn={isLoggedIn} />
                     </div>
-                </header>
+                </>
             ) : (
-                <header>
+                <>
                     <nav id="navBar">
                         <NavLink id="icon" className="icon" to="/">
                             <img src={LogoIcon} alt="" height={80} width={80} />
@@ -76,9 +76,9 @@ function Header() {
                         </div>
                         <Menu isLoggedIn={isLoggedIn} />
                     </div>
-                </header>
+                </>
             )}
-        </div>
+        </header>
     );
 }
 
