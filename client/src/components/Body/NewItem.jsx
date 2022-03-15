@@ -1,38 +1,38 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { db } from '../../fire';
-import { addDoc, getDocs, collection } from 'firebase/firestore';
+import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
 
 export default function NewProject({ CSRFToken, url }) {
     const [formTitle, setFormTitle] = useState('');
     const [formContent, setFormContent] = useState('');
 
+    let navigate = useNavigate();
+
     const upload = async (toCollection) => {
         try {
-            const docRef = await addDoc(collection(db, toCollection), {
+            await setDoc(doc(db, toCollection, formTitle), {
                 title: formTitle,
                 content: formContent,
             });
-            console.info(
-                'Document written with ID: ',
-                docRef.id,
-                '\nFirestore responce:',
-                { docRef }
-            );
         } catch (e) {
             console.error('Error adding document: ', e);
         }
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
+        try {
+            event.preventDefault();
         const toCollection = url.replace('/upload', '');
         upload(toCollection);
-        const querySnapshot = await getDocs(collection(db, toCollection));
-        querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${{ data: doc.data() }}`);
-        });
+        } catch(e) {
+            console.error('Error submitting: ', e);
+
+        } finally {
+            return navigate('/');
+        }
+        
     };
 
     //TODO: Add text modifiers, maybe a markdown plugin or so
@@ -54,9 +54,12 @@ export default function NewProject({ CSRFToken, url }) {
                     onChange={({ target }) => setFormContent(target.value)}
                     placeholder="Type Entry Here"
                 />
-                <NavLink to="/">
-                    <input type="submit" value="Submit" className="btn" />
-                </NavLink>
+                <input
+                    type="submit"
+                    value="Submit"
+                    className="btn"
+                    onClick={handleSubmit}
+                />
             </form>
         </div>
     );
