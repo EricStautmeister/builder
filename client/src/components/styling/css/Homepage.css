@@ -7,7 +7,7 @@
 }
 #homepage-wrapper #Toolbar {
   padding: 5px;
-  background-color: #fff777;
+  background-color: #ffffff;
   border: 5px solid #000;
 }
 #homepage-wrapper #homepage-builder {
@@ -19,6 +19,7 @@
   background-color: #fff;
   border: 5px solid #000;
   border-radius: 10px;
+  padding-top: 2rem;
 }
 #homepage-wrapper #homepage-builder #homepage-view {
   background-color: #fff;
