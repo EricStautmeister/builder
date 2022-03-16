@@ -37,7 +37,6 @@ function PostList({ CSRFToken }) {
             );
             setPostList(subscriptionData);
             dispatch(setPosts({ posts: subscriptionData }));
-            console.log({ subscriptionData, posts, postList });
             return;
         } catch (e) {
             console.log(e);
@@ -55,7 +54,7 @@ function PostList({ CSRFToken }) {
                     {postList.map((item, index) => (
                         <Card
                             key={index}
-                            anchor={'projects'}
+                            anchor={'posts'}
                             to={index}
                             id={item.title}
                             title={item.title}

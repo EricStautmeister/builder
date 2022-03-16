@@ -37,7 +37,6 @@ function ProjectList({ CSRFToken }) {
             );
             setProjectList(subscriptionData);
             dispatch(setProjects({ projects: subscriptionData }));
-            console.log({ subscriptionData, projects, projectList });
             return;
         } catch (e) {
             console.log(e);
