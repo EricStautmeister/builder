@@ -19,16 +19,21 @@ const userReducer = (state = initialState, action) => {
                 email: action.payload.email,
                 phoneNumber: action.payload.phoneNumber,
             };
+
         case ACTIONS.SET_DISPLAY_NAME:
+            state.displayName = action.payload.displayName;
+            return state;
+
+        case ACTIONS.SET_EMAIL:
             state.email = action.payload.displayName;
             return state;
-        case ACTIONS.SET_EMAIL:
-            return;
+
         case ACTIONS.SET_PHONE_NUMBER:
-            return;
+            state.phoneNumber = action.payload.phoneNumber;
+            return state;
+
         default:
             return state;
     }
 };
-
 export default userReducer;
