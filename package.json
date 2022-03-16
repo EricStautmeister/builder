@@ -8,7 +8,7 @@
         "start": "nodemon --trace-warnings index.js",
         "start:client": "cd ./client && npm start",
         "start:sass": "cd ./client/src/components/styling/ && sass -w sass:css",
-        "start:all": "concurrently -n 'SERVER,CLIENT,SASS' -c 'red,blue,green' \"npm run start\" \"npm run start:client \" \"npm run start:sass\"",
+        "start:all": "concurrently -n 'API,CLIENT,SASS' -c 'red,blue,green' \"npm run start\" \"npm run start:client \" \"npm run start:sass\"",
         "flow": "flow",
         "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
     },

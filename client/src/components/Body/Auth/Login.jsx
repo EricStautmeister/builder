@@ -25,7 +25,6 @@ export default function Login({ CSRFToken }, props) {
                 // });
                 dispatch(
                     setUser({
-                        displayName: 'Hans',
                         email: auth.currentUser.email,
                         phoneNumber: auth.currentUser.phoneNumber,
                     })

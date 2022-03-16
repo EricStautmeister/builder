@@ -1,24 +1,47 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Card } from './';
+import { setProjects } from '../../actions';
 import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
 import { db } from '../../fire';
 
 import '../styling/css/Projects.css';
 
 function ProjectList({ CSRFToken }) {
+    let dispatch = useDispatch();
+
+    const projects = useSelector((state) => state.subscriptions.projects);
     const [projectList, setProjectList] = useState(null);
-    const [doc, sdoc] = useState(null);
+
+    const checkSubscriptions = () => {
+        if (projects === undefined) return false;
+        if (projects.length === 0) {
+            return false;
+        }
+        return true;
+    };
 
     const fetchFromStore = async (toCollection) => {
-        const querySnapshot = await getDocs(collection(db, toCollection));
-        let projects = [];
-        querySnapshot.forEach((doc) =>
-            projects.push({
-                title: doc.data().title,
-                content: doc.data().content,
-            })
-        );
-        setProjectList(projects);
+        try {
+            if (checkSubscriptions()) {
+                setProjectList(projects);
+                return;
+            }
+            const querySnapshot = await getDocs(collection(db, toCollection));
+            let subscriptionData = [];
+            querySnapshot.forEach((doc) =>
+                subscriptionData.push({
+                    title: doc.data().title,
+                    content: doc.data().content,
+                })
+            );
+            setProjectList(subscriptionData);
+            dispatch(setProjects({ projects: subscriptionData }));
+            console.log({ subscriptionData, projects, projectList });
+            return;
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     useEffect(() => {
