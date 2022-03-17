@@ -1,11 +1,20 @@
-import React from 'react';
-import { useDrag } from 'react-dnd';
+import React, { useRef } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
+import { ItemTypes } from './constants';
 import '../../styling/css/MovableComponent.css';
 
-export default function MovableItem({ className, name, content, setItems }) {
+export default function MovableItem({
+    className,
+    name,
+    content,
+    setItems,
+    moveItemHandler,
+    index,
+}) {
+    const ref = useRef(null);
+
     const changePosition = (currentItem, displayContext) => {
         setItems((previousState) => {
-            console.log(console.log({ className, name, setItems, previousState, currentItem, displayContext }));
             return previousState.map((previousItem) => {
                 return {
                     ...previousItem,
@@ -17,8 +26,51 @@ export default function MovableItem({ className, name, content, setItems }) {
             });
         });
     };
+
+    const [, drop] = useDrop({
+        accept: 'SidebarComponent',
+        hover(item, monitor) {
+            if (!ref.current) {
+                return;
+            }
+            const dragIndex = item.index;
+            const hoverIndex = index;
+            // Don't replace items with themselves
+            if (dragIndex === hoverIndex) {
+                return;
+            }
+            // Determine rectangle on screen
+            const hoverBoundingRect = ref.current?.getBoundingClientRect();
+            // Get vertical middle
+            const hoverMiddleY =
+                (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+            // Determine mouse position
+            const clientOffset = monitor.getClientOffset();
+            // Get pixels to the top
+            const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+            // Only perform the move when the mouse has crossed half of the items height
+            // When dragging downwards, only move when the cursor is below 50%
+            // When dragging upwards, only move when the cursor is above 50%
+            // Dragging downwards
+            if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+                return;
+            }
+            // Dragging upwards
+            if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+                return;
+            }
+            // Time to actually perform the action
+            moveItemHandler(dragIndex, hoverIndex);
+            // Note: we're mutating the monitor item here!
+            // Generally it's better to avoid mutations,
+            // but it's good here for the sake of performance
+            // to avoid expensive index searches.
+            item.index = hoverIndex;
+        },
+    });
+
     const [{ isDragging }, drag] = useDrag({
-        item: { name },
+        item: { index, name },
         type: 'SidebarComponent',
         end: (item, monitor) => {
             const dropResult = monitor.getDropResult();
@@ -32,11 +84,13 @@ export default function MovableItem({ className, name, content, setItems }) {
             isDragging: monitor.isDragging(),
         }),
     });
-    
+
+    drag(drop(ref));
+
     const opacity = isDragging ? 0.6 : 1;
 
     return (
-        <div ref={drag} className={className} style={{ opacity }}>
+        <div ref={ref} className={className} style={{ opacity }}>
             {content}
         </div>
     );

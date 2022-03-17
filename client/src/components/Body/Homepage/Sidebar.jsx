@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; //useEffect, useState
 import { useDrop } from 'react-dnd';
+import { ItemTypes } from './constants';
 
 export default function Sidebar({ children, className, title }) {
     const [, drop] = useDrop({

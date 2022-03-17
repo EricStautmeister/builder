@@ -5,6 +5,8 @@ $site-width: 100% /* variable */;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    overflow: hidden;
+    height: 4rem;
 }
 
 .projectCards {

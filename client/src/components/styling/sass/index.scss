@@ -177,26 +177,31 @@ ul {
 }
 
 .btn {
-    background-color: #01755e7c;
-    text-decoration-color: #555;
-    width: 100%;
-    // border: 1px solid #555;
+    border: none;
+    background-color: #fff;
+    text-decoration-color: #000;
+    width: 7rem;
     padding: 20px;
-    border-radius: 4px;
-    color: #fefbef;
+    color: #000;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
-    line-height: 1;
+    font-size: 1.1rem;
+    // line-height: 1;
+
+    &:hover, &:focus {
+        color: #444;
+        font-size: 1.2rem;
+    }
 }
 
 .form-btn {
     background-color: #01755e7c;
-    text-decoration-color: #555;
+    text-decoration-color: #000;
     width: auto;
     // border: 1px solid #555;
     padding: 20px;
     border-radius: 4px;
-    color: #fefbef;
+    color: #fff;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     line-height: 1;
@@ -204,12 +209,13 @@ ul {
 
 .button {
     @include display();
-    width: 120px;
+    width: 8rem;
     height: auto;
     position: relative;
     cursor: pointer;
     border: none;
-    border-radius: 0.004em;
+    background-color: #fff;
+    // border-radius: 0.004em;
 }
 
 .right-align {
