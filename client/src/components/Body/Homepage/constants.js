@@ -1,8 +1,8 @@
 export const WINDOWS = {
     SIDEBAR: 'Sidebar',
-    MAINWINDOW: 'Main Window',
-}
+    MAINWINDOW: 'MainWindow',
+};
 
 export const ItemTypes = {
-    CARD: 'card',
-}
+    CORE: 'Core',
+};

@@ -12,17 +12,17 @@
     cursor: pointer;
 }
 
-.title-item {
-    font-size: 1.1rem;
-    padding: 2%;
-}
-.text-item {
-    padding: 2%;
-    font-size: 1.1rem;
-    height: auto;
-    display: wrap;
-    flex-wrap: wrap;
-    text-align: center;
+.Sidebar {
+    .title-item,
+    .image-item,
+    .text-item {
+        padding: 2%;
+        font-size: 1.1rem;
+        height: 3.5rem;
+        display: wrap;
+        flex-wrap: wrap;
+        text-align: center;
+    }
 }
 
 .MainWindow {
@@ -36,7 +36,7 @@
         font-size: 4rem;
     }
     .text-item {
-        height: auto;
+        height: 3.5rem;
         max-width: 60%;
         width: auto;
         display: flex;

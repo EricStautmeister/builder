@@ -11,15 +11,12 @@
   cursor: pointer;
 }
 
-.title-item {
-  font-size: 1.1rem;
-  padding: 2%;
-}
-
-.text-item {
+.Sidebar .title-item,
+.Sidebar .image-item,
+.Sidebar .text-item {
   padding: 2%;
   font-size: 1.1rem;
-  height: auto;
+  height: 3.5rem;
   display: wrap;
   flex-wrap: wrap;
   text-align: center;
@@ -35,7 +32,7 @@
   font-size: 4rem;
 }
 .MainWindow .text-item {
-  height: auto;
+  height: 3.5rem;
   max-width: 60%;
   width: auto;
   display: flex;

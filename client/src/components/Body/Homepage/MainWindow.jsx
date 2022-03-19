@@ -1,11 +1,22 @@
 import React, { useState } from 'react'; //useEffect, useState
-import { useDrop } from 'react-dnd';
+import { useDrag, useDrop } from 'react-dnd';
 import { ItemTypes } from './constants';
+import update from 'immutability-helper';
 
-export default function MainWindow({ children, className, title }) {
-    const [, drop] = useDrop({
-        accept: 'SidebarComponent',
+export default function MainWindow({
+    children,
+    className,
+    title,
+    items,
+    setItems,
+}) {
+    const [{ canDrop, isOver }, drop] = useDrop({
+        accept: ItemTypes.CORE,
         drop: () => ({ name: title }),
+        collect: (monitor) => ({
+            isOver: monitor.isOver(),
+            canDrop: monitor.canDrop(),
+        }),
     });
 
     return (

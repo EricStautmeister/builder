@@ -9,13 +9,16 @@
   padding: 5px;
   background-color: #ffffff;
   border: 5px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #homepage-wrapper #homepage-builder {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 20vw auto;
 }
-#homepage-wrapper #homepage-builder #sidebar {
+#homepage-wrapper #homepage-builder #Sidebar {
   background-color: #fff;
   border: 5px solid #000;
   border-radius: 10px;
