@@ -1,5 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-.iconWrapper .icon {
+.socials {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.socials h6 {
+  color: #000;
+  margin-bottom: 1rem;
+}
+.socials .iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.socials .iconWrapper .icon {
   position: relative;
   background-color: #ffffff;
   border-radius: 50%;
@@ -15,6 +30,16 @@
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.refrences {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.refrences .firebase {
+  margin-right: 5rem;
+  width: 50%;
 }
 
 /*# sourceMappingURL=Footer.css.map */

@@ -75,9 +75,10 @@ body {
     }
 
     footer {
-        @include wrapperFlex($justify: space-around);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         background-color: #ffffff;
-        height: 100px;
+        height: 12rem;
     }
 }
 
@@ -102,7 +103,7 @@ div {
     min-height: 100%;
     height: auto;
     .form {
-        @include wrapperFlex($justify: space-around, $align:space-around);
+        @include wrapperFlex($justify: space-around, $align: space-around);
         flex-wrap: nowrap;
         flex-direction: column;
         padding: 3%;
@@ -188,7 +189,8 @@ ul {
     font-size: 1.1rem;
     // line-height: 1;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         color: #444;
         font-size: 1.2rem;
     }

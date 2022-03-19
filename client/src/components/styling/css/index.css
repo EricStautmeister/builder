@@ -59,11 +59,10 @@ body {
   overflow-x: hidden;
 }
 #root footer {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   background-color: #ffffff;
-  height: 100px;
+  height: 12rem;
 }
 
 h1,
