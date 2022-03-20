@@ -3,18 +3,40 @@
     padding-right: 1vh;
     display: grid;
     gap: 1.5rem;
-    grid-template-rows: 5rem 75vh;
+    grid-template-rows: 6rem 75vh;
 
-    #Toolbar {
+    .toolbar {
         padding: 5px;
         background-color: #ffffff;
-        border: 5px solid #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        line-height: 1;
+        display: grid;
+        grid-template-columns: auto 10rem;
+
+        &-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &-infos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .info-wrapper {
+                display: flex;
+                height: 70%;
+                flex-direction: column;
+                justify-content: space-evenly;
+            }
+            .info {
+                font-size: larger;
+                font-weight: 600;
+            }
+        }
     }
 
-    #homepage-builder {
+    #homepage-setup {
         display: grid;
         gap: 1.5rem;
         grid-template-columns: 20vw auto;
@@ -27,6 +49,28 @@
         }
 
         #homepage-view {
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 5px;
+        }
+    }
+    #homepage-positioning {
+        display: flex;
+        justify-content: center;
+
+        #homepage-view {
+            width: 80%;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 5px;
+        }
+    }
+    #homepage-edit {
+        display: flex;
+        justify-content: center;
+
+        #homepage-view {
+            width: 80%;
             background-color: #fff;
             border: 2px solid #000;
             border-radius: 5px;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import '../styling/css/Card.css';
+import '../../styling/css/Card.css';
 
 function Card(props) {
     //FIXME: Only text is clickable, add div

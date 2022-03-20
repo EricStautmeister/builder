@@ -1,7 +1,7 @@
 import React from 'react'; //useEffect, useState
 import { Outlet, NavLink } from 'react-router-dom';
 
-import '../styling/css/Projects.css';
+import '../../styling/css/Projects.css';
 
 export default function Projects({ CSRFToken }) {
     return (

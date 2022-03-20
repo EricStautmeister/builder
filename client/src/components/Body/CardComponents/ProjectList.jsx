@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Card } from './';
-import { setProjects } from '../../actions';
+import Card from './Card';
+import { setProjects } from '../../../actions';
 import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
-import { db } from '../../fire';
+import { db } from '../../../fire';
 
-import '../styling/css/Projects.css';
+import '../../styling/css/Projects.css';
 
 function ProjectList({ CSRFToken }) {
     let dispatch = useDispatch();

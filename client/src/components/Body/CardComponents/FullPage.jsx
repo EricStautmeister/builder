@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
-import { db } from '../../fire';
+import { db } from '../../../fire';
 import { useSelector } from 'react-redux';
 
-import '../styling/css/FullPage.css';
+import '../../styling/css/FullPage.css';
 
 export default function FullPage({ CSRFToken }) {
     const [searchParams] = useSearchParams();

@@ -176,23 +176,32 @@ ul {
 .iconWrapper {
     display: inline-flex;
 }
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include display();
+    padding: 0.2rem;
+    text-decoration: none;
+    cursor: pointer;
+    width: 10rem;
+    height: auto;
 
-.btn {
-    border: none;
-    background-color: #fff;
-    text-decoration-color: #000;
-    width: 7rem;
-    padding: 20px;
-    color: #000;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    font-size: 1.1rem;
-    // line-height: 1;
+    .btn {
+        border: none;
+        background-color: #fff;
+        text-decoration-color: #000;
+        color: #000;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        font-size: 1.1rem;
+        line-height: 1;
 
-    &:hover,
-    &:focus {
-        color: #444;
-        font-size: 1.2rem;
+        &:hover,
+        &:focus {
+            color: #444;
+            font-size: 1.2rem;
+        }
     }
 }
 
@@ -207,17 +216,6 @@ ul {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     line-height: 1;
-}
-
-.button {
-    @include display();
-    width: 8rem;
-    height: auto;
-    position: relative;
-    cursor: pointer;
-    border: none;
-    background-color: #fff;
-    // border-radius: 0.004em;
 }
 
 .right-align {

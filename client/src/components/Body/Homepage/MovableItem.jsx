@@ -3,7 +3,13 @@ import { useDrag, useDrop } from 'react-dnd';
 import { ItemTypes, WINDOWS } from './constants';
 import '../../styling/css/MovableComponent.css';
 
-export default function MovableItem({ className, data, position, setItems }) {
+export default function MovableItem({
+    className,
+    data,
+    position,
+    setItems,
+    onClick,
+}) {
     const changePosition = (currentItem, displayContext) => {
         setItems((previousState) => {
             return previousState.map((previousItem) => {
@@ -38,7 +44,11 @@ export default function MovableItem({ className, data, position, setItems }) {
     const opacity = isDragging ? 0.6 : 1;
 
     return (
-        <div ref={drag} className={className} style={{ opacity }}>
+        <div
+            ref={drag}
+            className={className}
+            style={{ opacity }}
+            onClick={onClick}>
             {data.content}
         </div>
     );

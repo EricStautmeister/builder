@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { db } from '../../fire';
+import { db } from '../../../fire';
 import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
 
 export default function NewProject({ CSRFToken, url }) {

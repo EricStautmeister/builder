@@ -4,7 +4,7 @@ export const WINDOWS = {
 };
 
 export const MODES = {
-    CORE: 'Core',
+    CORE: 'Set Up',
     POSITIONING: 'Positioning',
     EDIT: 'Edit',
 };

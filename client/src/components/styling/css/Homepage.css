@@ -3,28 +3,69 @@
   padding-right: 1vh;
   display: grid;
   gap: 1.5rem;
-  grid-template-rows: 5rem 75vh;
+  grid-template-rows: 6rem 75vh;
 }
-#homepage-wrapper #Toolbar {
+#homepage-wrapper .toolbar {
   padding: 5px;
   background-color: #ffffff;
-  border: 5px solid #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  line-height: 1;
+  display: grid;
+  grid-template-columns: auto 10rem;
 }
-#homepage-wrapper #homepage-builder {
+#homepage-wrapper .toolbar-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#homepage-wrapper .toolbar-infos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#homepage-wrapper .toolbar-infos .info-wrapper {
+  display: flex;
+  height: 70%;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+#homepage-wrapper .toolbar-infos .info {
+  font-size: larger;
+  font-weight: 600;
+}
+#homepage-wrapper #homepage-setup {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 20vw auto;
 }
-#homepage-wrapper #homepage-builder #Sidebar {
+#homepage-wrapper #homepage-setup #Sidebar {
   background-color: #fff;
   border: 5px solid #000;
   border-radius: 10px;
   padding-top: 2rem;
 }
-#homepage-wrapper #homepage-builder #homepage-view {
+#homepage-wrapper #homepage-setup #homepage-view {
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+#homepage-wrapper #homepage-positioning {
+  display: flex;
+  justify-content: center;
+}
+#homepage-wrapper #homepage-positioning #homepage-view {
+  width: 80%;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+#homepage-wrapper #homepage-edit {
+  display: flex;
+  justify-content: center;
+}
+#homepage-wrapper #homepage-edit #homepage-view {
+  width: 80%;
   background-color: #fff;
   border: 2px solid #000;
   border-radius: 5px;

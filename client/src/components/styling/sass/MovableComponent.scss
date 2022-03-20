@@ -12,6 +12,12 @@
     cursor: pointer;
 }
 
+.movable-item {
+    &:hover, &:focus {
+        background-color: rgba(172, 172, 172, 0.137);
+    }
+}
+
 .Sidebar {
     .title-item,
     .image-item,
