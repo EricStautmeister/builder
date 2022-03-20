@@ -15,21 +15,14 @@ export default function Toolbar({ mode, setMode }) {
                     <button
                         className="btn"
                         onClick={() => parseMode(MODES.CORE)}>
-                        Set Up
-                    </button>
-                </div>
-                <div className="button">
-                    <button
-                        className="btn"
-                        onClick={() => parseMode(MODES.POSITIONING)}>
-                        Positioning
+                        -Set Up-
                     </button>
                 </div>
                 <div className="button">
                     <button
                         className="btn"
                         onClick={() => parseMode(MODES.EDIT)}>
-                        Edit Items
+                        -Edit Items-
                     </button>
                 </div>
             </div>

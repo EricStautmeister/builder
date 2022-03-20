@@ -10,7 +10,6 @@
   z-index: 1;
   cursor: pointer;
 }
-
 .movable-item:hover, .movable-item:focus {
   background-color: rgba(172, 172, 172, 0.137);
 }
@@ -18,9 +17,10 @@
 .Sidebar .title-item,
 .Sidebar .image-item,
 .Sidebar .text-item {
+  font-weight: 600;
   padding: 2%;
-  font-size: 1.1rem;
-  height: 3.5rem;
+  font-size: 1.3rem;
+  height: 3.8rem;
   display: wrap;
   flex-wrap: wrap;
   text-align: center;

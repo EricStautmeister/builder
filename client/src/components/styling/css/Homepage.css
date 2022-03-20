@@ -19,6 +19,9 @@
   justify-content: center;
   align-items: center;
 }
+#homepage-wrapper .toolbar-buttons button {
+  cursor: pointer;
+}
 #homepage-wrapper .toolbar-infos {
   display: flex;
   justify-content: center;
@@ -41,8 +44,10 @@
 }
 #homepage-wrapper #homepage-setup #Sidebar {
   background-color: #fff;
-  border: 5px solid #000;
-  border-radius: 10px;
+  border-top: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-radius: 5px;
   padding-top: 2rem;
 }
 #homepage-wrapper #homepage-setup #homepage-view {

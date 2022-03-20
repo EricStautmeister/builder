@@ -19,6 +19,7 @@ export const buildComponents = [
         data: {
             name: 'text',
             content: 'Text',
+            jsx: <></>
         },
         position: {
             left: 0,

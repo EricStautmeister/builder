@@ -10,10 +10,9 @@
     // box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
     z-index: 1;
     cursor: pointer;
-}
 
-.movable-item {
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         background-color: rgba(172, 172, 172, 0.137);
     }
 }
@@ -22,9 +21,11 @@
     .title-item,
     .image-item,
     .text-item {
+        font-weight: 600;
+
         padding: 2%;
-        font-size: 1.1rem;
-        height: 3.5rem;
+        font-size: 1.3rem;
+        height: 3.8rem;
         display: wrap;
         flex-wrap: wrap;
         text-align: center;

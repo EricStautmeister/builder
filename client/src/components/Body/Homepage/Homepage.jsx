@@ -1,9 +1,8 @@
 import React, { useState } from 'react'; //useEffect, useState
-import { DndProvider, useDrag } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { Toolbar, Sidebar, MainWindow, MovableItem } from './index';
-import { WINDOWS, MODES } from './constants';
+import { Toolbar, MovableItem } from './index';
+import { MODES } from './constants';
 import { buildComponents } from './BuildingBlocks';
+import { Core, Edit } from './modes';
 import '../../styling/css/Homepage.css';
 
 export default function Homepage({ CSRFToken }) {
@@ -20,7 +19,7 @@ export default function Homepage({ CSRFToken }) {
                 position={item.position}
                 className={item.className}
                 setItems={setItems}
-                onClick={() => console.log("Moooo")}></MovableItem>
+                onClick={() => console.log('Moooo')}></MovableItem>
         ));
     };
 
@@ -28,54 +27,14 @@ export default function Homepage({ CSRFToken }) {
         switch (mode) {
             case MODES.CORE:
                 return (
-                    <>
-                        <div id="homepage-setup">
-                            <DndProvider backend={HTML5Backend}>
-                                <Sidebar
-                                    title={WINDOWS.SIDEBAR}
-                                    className={WINDOWS.SIDEBAR}
-                                    items={Items}
-                                    setItems={setItems}>
-                                    {parseDisplay(WINDOWS.SIDEBAR)}
-                                </Sidebar>
-                                <MainWindow
-                                    title={WINDOWS.MAINWINDOW}
-                                    className={WINDOWS.MAINWINDOW}>
-                                    {parseDisplay(WINDOWS.MAINWINDOW)}
-                                </MainWindow>
-                            </DndProvider>
-                        </div>
-                    </>
-                );
-
-            case MODES.POSITIONING:
-                return (
-                    <>
-                        <div id="homepage-positioning">
-                            <DndProvider backend={HTML5Backend}>
-                                <MainWindow
-                                    title={WINDOWS.MAINWINDOW}
-                                    className={WINDOWS.MAINWINDOW}>
-                                    {parseDisplay(WINDOWS.MAINWINDOW)}
-                                </MainWindow>
-                            </DndProvider>
-                        </div>
-                    </>
+                    <Core
+                        parseDisplay={parseDisplay}
+                        Items={Items}
+                        setItems={setItems}
+                    />
                 );
             case MODES.EDIT:
-                return (
-                    <>
-                        <div id="homepage-edit">
-                            <DndProvider backend={HTML5Backend}>
-                                <MainWindow
-                                    title={WINDOWS.MAINWINDOW}
-                                    className={WINDOWS.MAINWINDOW}>
-                                    {parseDisplay(WINDOWS.MAINWINDOW)}
-                                </MainWindow>
-                            </DndProvider>
-                        </div>
-                    </>
-                );
+                return <Edit parseDisplay={parseDisplay} />;
             default:
                 return;
         }
