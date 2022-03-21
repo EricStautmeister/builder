@@ -45,8 +45,8 @@ function Header() {
                     </div>
                     <div id="actionWrapper" className="right-align">
                         <div id="logoutWrapper">
-                            <NavLink to={'/'}>
-                                <div id="isUser" className="button">
+                            <NavLink to={'/'} className="button">
+                                <div id="isUser">
                                     <button className="btn" onClick={signout}>
                                         Sign Out
                                     </button>

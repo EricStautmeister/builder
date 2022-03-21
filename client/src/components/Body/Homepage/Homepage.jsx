@@ -8,6 +8,12 @@ import '../../styling/css/Homepage.css';
 export default function Homepage({ CSRFToken }) {
     const [Items, setItems] = useState(buildComponents);
     const [mode, setMode] = useState(MODES.CORE);
+    const [modal, setModal] = useState(false);
+    const [modalData, setModalData] = useState();
+    const toggle = (toggleData) => {
+        if (modal === false) setModalData(toggleData.data);
+        setModal(!modal);
+    };
 
     const parseDisplay = (displayContext) => {
         return Items.filter(
@@ -19,7 +25,7 @@ export default function Homepage({ CSRFToken }) {
                 position={item.position}
                 className={item.className}
                 setItems={setItems}
-                onClick={() => console.log('Moooo')}></MovableItem>
+                onClick={toggle}></MovableItem>
         ));
     };
 
@@ -34,7 +40,13 @@ export default function Homepage({ CSRFToken }) {
                     />
                 );
             case MODES.EDIT:
-                return <Edit parseDisplay={parseDisplay} />;
+                return (
+                    <Edit
+                        parseDisplay={parseDisplay}
+                        modal={modal}
+                        modalData={modalData}
+                    />
+                );
             default:
                 return;
         }

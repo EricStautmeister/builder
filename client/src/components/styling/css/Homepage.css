@@ -76,4 +76,51 @@
   border-radius: 5px;
 }
 
+#edit-modal {
+  background-color: #fff;
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+}
+#edit-modal .modalForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #0095777c;
+}
+#edit-modal .modalForm .modalInfo {
+  margin-bottom: 1rem;
+}
+#edit-modal .modalForm .modalInput {
+  border: 4px solid #0095777c;
+  width: 80%;
+  height: 3rem;
+  padding: 1.5%;
+}
+#edit-modal .modalForm .button {
+  height: 4rem;
+}
+#edit-modal .modalForm .button .btn {
+  padding: 1rem;
+  border: 4px solid #0095777c;
+  background: #009577;
+}
+#edit-modal .active {
+  transition: all 0.2s;
+  background: #fff;
+  border: 2px solid #000;
+  width: 50rem;
+  height: 20rem;
+}
+#edit-modal .inactive {
+  transition: all 0.2s;
+  background: #fff;
+  border: none;
+  width: 0rem;
+  height: 0rem;
+}
+
 /*# sourceMappingURL=Homepage.css.map */

@@ -48,7 +48,7 @@ export default function MovableItem({
             ref={drag}
             className={className}
             style={{ opacity }}
-            onClick={onClick}>
+            onClick={() => onClick({ data })}>
             {data.content}
         </div>
     );
