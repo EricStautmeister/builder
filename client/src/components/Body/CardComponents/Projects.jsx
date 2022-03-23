@@ -7,7 +7,9 @@ export default function Projects({ CSRFToken }) {
     return (
         <div id="Body">
             <div className="btnContainer">
-                <NavLink className="no-deco" to={`/projects/add`}>
+                <NavLink
+                    className="button extra-wide no-deco"
+                    to={`/projects/add`}>
                     <button className="btn right-align">
                         Create new Project
                     </button>

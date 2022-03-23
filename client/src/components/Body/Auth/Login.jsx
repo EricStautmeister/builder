@@ -46,7 +46,7 @@ export default function Login({ CSRFToken }, props) {
                 <form id="loginForm" className="form" onSubmit={handleSubmit}>
                     <div className="input-wrapper">
                         <input
-                            id="itemTitle"
+                            id="email"
                             type="email"
                             onChange={({ target }) => setEmail(target.value)}
                             placeholder="Email"
@@ -54,18 +54,22 @@ export default function Login({ CSRFToken }, props) {
                         />
                         <br />
                         <input
-                            id="itemContent"
+                            id="password"
                             className="input"
                             type="password"
                             onChange={({ target }) => setPassword(target.value)}
                             placeholder="Password"
                             required
                         />
+                        <div className="button">
+                            <button
+                                type="submit"
+                                className="btn"
+                                form="loginForm">
+                                Login
+                            </button>
+                        </div>
                     </div>
-                    <br />
-                    <button type="submit" className="form-btn" form="loginForm">
-                        Login
-                    </button>
                 </form>
             </div>
         </div>

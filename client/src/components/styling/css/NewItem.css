@@ -1,0 +1,56 @@
+#centering {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+#contentForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 60%;
+  border: 2px solid #0095777c;
+}
+#contentForm .input-wrapper {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 90%;
+  grid-template-rows: 7rem auto 6rem;
+  gap: 1rem;
+  justify-content: center;
+}
+#contentForm .input-wrapper #itemTitle {
+  margin-top: 3rem;
+  height: 3rem;
+  width: 60%;
+  padding: 10px;
+  background: #fff;
+  color: #000;
+  border: 4px solid #0095777c;
+  cursor: text;
+}
+#contentForm .input-wrapper #itemTitle:focus-visible {
+  outline: none;
+}
+#contentForm .input-wrapper #itemContent {
+  padding: 10px;
+  min-height: 30rem;
+  background: #fff;
+  color: #000;
+  border: 4px solid #0095777c;
+  cursor: text;
+}
+#contentForm .input-wrapper #itemContent:focus-visible {
+  outline: none;
+}
+#contentForm .input-wrapper .button {
+  width: 100%;
+  align-self: center;
+  margin-bottom: 1rem;
+}
+
+/*# sourceMappingURL=NewItem.css.map */

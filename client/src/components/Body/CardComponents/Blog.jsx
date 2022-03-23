@@ -7,7 +7,9 @@ export default function Blog({ CSRFToken }) {
     return (
         <div id="Body">
             <div className="btnContainer">
-                <NavLink className="no-deco" to={`/posts/add`}>
+                <NavLink
+                    className="button extra-wide no-deco"
+                    to={`/posts/add`}>
                     <button className="btn right-align">Create new Post</button>
                 </NavLink>
             </div>
