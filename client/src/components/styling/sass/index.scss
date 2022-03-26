@@ -111,6 +111,18 @@ div {
             @include wrapperFlex($justify: center, $align: center);
             flex-direction: column;
 
+            #username {
+                width: 90%;
+                padding: 10px;
+                background: #fff;
+                color: #000;
+                border: 4px solid #0095777c;
+                cursor: text;
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+
             #email {
                 width: 90%;
                 padding: 10px;
@@ -132,7 +144,9 @@ div {
                 &:focus-visible {
                     outline: none;
                 }
-                margin-bottom: 10%;
+                &:last-of-type {
+                    margin-bottom: 10%;
+                }
             }
         }
     }
@@ -160,7 +174,7 @@ ul {
     text-decoration: none;
     cursor: pointer;
     width: 10rem;
-    height:  2rem;
+    height: 2rem;
 
     .btn {
         border: none;
@@ -171,6 +185,7 @@ ul {
         font-weight: 600;
         font-size: 1.1rem;
         line-height: 1;
+        cursor: pointer;
 
         &:hover,
         &:focus {

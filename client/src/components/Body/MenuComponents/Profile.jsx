@@ -6,6 +6,7 @@ import { auth } from '../../../fire.js';
 import '../../styling/css/Profile.css';
 
 function Profile({ CSRFToken }, props) {
+    //TODO: Needs a update connection to firebase
     const user = useSelector((state) => state.user);
 
     const [displayName, setDisplayName] = useState();
@@ -13,7 +14,7 @@ function Profile({ CSRFToken }, props) {
     const [phoneNumber, setPhoneNumber] = useState();
 
     const displayData = (value) => {
-        if (value === null || '' || undefined) return 'Empty';
+        if (value === null || '' || undefined) return 'None';
         return value;
     };
 
@@ -68,12 +69,14 @@ function Profile({ CSRFToken }, props) {
                                 />
                             </div>
                         </div>
-                        <button
-                            type="submit"
-                            className="form-btn"
-                            form="settingsForm">
-                            Save
-                        </button>
+                        <div className="button">
+                            <button
+                                type="submit"
+                                className="btn"
+                                form="settingsForm">
+                                Save
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>

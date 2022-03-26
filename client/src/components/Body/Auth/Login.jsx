@@ -19,14 +19,11 @@ export default function Login({ CSRFToken }, props) {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Signed in
-                // updateProfile(auth.currentUser, {
-                //     displayName: 'Hans',
-                // });
                 dispatch(
                     setUser({
                         email: auth.currentUser.email,
                         phoneNumber: auth.currentUser.phoneNumber,
+                        displayName: auth.currentUser.displayName,
                     })
                 );
             })

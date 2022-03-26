@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './fire';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLoggedIn, setLoggedOut } from './actions'; //setUser
+import { setLoggedIn, setLoggedOut } from './actions';
 import { LoggedIn, NotLoggedIn } from './application-states';
 // import SubdomainHandler from './SubdomainHandler';
 import './components/styling/css/normalise.css';
@@ -44,11 +44,14 @@ function App() {
         return user ? dispatch(setLoggedIn()) : dispatch(setLoggedOut());
     });
 
-    
-
     return (
         <Router>
-            {isLoggedIn ? <NotLoggedIn CSRFToken={CSRFToken} /> : <LoggedIn CSRFToken={CSRFToken} />}     </Router>
+            {isLoggedIn ? (
+                <LoggedIn CSRFToken={CSRFToken} />
+            ) : (
+                <NotLoggedIn CSRFToken={CSRFToken} />
+            )}
+        </Router>
     );
 }
 

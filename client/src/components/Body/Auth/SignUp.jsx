@@ -1,22 +1,52 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from '../../../actions';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../../fire.js';
 
 import '../../styling/css/SignUp.css';
 
 export default function SignUp({ CSRFToken }, props) {
+    const [username, setUsername] = useState();
     const [email, setEmail] = useState();
+    const [emailChecker, setEmailChecker] = useState();
     const [password, setPassword] = useState();
+    const [passwordChecker, setPasswordChecker] = useState();
+    const [toastMode, setToastMode] = useState('none');
 
     let navigate = useNavigate();
+    let dispatch = useDispatch();
+
+    const checkInputValidity = () => {
+        if (email === emailChecker && password === passwordChecker) return true;
+        return false;
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!checkInputValidity()) {
+            setToastMode('block');
+            return;
+        }
+
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
+                updateProfile(auth.currentUser, {
+                    displayName: username,
+                })
+                    .then(() => {})
+                    .catch((e) => {
+                        console.log(e);
+                    });
+                dispatch(
+                    setUser({
+                        email: auth.currentUser.email,
+                        phoneNumber: auth.currentUser.phoneNumber,
+                        displayName: auth.currentUser.displayName,
+                    })
+                );
                 const user = userCredential.user;
                 console.log(`User ${user}:`, { userCredential });
                 props.history.push('/');
@@ -37,7 +67,17 @@ export default function SignUp({ CSRFToken }, props) {
                 <form id="loginForm" className="form" onSubmit={handleSubmit}>
                     <div className="input-wrapper">
                         <input
+                            id="username"
+                            name="username"
+                            type="text"
+                            onChange={({ target }) => setUsername(target.value)}
+                            placeholder="Username"
+                            required
+                        />
+                        <br />
+                        <input
                             id="email"
+                            name="first email"
                             type="email"
                             onChange={({ target }) => setEmail(target.value)}
                             placeholder="Email"
@@ -45,13 +85,47 @@ export default function SignUp({ CSRFToken }, props) {
                         />
                         <br />
                         <input
+                            id="email"
+                            name="confirm email"
+                            type="email"
+                            onChange={({ target }) =>
+                                setEmailChecker(target.value)
+                            }
+                            placeholder="Email"
+                            autoComplete="off"
+                            required
+                        />
+                        <br />
+                        <input
                             id="password"
+                            name="first password"
                             className="input"
                             type="password"
                             onChange={({ target }) => setPassword(target.value)}
                             placeholder="Password"
                             required
                         />
+                        <br />
+                        <input
+                            id="password"
+                            name="confirm password"
+                            className="input"
+                            type="password"
+                            onChange={({ target }) =>
+                                setPasswordChecker(target.value)
+                            }
+                            placeholder="Password"
+                            autoComplete="off"
+                            required
+                        />
+                        <p
+                            style={{
+                                marginBottom: '0.5rem',
+                                color: 'red',
+                                display: toastMode,
+                            }}>
+                            Email or Password Check failed
+                        </p>
                         <br />
                         <div className="button">
                             <button
