@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { LoggedIn, NotLoggedIn } from '../src/application-states';
+import { LoggedIn, NotLoggedIn } from '../application-states';
 
 export default function SubdomainHandler({ CSRFToken, isLoggedIn }) {
     const [apps, setApps] = useState([
