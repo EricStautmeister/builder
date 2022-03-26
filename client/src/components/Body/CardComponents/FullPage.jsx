@@ -12,8 +12,6 @@ export default function FullPage() {
     const id = searchParams.get('id');
     const subscriptions = useSelector((state) => state.subscriptions);
     const [data, setData] = useState(null);
-    console.log('root root', { context, id, subscriptions, data });
-
     const getDataFromStore = () => {
         if (!context) return;
         if (context === 'projects') {
@@ -28,10 +26,7 @@ export default function FullPage() {
             const filtered = subscriptions.posts.filter(
                 (card) => card.title === id
             );
-            console.log('root', { filtered });
-
             const { title, content } = filtered[0];
-
             setData({ title, content });
         }
     };

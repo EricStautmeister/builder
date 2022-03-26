@@ -10,8 +10,8 @@ function NotLoggedIn() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
-                <Route path="/user" element={<User />} />
-                <Route path="/*" element={<Home />} />
+                <Route path="/user/*" element={<User />} />
+                {/* <Route path="/*" element={<Home />} /> */}
             </Routes>
         </>
     );

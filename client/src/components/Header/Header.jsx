@@ -44,8 +44,8 @@ function Header() {
                             </NavLink>
                             <NavLink
                                 className="button"
-                                to={`/user/?uid=${isLoggedIn}`}>
-                                <button className="btn">Site</button>
+                                to={`/user/?uid=${auth.currentUser.uid}`}>
+                                <button className="btn">Go to Website</button>
                             </NavLink>
                         </nav>
                     </div>

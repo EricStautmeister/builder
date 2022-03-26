@@ -43,7 +43,7 @@ function LoggedIn() {
                 <Route path="/preferences" element={<Preferences />} />
                 <Route path="/integrations" element={<Integrations />} />
                 <Route path="/settings" element={<Settings />} />
-                <Route path="/*" element={<Dashboard />} />
+                {/* <Route path="/*" element={<Dashboard />} /> */}
             </Routes>
         </>
     );
