@@ -6,7 +6,11 @@ import { auth } from '../../../fire.js';
 import '../../styling/css/Profile.css';
 
 function Profile({ CSRFToken }, props) {
-    //TODO: Needs a update connection to firebase
+    //TODO: Needs submittability
+    //TODO: Password Change
+    //TODO: Email Verification
+    //TODO: User deletion
+    //TODO: reauthentification on deletion
     const user = useSelector((state) => state.user);
 
     const [displayName, setDisplayName] = useState();

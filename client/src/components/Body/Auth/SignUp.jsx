@@ -8,6 +8,7 @@ import { auth } from '../../../fire.js';
 import '../../styling/css/SignUp.css';
 
 export default function SignUp({ CSRFToken }, props) {
+    //TODO: Email Verification
     const [username, setUsername] = useState();
     const [email, setEmail] = useState();
     const [emailChecker, setEmailChecker] = useState();
