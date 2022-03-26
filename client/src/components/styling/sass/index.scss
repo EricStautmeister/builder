@@ -97,6 +97,7 @@ div {
 }
 
 #Anchor {
+    margin-top: 5%;
     @include wrapperFlex($justify: center);
     flex-direction: column;
     min-height: 100%;

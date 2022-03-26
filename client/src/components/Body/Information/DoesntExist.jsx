@@ -1,14 +1,13 @@
-import React from 'react'; //useEffect, useState
+import React, { useState, useEffect } from 'react';
 import { Header } from '../../Header';
 import { Footer } from '../../Footer';
-import '../../styling/css/Settings.css';
 
-export default function Settings({ CSRFToken }) {
+export default function DoesntExist() {
     return (
         <>
             <Header />
             <main>
-                <div id="Body">Settings</div>
+                <div id="Body">This site doesn't exist.</div>
             </main>
             <Footer />
         </>

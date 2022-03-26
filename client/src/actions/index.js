@@ -11,6 +11,9 @@ const ACTIONS = {
     UPDATE_PROJECTS: 'UPDATE_PROJECTS',
     SET_POSTS: 'SET_POSTS',
     UPDATE_POSTS: 'UPDATE_POSTS',
+
+    /* TOKEN REDUCER */
+    SET_TOKEN: 'SET_TOKEN',
 };
 
 export const setProjects = (payload) => {
@@ -62,6 +65,13 @@ export const setEmail = (payload) => {
 export const setPhoneNumber = (payload) => {
     return {
         type: ACTIONS.SET_PHONE_NUMBER,
+        payload,
+    };
+};
+
+export const setCSRFToken = (payload) => {
+    return {
+        type: ACTIONS.SET_TOKEN,
         payload,
     };
 };

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import '../../styling/css/FullPage.css';
 
-export default function FullPage({ CSRFToken }) {
+export default function FullPage() {
     const [searchParams] = useSearchParams();
     const context = searchParams.get('context');
     const id = searchParams.get('id');

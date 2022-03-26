@@ -1,27 +1,18 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Header } from '../components/Header';
-import { Home, Login, SignUp } from '../components/Body';
-import { Footer } from '../components/Footer';
+import { Home, Login, SignUp, DoesntExist } from '../components/Body';
+import { User } from '../components/Body';
 
-function NotLoggedIn({ CSRFToken }) {
-    //TODO: Needs base domain and subdomain [[USER]] for differentiation
+function NotLoggedIn() {
     return (
         <>
-            <Header />
             <Routes>
-                <Route path="/" element={<Home CSRFToken={CSRFToken} />} />
-                <Route
-                    path="/login"
-                    element={<Login CSRFToken={CSRFToken} />}
-                />
-                <Route
-                    path="/signup"
-                    element={<SignUp CSRFToken={CSRFToken} />}
-                />
-                <Route path="/*" element={<Home CSRFToken={CSRFToken} />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/user" element={<User />} />
+                <Route path="/*" element={<Home />} />
             </Routes>
-            <Footer />
         </>
     );
 }

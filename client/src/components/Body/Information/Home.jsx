@@ -1,9 +1,18 @@
 import React from 'react'; //useEffect, useState
-
+import { Header } from '../../Header';
+import { Footer } from '../../Footer';
 import '../../styling/css/Home.css';
 
 export default function Home({ CSRFToken }) {
     //TODO: Add Content
 
-    return <div id="Body">Home</div>;
+    return (
+        <>
+            <Header />
+            <main>
+                <div id="Body">Home</div>
+            </main>
+            <Footer />
+        </>
+    );
 }

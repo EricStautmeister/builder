@@ -29,16 +29,24 @@ function Menu({ isLoggedIn }) {
                     <div id="menu-list">
                         <ul>
                             <li>
-                                <NavLink className="link" to="/profile">Profile</NavLink>
+                                <NavLink className="link" to="/profile">
+                                    Profile
+                                </NavLink>
                             </li>
                             <li>
-                                <NavLink className="link" to="/preferences">Preferences</NavLink>
+                                <NavLink className="link" to="/preferences">
+                                    Preferences
+                                </NavLink>
                             </li>
                             <li>
-                                <NavLink className="link" to="/integrations">Integrations</NavLink>
+                                <NavLink className="link" to="/integrations">
+                                    Integrations
+                                </NavLink>
                             </li>
                             <li>
-                                <NavLink className="link" to="/settings">Settings</NavLink>
+                                <NavLink className="link" to="/settings">
+                                    Settings
+                                </NavLink>
                             </li>
                         </ul>
                     </div>

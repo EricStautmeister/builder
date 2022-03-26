@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { db } from '../../../fire';
-import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
+import { db, auth } from '../../../fire';
+import {
+    doc,
+    setDoc,
+    getDocs,
+    collection,
+    updateDoc,
+    arrayUnion,
+} from 'firebase/firestore';
 import '../../styling/css/NewItem.css';
 
-export default function NewItem({ CSRFToken, url }) {
+export default function NewItem({ url }) {
     const [formTitle, setFormTitle] = useState('');
     const [formContent, setFormContent] = useState('');
 
+    const user = useSelector((state) => state.user.user);
+
     let navigate = useNavigate();
 
-    const upload = async (toCollection) => {
+    const upload = async (uid, type, title, content) => {
         try {
-            await setDoc(doc(db, toCollection, formTitle), {
-                title: formTitle,
-                content: formContent,
+            await updateDoc(doc(db, uid, type), {
+                data: arrayUnion({ title, content }),
             });
         } catch (e) {
             console.error('Error adding document: ', e);
@@ -25,8 +34,8 @@ export default function NewItem({ CSRFToken, url }) {
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
-            const toCollection = url.replace('/upload', '');
-            upload(toCollection);
+            const type = url.replace('/upload', '');
+            upload(auth.currentUser.uid, type, formTitle, formContent);
         } catch (e) {
             console.error('Error submitting: ', e);
         } finally {
@@ -34,7 +43,7 @@ export default function NewItem({ CSRFToken, url }) {
         }
     };
 
-    //TODO: Add text modifiers, maybe a markdown plugin or so
+    //TODO: Needs better Editor
     return (
         <div id="centering">
             <form id="contentForm" className="form" onSubmit={handleSubmit}>

@@ -4,8 +4,10 @@ import { MODES } from './constants';
 import { buildComponents } from './BuildingBlocks';
 import { Core, Edit } from './modes';
 import '../../styling/css/Homepage.css';
+import { Header } from '../../Header';
+import { Footer } from '../../Footer';
 
-export default function Homepage({ CSRFToken }) {
+export default function Homepage() {
     const [Items, setItems] = useState(buildComponents);
     const [mode, setMode] = useState(MODES.CORE);
     const [modal, setModal] = useState(false);
@@ -53,11 +55,17 @@ export default function Homepage({ CSRFToken }) {
     };
 
     return (
-        <div id="Body">
-            <div id="homepage-wrapper">
-                <Toolbar mode={mode} setMode={setMode} />
-                {renderModeDependant(mode)}
-            </div>
-        </div>
+        <>
+            <Header />
+            <main>
+                <div id="Body">
+                    <div id="homepage-wrapper">
+                        <Toolbar mode={mode} setMode={setMode} />
+                        {renderModeDependant(mode)}
+                    </div>
+                </div>
+            </main>
+            <Footer />
+        </>
     );
 }

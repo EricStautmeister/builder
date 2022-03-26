@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Header } from '../../Header';
+import { Footer } from '../../Footer';
 
 import { useSearchParams } from 'react-router-dom';
 
@@ -12,5 +14,13 @@ export default function Dashboard({ CSRFToken }) {
         console.dir(url);
     }, [url]);
 
-    return <div id="Body">Dashboard</div>;
+    return (
+        <>
+            <Header />
+            <main>
+                <div id="Body">Dashboard</div>
+            </main>
+            <Footer />
+        </>
+    );
 }

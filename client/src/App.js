@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './fire';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLoggedIn, setLoggedOut } from './actions';
+import { setLoggedIn, setLoggedOut, setCSRFToken } from './actions';
 import { LoggedIn, NotLoggedIn } from './application-states';
 // import SubdomainHandler from './SubdomainHandler';
 import './components/styling/css/normalise.css';
@@ -11,9 +11,8 @@ import './components/styling/css/index.css';
 
 function App() {
     //TODO: Implement Subdomain dependant routing
-
-    const [CSRFToken, setCSRFToken] = useState('');
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    const CSRFToken = useSelector((state) => state.CSRFToken);
     const dispatch = useDispatch();
 
     const getCSRFToken = async (httpAnchor) => {
@@ -33,7 +32,7 @@ function App() {
             requestOptions
         );
         const data = await response.json();
-        setCSRFToken(data.csrfToken);
+        dispatch(setCSRFToken(data.csrfToken));
     };
 
     useEffect(() => {
@@ -47,9 +46,9 @@ function App() {
     return (
         <Router>
             {isLoggedIn ? (
-                <LoggedIn CSRFToken={CSRFToken} />
+                <LoggedIn/>
             ) : (
-                <NotLoggedIn CSRFToken={CSRFToken} />
+                <NotLoggedIn/>
             )}
         </Router>
     );

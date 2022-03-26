@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Header } from '../components/Header';
 import {
     Blog,
     Dashboard,
@@ -14,89 +13,38 @@ import {
     FullPage,
     NewItem,
     Homepage,
+    User,
 } from '../components/Body';
-import { Footer } from '../components/Footer';
 
-function LoggedIn({ CSRFToken }) {
-    //TODO: needs own subdomain [[ADMIN]]
+function LoggedIn() {
     return (
         <>
-            <Header />
-            <main>
-                <Routes>
+            <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/homepage" element={<Homepage />} />
+                <Route path="/projects" element={<Projects />}>
+                    <Route path="" element={<ProjectList />} />
                     <Route
-                        path="/"
-                        element={<Dashboard CSRFToken={CSRFToken} />}
+                        path="add"
+                        element={<NewItem url={'/uploadProject'} />}
                     />
+                    <Route path=":id" element={<FullPage />} />
+                </Route>
+                <Route path="/posts" element={<Blog />}>
+                    <Route path="" element={<PostList />} />
                     <Route
-                        path="/homepage"
-                        element={<Homepage CSRFToken={CSRFToken} />}
+                        path="add"
+                        element={<NewItem url={'/uploadPost'} />}
                     />
-                    <Route
-                        path="/projects"
-                        element={<Projects CSRFToken={CSRFToken} />}>
-                        <Route
-                            path=""
-                            element={<ProjectList CSRFToken={CSRFToken} />}
-                        />
-                        <Route
-                            path="add"
-                            element={
-                                <NewItem
-                                    url={'/uploadProject'}
-                                    CSRFToken={CSRFToken}
-                                />
-                            }
-                        />
-                        <Route
-                            path=":id"
-                            element={<FullPage CSRFToken={CSRFToken} />}
-                        />
-                    </Route>
-                    <Route
-                        path="/posts"
-                        element={<Blog CSRFToken={CSRFToken} />}>
-                        <Route
-                            path=""
-                            element={<PostList CSRFToken={CSRFToken} />}
-                        />
-                        <Route
-                            path="add"
-                            element={
-                                <NewItem
-                                    url={'/uploadPost'}
-                                    CSRFToken={CSRFToken}
-                                />
-                            }
-                        />
-                        <Route
-                            path=":id"
-                            element={<FullPage CSRFToken={CSRFToken} />}
-                        />
-                    </Route>
-                    <Route
-                        path="/profile"
-                        element={<Profile CSRFToken={CSRFToken} />}
-                    />
-                    <Route
-                        path="/preferences"
-                        element={<Preferences CSRFToken={CSRFToken} />}
-                    />
-                    <Route
-                        path="/integrations"
-                        element={<Integrations CSRFToken={CSRFToken} />}
-                    />
-                    <Route
-                        path="/settings"
-                        element={<Settings CSRFToken={CSRFToken} />}
-                    />
-                    <Route
-                        path="/*"
-                        element={<Dashboard CSRFToken={CSRFToken} />}
-                    />
-                </Routes>
-            </main>
-            <Footer />
+                    <Route path=":id" element={<FullPage />} />
+                </Route>
+                <Route path="/user/*" element={<User />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/preferences" element={<Preferences />} />
+                <Route path="/integrations" element={<Integrations />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/*" element={<Dashboard />} />
+            </Routes>
         </>
     );
 }

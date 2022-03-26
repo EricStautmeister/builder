@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import Card from './Card';
 import { setPosts } from '../../../actions';
 import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
-import { db } from '../../../fire';
+import { auth, db } from '../../../fire';
 
 import '../../styling/css/Projects.css';
 
-function PostList({ CSRFToken }) {
+function PostList() {
     const dispatch = useDispatch();
 
     const posts = useSelector((state) => state.subscriptions.posts);
@@ -21,22 +21,26 @@ function PostList({ CSRFToken }) {
         return true;
     };
 
-    const fetchFromStore = async (toCollection) => {
+    const fetchFromStore = async () => {
         try {
             if (checkSubscriptions()) {
                 setPostList(posts);
                 return;
             }
-            const querySnapshot = await getDocs(collection(db, toCollection));
-            let subscriptionData = [];
-            querySnapshot.forEach((doc) =>
-                subscriptionData.push({
-                    title: doc.data().title,
-                    content: doc.data().content,
-                })
+            const querySnapshot = await getDocs(
+                collection(db, auth.currentUser.uid)
             );
-            setPostList(subscriptionData);
-            dispatch(setPosts({ posts: subscriptionData }));
+            let subscriptionData = { Project: [], Post: [] };
+            querySnapshot.forEach((doc) => {
+                const data = doc.data().data;
+                if (data.length) {
+                    data.forEach((docdata) => {
+                        subscriptionData[doc.id].push(docdata);
+                    });
+                }
+            });
+            setPostList(subscriptionData.Post);
+            dispatch(setPosts({ posts: subscriptionData.Post }));
             return;
         } catch (e) {
             console.log(e);
@@ -44,7 +48,7 @@ function PostList({ CSRFToken }) {
     };
 
     useEffect(() => {
-        fetchFromStore('Post');
+        fetchFromStore();
     }, []);
 
     return (

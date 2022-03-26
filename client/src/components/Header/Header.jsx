@@ -10,7 +10,7 @@ import LogoIcon from '../styling/media/logo.png';
 
 function Header() {
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
-    
+
     const signout = () => {
         signOut(auth)
             .then(() => {})
@@ -41,6 +41,11 @@ function Header() {
                             </NavLink>
                             <NavLink className="button" to="/posts">
                                 <button className="btn">Blog</button>
+                            </NavLink>
+                            <NavLink
+                                className="button"
+                                to={`/user/?uid=${isLoggedIn}`}>
+                                <button className="btn">Site</button>
                             </NavLink>
                         </nav>
                     </div>

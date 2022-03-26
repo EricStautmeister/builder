@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../../actions';
 import { signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../../fire.js';
+import { Header } from '../../Header';
+import { Footer } from '../../Footer';
 import '../../styling/css/Login.css';
 
-export default function Login({ CSRFToken }, props) {
+export default function Login(props) {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
@@ -24,6 +26,7 @@ export default function Login({ CSRFToken }, props) {
                         email: auth.currentUser.email,
                         phoneNumber: auth.currentUser.phoneNumber,
                         displayName: auth.currentUser.displayName,
+                        uid: auth.currentUser.uid,
                     })
                 );
             })
@@ -38,39 +41,52 @@ export default function Login({ CSRFToken }, props) {
     };
 
     return (
-        <div id="Body">
-            <div id="Anchor">
-                <form id="loginForm" className="form" onSubmit={handleSubmit}>
-                    <div className="input-wrapper">
-                        <input
-                            id="email"
-                            type="email"
-                            onChange={({ target }) => setEmail(target.value)}
-                            placeholder="Email"
-                            autoComplete="username"
-                            required
-                        />
-                        <br />
-                        <input
-                            id="password"
-                            className="input"
-                            type="password"
-                            onChange={({ target }) => setPassword(target.value)}
-                            placeholder="Password"
-                            autoComplete="current-password"
-                            required
-                        />
-                        <div className="button">
-                            <button
-                                type="submit"
-                                className="btn"
-                                form="loginForm">
-                                Login
-                            </button>
-                        </div>
+        <>
+            <Header />
+            <main>
+                <div id="Body">
+                    <div id="Anchor">
+                        <form
+                            id="loginForm"
+                            className="form"
+                            onSubmit={handleSubmit}>
+                            <div className="input-wrapper">
+                                <input
+                                    id="email"
+                                    type="email"
+                                    onChange={({ target }) =>
+                                        setEmail(target.value)
+                                    }
+                                    placeholder="Email"
+                                    autoComplete="username"
+                                    required
+                                />
+                                <br />
+                                <input
+                                    id="password"
+                                    className="input"
+                                    type="password"
+                                    onChange={({ target }) =>
+                                        setPassword(target.value)
+                                    }
+                                    placeholder="Password"
+                                    autoComplete="current-password"
+                                    required
+                                />
+                                <div className="button">
+                                    <button
+                                        type="submit"
+                                        className="btn"
+                                        form="loginForm">
+                                        Login
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-        </div>
+                </div>
+            </main>
+            <Footer />
+        </>
     );
 }

@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import Card from './Card';
 import { setProjects } from '../../../actions';
 import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
-import { db } from '../../../fire';
+import { db, auth } from '../../../fire';
 
 import '../../styling/css/Projects.css';
 
-function ProjectList({ CSRFToken }) {
+function ProjectList() {
     let dispatch = useDispatch();
 
     const projects = useSelector((state) => state.subscriptions.projects);
@@ -21,22 +21,26 @@ function ProjectList({ CSRFToken }) {
         return true;
     };
 
-    const fetchFromStore = async (toCollection) => {
+    const fetchFromStore = async () => {
         try {
             if (checkSubscriptions()) {
                 setProjectList(projects);
                 return;
             }
-            const querySnapshot = await getDocs(collection(db, toCollection));
-            let subscriptionData = [];
-            querySnapshot.forEach((doc) =>
-                subscriptionData.push({
-                    title: doc.data().title,
-                    content: doc.data().content,
-                })
+            const querySnapshot = await getDocs(
+                collection(db, auth.currentUser.uid)
             );
-            setProjectList(subscriptionData);
-            dispatch(setProjects({ projects: subscriptionData }));
+            let subscriptionData = { Project: [], Post: [] };
+            querySnapshot.forEach((doc) => {
+                const data = doc.data().data;
+                if (data.length) {
+                    data.forEach((docdata) => {
+                        subscriptionData[doc.id].push(docdata);
+                    });
+                }
+            });
+            setProjectList(subscriptionData.Project);
+            dispatch(setProjects({ projects: subscriptionData.Project }));
             return;
         } catch (e) {
             console.log(e);
@@ -44,7 +48,7 @@ function ProjectList({ CSRFToken }) {
     };
 
     useEffect(() => {
-        fetchFromStore('Project');
+        fetchFromStore();
     }, []);
 
     return (

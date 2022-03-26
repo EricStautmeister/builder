@@ -4,12 +4,13 @@ const ACTIONS = {
     SET_EMAIL: 'SET_EMAIL',
     SET_PHONE_NUMBER: 'SET_PHONE_NUMBER',
 };
-
+//TODO: Implement UID Action
 //REDUCER
 const initialState = {
     displayName: null,
     email: null,
     phoneNumber: null,
+    uid: null,
 };
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -18,6 +19,7 @@ const userReducer = (state = initialState, action) => {
                 displayName: action.payload.displayName,
                 email: action.payload.email,
                 phoneNumber: action.payload.phoneNumber,
+                uid: action.payload.uid,
             };
 
         case ACTIONS.SET_DISPLAY_NAME:

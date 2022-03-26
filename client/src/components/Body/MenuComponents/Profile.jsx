@@ -2,10 +2,12 @@ import React, { useState } from 'react'; //useEffect, useState
 import { useSelector } from 'react-redux';
 import { setUser } from '../../../actions';
 import { auth } from '../../../fire.js';
+import { Header } from '../../Header';
+import { Footer } from '../../Footer';
 
 import '../../styling/css/Profile.css';
 
-function Profile({ CSRFToken }, props) {
+function Profile(props) {
     //TODO: Needs submittability
     //TODO: Password Change
     //TODO: Email Verification
@@ -29,62 +31,72 @@ function Profile({ CSRFToken }, props) {
     };
 
     return (
-        <div id="Body">
-            <div id="body-container">
-                <form
-                    id="settingsForm"
-                    className="form"
-                    onSubmit={handleSubmit}>
-                    <div id="settings-wrapper">
-                        <div id="data">
-                            <div className="settings-labels">
-                                <p>Username:</p>
-                                <br />
-                                <p>Email:</p>
-                                <br />
-                                <p>Phonenumber:</p>
+        <>
+            <Header />
+            <main>
+                <div id="Body">
+                    <div id="body-container">
+                        <form
+                            id="settingsForm"
+                            className="form"
+                            onSubmit={handleSubmit}>
+                            <div id="settings-wrapper">
+                                <div id="data">
+                                    <div className="settings-labels">
+                                        <p>Username:</p>
+                                        <br />
+                                        <p>Email:</p>
+                                        <br />
+                                        <p>Phonenumber:</p>
+                                    </div>
+                                    <div className="settings-inputs">
+                                        <input
+                                            className="settings"
+                                            type="text"
+                                            onChange={({ target }) =>
+                                                setDisplayName(target.value)
+                                            }
+                                            placeholder={displayData(
+                                                user.displayName
+                                            )}
+                                        />
+                                        <br />
+                                        <input
+                                            className="settings"
+                                            type="text"
+                                            onChange={({ target }) =>
+                                                setEmail(target.value)
+                                            }
+                                            placeholder={displayData(user.email)}
+                                        />
+                                        <br />
+                                        <input
+                                            className="settings"
+                                            type="text"
+                                            onChange={({ target }) =>
+                                                setPhoneNumber(target.value)
+                                            }
+                                            placeholder={displayData(
+                                                user.phoneNumber
+                                            )}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="button">
+                                    <button
+                                        type="submit"
+                                        className="btn"
+                                        form="settingsForm">
+                                        Save
+                                    </button>
+                                </div>
                             </div>
-                            <div className="settings-inputs">
-                                <input
-                                    className="settings"
-                                    type="text"
-                                    onChange={({ target }) =>
-                                        setDisplayName(target.value)
-                                    }
-                                    placeholder={displayData(user.displayName)}
-                                />
-                                <br />
-                                <input
-                                    className="settings"
-                                    type="text"
-                                    onChange={({ target }) =>
-                                        setEmail(target.value)
-                                    }
-                                    placeholder={displayData(user.email)}
-                                />
-                                <br />
-                                <input
-                                    className="settings"
-                                    type="text"
-                                    onChange={({ target }) =>
-                                        setPhoneNumber(target.value)
-                                    }
-                                    placeholder={displayData(user.phoneNumber)}
-                                />
-                            </div>
-                        </div>
-                        <div className="button">
-                            <button
-                                type="submit"
-                                className="btn"
-                                form="settingsForm">
-                                Save
-                            </button>
-                        </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-        </div>
+                </div>
+            </main>
+            <Footer />
+        </>
     );
 }
 
