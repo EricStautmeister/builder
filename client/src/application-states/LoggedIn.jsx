@@ -18,6 +18,7 @@ import {
 import { Footer } from '../components/Footer';
 
 function LoggedIn({ CSRFToken }) {
+    //TODO: needs own subdomain [[ADMIN]]
     return (
         <>
             <Header />

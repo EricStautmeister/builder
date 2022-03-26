@@ -50,6 +50,7 @@ export default function Login({ CSRFToken }, props) {
                             type="email"
                             onChange={({ target }) => setEmail(target.value)}
                             placeholder="Email"
+                            autoComplete="username"
                             required
                         />
                         <br />
@@ -59,6 +60,7 @@ export default function Login({ CSRFToken }, props) {
                             type="password"
                             onChange={({ target }) => setPassword(target.value)}
                             placeholder="Password"
+                            autoComplete="current-password"
                             required
                         />
                         <div className="button">

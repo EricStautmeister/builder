@@ -5,6 +5,7 @@ import { Home, Login, SignUp } from '../components/Body';
 import { Footer } from '../components/Footer';
 
 function NotLoggedIn({ CSRFToken }) {
+    //TODO: Needs base domain and subdomain [[USER]] for differentiation
     return (
         <>
             <Header />

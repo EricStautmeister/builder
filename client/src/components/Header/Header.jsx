@@ -10,6 +10,7 @@ import LogoIcon from '../styling/media/logo.png';
 
 function Header() {
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    
     const signout = () => {
         signOut(auth)
             .then(() => {})
@@ -58,11 +59,19 @@ function Header() {
                 </>
             ) : (
                 <>
-                    <nav id="navBar">
-                        <NavLink id="icon" className="icon" to="/">
-                            <img src={LogoIcon} alt="" height={80} width={80} />
-                        </NavLink>
-                    </nav>
+                    <div id="navWrapper">
+                        <nav id="navBar">
+                            <NavLink id="icon" className="icon" to="/">
+                                <img
+                                    src={LogoIcon}
+                                    alt=""
+                                    height={80}
+                                    width={80}
+                                />
+                                <p id="app-version">Pre-Alpha</p>
+                            </NavLink>
+                        </nav>
+                    </div>
                     <div id="loginWrapper">
                         <div id="login">
                             <NavLink className="button" to="/login">

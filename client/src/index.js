@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './testing/reportWebVitals';
 
 const root = document.getElementById('root')
+
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
