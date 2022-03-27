@@ -22,7 +22,7 @@ export default function FullPage() {
 
             setData({ title, content });
         }
-        if (context === 'posts') {
+        if (context === 'posts' || 'blog') {
             const filtered = subscriptions.posts.filter(
                 (card) => card.title === id
             );
