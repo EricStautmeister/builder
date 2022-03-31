@@ -8,17 +8,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import '../../styling/css/FullPage.css';
 
 export default function FullPage() {
-    const [data, setData] = useState(null);
-    const subscriptions = useSelector((state) => state.subscriptions);
-    const [searchParams, setSearchParams] = useSearchParams();
-
     const dispatch = useDispatch();
+    const [data, setData] = useState(null);
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const subscriptions = useSelector((state) => state.subscriptions);
 
     const context = window.location.pathname.split('/')[2];
     const uid = searchParams.get('uid') || '';
     const id = window.location.pathname.split('/')[3];
 
-    const checkStore = () => {
+    const checkSubscriptions = () => {
         if (context === 'projects') {
             return subscriptions.projects.filter((card) => card.title === id).length > 0;
         }
@@ -35,6 +35,7 @@ export default function FullPage() {
                     const subscriptionData = { Project: [], Post: [] };
                     snapshot.forEach((doc) => {
                         const data = doc.data().data;
+                        console.log(doc.id, data);
                         if (data.length) {
                             data.forEach((docdata) => {
                                 subscriptionData[doc.id].push(docdata);
@@ -51,18 +52,24 @@ export default function FullPage() {
 
     const updateSubscriptions = async () => {
         const subscriptionData = await getUserDataFromFirestore();
-        dispatch(setProjects(subscriptionData.Project));
-        dispatch(setPosts(subscriptionData.Post));
+        console.log({ subscriptionData, subscriptions });
+        dispatch(setPosts({ posts: subscriptionData.Post }));
+        dispatch(setProjects({ projects: subscriptionData.Project }));
+    };
+
+    const parseCard = (context) => {
+        if (context === 'projects') {
+            return subscriptions.projects.filter((card) => card.title === id);
+        }
+        if (context === 'posts' || 'blog') {
+            console.log(`filtering ${context} id:${id}`, subscriptions.posts);
+            return subscriptions.posts.filter((card) => card.title === id);
+        }
     };
 
     const processDataFromSubscriptions = (context) => {
-        let filtered;
-        if (context === 'projects') {
-            filtered = subscriptions.projects.filter((card) => card.title === id);
-        }
-        if (context === 'posts' || 'blog') {
-            filtered = subscriptions.posts.filter((card) => card.title === id);
-        }
+        const filtered = parseCard(context);
+        console.log(parseCard(context));
         const { title, content } = filtered[0];
         setData({ title, content });
 
@@ -72,10 +79,10 @@ export default function FullPage() {
     const handleDataProcessing = async () => {
         try {
             if (!context || !id) return;
-            if (!checkStore()) {
-                updateSubscriptions();
+            if (!checkSubscriptions()) {
+                await updateSubscriptions();
             }
-            processDataFromSubscriptions(context);
+            await processDataFromSubscriptions(context);
         } catch (e) {
             throw new Error(`Data Fetching Error: ${e}`);
         }

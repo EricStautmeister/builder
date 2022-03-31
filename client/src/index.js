@@ -17,5 +17,5 @@ ReactDOM.render(
     root
 );
 
-reportWebVitals(console.log);
+// reportWebVitals(console.log); //TODO: Turn on web vitals reporting
 serviceWorker.unregister();

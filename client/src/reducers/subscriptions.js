@@ -10,7 +10,7 @@ const initialState = {
     projects: [],
     posts: [],
 };
-const userReducer = (state = initialState, action) => {
+const subscriptions = (state = initialState, action) => {
     switch (action.type) {
         case ACTIONS.SET_PROJECTS:
             state.projects = action.payload.projects;
@@ -21,11 +21,11 @@ const userReducer = (state = initialState, action) => {
             return state;
 
         case ACTIONS.UPDATE_PROJECTS:
-            state.projects.splice(0, 0, action.payload.projects)
+            state.projects.splice(0, 0, action.payload.projects);
             return state;
 
         case ACTIONS.UPDATE_POSTS:
-            state.posts.splice(0, 0, action.payload.posts)
+            state.posts.splice(0, 0, action.payload.posts);
             return state;
 
         default:
@@ -33,4 +33,4 @@ const userReducer = (state = initialState, action) => {
     }
 };
 
-export default userReducer;
+export default subscriptions;

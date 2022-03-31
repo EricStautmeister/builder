@@ -17,7 +17,7 @@ export default function User() {
                     <Route path="" element={<Listing mode="projects" />} />
                     <Route path=":id" element={<FullPage />} />
                 </Route>
-                <Route path="blog" element={<UserBlog />}>
+                <Route path="posts" element={<UserBlog />}>
                     <Route path="" element={<Listing mode="posts" />} />
                     <Route path=":id" element={<FullPage />} />
                 </Route>

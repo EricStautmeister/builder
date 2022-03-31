@@ -5,8 +5,6 @@ import { useSearchParams } from 'react-router-dom';
 export default function UserLanding() {
     const [searchParams, setSearchParams] = useSearchParams();
     const uid = searchParams.get('uid') || '';
-    console.dir(uid);
-
     return (
         <>
             <Navigation uid={uid} />

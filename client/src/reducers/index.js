@@ -1,13 +1,13 @@
 import userReducer from './userReducer';
 import loggedReducer from './isLogged';
-import subscribedData from './subscribedData';
+import subscriptions from './subscriptions';
 import csrfReducer from './csrfReducer';
 import { combineReducers } from 'redux';
 
 const reducers = combineReducers({
     user: userReducer,
     isLoggedIn: loggedReducer,
-    subscriptions: subscribedData,
+    subscriptions: subscriptions,
     CSRFToken: csrfReducer,
 });
 
