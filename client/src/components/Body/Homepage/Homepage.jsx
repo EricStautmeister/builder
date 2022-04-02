@@ -26,9 +26,7 @@ export default function Homepage() {
         return Items.filter((item) => item.displayContext === displayContext).map((item) => (
             <MovableItem
                 key={item.id}
-                data={item.data}
-                position={item.position}
-                className={item.className}
+                Item={item}
                 setItems={setItems}
                 onClick={toggle}></MovableItem>
         ));

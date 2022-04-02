@@ -1,17 +1,23 @@
 import { WINDOWS } from './constants';
+import LogoIcon from '../../styling/media/logo.png';
 
+/* A JavaScript object that contains the data for each component. */
 export const buildComponents = [
     {
         id: 1,
         data: {
-            name: 'title',
+            name: 'Title',
             content: 'Title',
         },
-        jsx: function () {
-            return (
-                <>
-                    <div>{this.data.content}</div>
-                </>
+        jsx: function (ref, style, onClick) {
+            return this.displayContext === WINDOWS.MAINWINDOW ? (
+                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                    <h1>{this.data.content}</h1>
+                </div>
+            ) : (
+                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                    {this.data.name}
+                </div>
             );
         },
         position: {
@@ -24,14 +30,42 @@ export const buildComponents = [
     {
         id: 2,
         data: {
-            name: 'text',
+            name: 'Subtitle',
+            content: 'Subtitle',
+        },
+        jsx: function (ref, style, onClick) {
+            return this.displayContext === WINDOWS.MAINWINDOW ? (
+                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                    <h3>{this.data.content}</h3>
+                </div>
+            ) : (
+                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                    {this.data.name}
+                </div>
+            );
+        },
+        position: {
+            left: 0,
+            right: 0,
+        },
+        displayContext: WINDOWS.SIDEBAR,
+        className: 'movable-item title-item',
+    },
+    {
+        id: 3,
+        data: {
+            name: 'Text',
             content: 'Text',
         },
-        jsx: function () {
-            return (
-                <>
-                    <div>{this.data.content}</div>
-                </>
+        jsx: function (ref, style, onClick) {
+            return this.displayContext === WINDOWS.MAINWINDOW ? (
+                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                    <p>{this.data.content}</p>
+                </div>
+            ) : (
+                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                    {this.data.name}
+                </div>
             );
         },
         position: {
@@ -42,16 +76,20 @@ export const buildComponents = [
         className: 'movable-item text-item',
     },
     {
-        id: 3,
+        id: 4,
         data: {
-            name: 'image',
-            content: 'Image',
+            name: 'Image',
+            content: LogoIcon,
         },
-        jsx: function () {
-            return (
-                <>
-                    <div>{this.data.content}</div>
-                </>
+        jsx: function (ref, style, onClick) {
+            return this.displayContext === WINDOWS.MAINWINDOW ? (
+                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                    <img src={this.data.content} alt="" />
+                </div>
+            ) : (
+                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                    {this.data.name}
+                </div>
             );
         },
         position: {
