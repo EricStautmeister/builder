@@ -7,13 +7,13 @@ import {
     PostList,
     Preferences,
     Profile,
-    ProjectList,
     Projects,
     Settings,
     FullPage,
     NewItem,
     Homepage,
     User,
+    ProjectList,
 } from '../components/Body';
 
 function LoggedIn() {
@@ -22,20 +22,14 @@ function LoggedIn() {
             <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/homepage" element={<Homepage />} />
-                <Route path="/projects" element={<Projects />}>
+                <Route path="/projects" element={<Projects mode="projects" />}>
                     <Route path="" element={<ProjectList />} />
-                    <Route
-                        path="add"
-                        element={<NewItem url={'/uploadProject'} />}
-                    />
+                    <Route path="add" element={<NewItem url={'/uploadProject'} />} />
                     <Route path=":id" element={<FullPage />} />
                 </Route>
                 <Route path="/posts" element={<Blog />}>
                     <Route path="" element={<PostList />} />
-                    <Route
-                        path="add"
-                        element={<NewItem url={'/uploadPost'} />}
-                    />
+                    <Route path="add" element={<NewItem url={'/uploadPost'} />} />
                     <Route path=":id" element={<FullPage />} />
                 </Route>
                 <Route path="/user/*" element={<User />} />

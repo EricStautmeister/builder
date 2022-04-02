@@ -1,5 +1,5 @@
-import React from 'react'; //useEffect, useState
-import { NavLink, Outlet } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export function Button({ data, to }) {
     return (

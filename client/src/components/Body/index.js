@@ -25,8 +25,8 @@ export { default as Homepage } from './Homepage/Homepage';
 *   CARD COMPONENTS
 ==================== */
 export { default as Blog } from './CardComponents/Blog';
-export { default as PostList } from './CardComponents/PostList';
 export { default as ProjectList } from './CardComponents/ProjectList';
+export { default as PostList } from './CardComponents/PostList';
 export { default as Projects } from './CardComponents/Projects';
 
 /* =================

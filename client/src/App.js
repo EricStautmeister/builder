@@ -15,6 +15,11 @@ function App() {
     const CSRFToken = useSelector((state) => state.CSRFToken);
     const dispatch = useDispatch();
 
+    /**
+     * It gets the CSRF token from the server.
+     * @param httpAnchor - The anchor to the HTTP request.
+     * @returns The CSRF token.
+     */
     const getCSRFToken = async (httpAnchor) => {
         const serverUrl = 'http://localhost:5000';
         const requestOptions = {
@@ -27,31 +32,28 @@ function App() {
             mode: 'cors',
             credentials: 'include',
         };
-        const response = await fetch(
-            `${serverUrl}${httpAnchor}`,
-            requestOptions
-        );
-        const data = await response.json();
-        dispatch(setCSRFToken(data.csrfToken));
+        return new Promise((resolve, reject) => {
+            fetch(`${serverUrl}${httpAnchor}`, requestOptions)
+                .then((response) => {
+                    resolve(response.json());
+                })
+                .catch((err) => {
+                    reject(err);
+                });
+        });
     };
 
     useEffect(() => {
-        getCSRFToken('/process');
+        getCSRFToken('/process').then((token) => {
+            dispatch(setCSRFToken(token.csrfToken));
+        });
     }, []);
 
     onAuthStateChanged(auth, (user) => {
         return user ? dispatch(setLoggedIn()) : dispatch(setLoggedOut());
     });
 
-    return (
-        <Router>
-            {isLoggedIn ? (
-                <LoggedIn/>
-            ) : (
-                <NotLoggedIn/>
-            )}
-        </Router>
-    );
+    return <Router>{isLoggedIn ? <LoggedIn /> : <NotLoggedIn />}</Router>;
 }
 
 export default React.memo(App);

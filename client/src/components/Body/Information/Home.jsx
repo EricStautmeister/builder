@@ -3,9 +3,8 @@ import { Header } from '../../Header';
 import { Footer } from '../../Footer';
 import '../../styling/css/Home.css';
 
-export default function Home({ CSRFToken }) {
+export default function Home() {
     //TODO: Add Content
-
     return (
         <>
             <Header />

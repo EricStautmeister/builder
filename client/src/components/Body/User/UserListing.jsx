@@ -8,7 +8,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import '../../styling/css/Projects.css';
 
-function Listing({ mode }) {
+function UserListing({ mode }) {
     const [searchParams, setSearchParams] = useSearchParams();
     const subscriptions = useSelector((state) => state.subscriptions);
     const [currentlyOnDisplay, setCurrentlyOnDisplay] = useState(null);
@@ -16,6 +16,11 @@ function Listing({ mode }) {
     const uid = searchParams.get('uid') || '';
     const dispatch = useDispatch();
 
+    /**
+     * Check if the user has any subscriptions for the given context
+     * @param context - The context of the subscription. This is either `projects`, `posts`, or `blog`.
+     * @returns a boolean value.
+     */
     const checkSubscriptions = (context) => {
         if (context === 'projects') {
             return subscriptions.projects.length > 0;
@@ -26,6 +31,11 @@ function Listing({ mode }) {
         throw new Error('Store Context Error');
     };
 
+    /**
+     * It gets the data from the firestore database and returns it as a promise.
+     * @returns The promise is returning an object with two keys, Project and Post. Each key has an
+     * array of objects.
+     */
     const getUserDataFromFirestore = async () => {
         return new Promise((resolve, reject) => {
             getDocs(collection(db, uid))
@@ -33,7 +43,7 @@ function Listing({ mode }) {
                     const subscriptionData = { Project: [], Post: [] };
                     snapshot.forEach((doc) => {
                         const data = doc.data().data;
-                        console.log(doc.id, data)
+                        console.log(doc.id, data);
                         if (data.length) {
                             data.forEach((docdata) => {
                                 subscriptionData[doc.id].push(docdata);
@@ -48,18 +58,31 @@ function Listing({ mode }) {
         });
     };
 
+    /**
+     * It gets the user data from Firestore and updates the Redux store with the data.
+     */
     const updateSubscriptions = async () => {
         const subscriptionData = await getUserDataFromFirestore();
-        console.log({ subscriptionData, subscriptions });
         dispatch(setPosts({ posts: subscriptionData.Post }));
         dispatch(setProjects({ projects: subscriptionData.Project }));
     };
 
+    /**
+     * This function is called when the user clicks on the "Projects" or "Posts" tab. 
+     * 
+     * It sets the currentlyOnDisplay variable to the appropriate array of data
+     * @param context - The context of the subscription. This is either projects or posts.
+     */
     const processDataFromSubscriptions = (context) => {
-        if (mode === 'projects') setCurrentlyOnDisplay(subscriptions.projects);
-        if (mode === 'posts') setCurrentlyOnDisplay(subscriptions.posts);
+        if (context === 'projects') setCurrentlyOnDisplay(subscriptions.projects);
+        if (context === 'posts') setCurrentlyOnDisplay(subscriptions.posts);
     };
 
+    /**
+     * It checks if the user has any subscriptions. If not, it will update the subscriptions.
+     * Then it will process the data from the subscriptions.
+     * @returns The `handleDataProcessing` function returns a `Promise` object.
+     */
     const handleDataProcessing = async () => {
         try {
             if (!mode || !uid) return;
@@ -75,37 +98,6 @@ function Listing({ mode }) {
     useEffect(() => {
         handleDataProcessing();
     }, []);
-
-    const consumeStore = async (modeData) => {
-        try {
-            if (checkSubscriptions()) {
-                setCurrentlyOnDisplay(modeData);
-                return;
-            }
-            const querySnapshot = await getDocs(collection(db, uid));
-            let subscriptionData = { Project: [], Post: [] };
-            querySnapshot.forEach((doc) => {
-                const data = doc.data().data;
-                if (data.length) {
-                    data.forEach((docdata) => {
-                        subscriptionData[doc.id].push(docdata);
-                    });
-                }
-            });
-            if (mode === 'projects') setCurrentlyOnDisplay(subscriptionData.Project);
-            if (mode === 'posts') setCurrentlyOnDisplay(subscriptionData.Post);
-            dispatch(setPosts({ posts: subscriptionData.Post }));
-            dispatch(setProjects({ projects: subscriptionData.Project }));
-            return;
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
-    useEffect(() => {
-        if (mode === 'projects') consumeStore(subscriptions.projects);
-        if (mode === 'posts') consumeStore(subscriptions.posts);
-    }, [mode]);
 
     return (
         <div className="container">
@@ -139,4 +131,4 @@ function Listing({ mode }) {
     );
 }
 
-export default React.memo(Listing);
+export default React.memo(UserListing);
