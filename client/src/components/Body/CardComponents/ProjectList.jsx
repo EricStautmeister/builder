@@ -11,51 +11,66 @@ function ProjectList() {
     let dispatch = useDispatch();
 
     const projects = useSelector((state) => state.subscriptions.projects);
-    const [projectList, setProjectList] = useState(null);
+    const [currentlyOnDisplay, setCurrentlyOnDisplay] = useState(null);
+
+    const uid = auth.currentUser.uid;
 
     const checkSubscriptions = () => {
         if (projects === undefined) return false;
-        if (projects.length === 0) {
-            return false;
-        }
-        return true;
+        return projects.length > 0;
     };
 
-    const fetchFromStore = async () => {
-        try {
-            if (checkSubscriptions()) {
-                setProjectList(projects);
-                return;
-            }
-            const querySnapshot = await getDocs(
-                collection(db, auth.currentUser.uid)
-            );
-            let subscriptionData = { Project: [], Post: [] };
-            querySnapshot.forEach((doc) => {
-                const data = doc.data().data;
-                if (data.length) {
-                    data.forEach((docdata) => {
-                        subscriptionData[doc.id].push(docdata);
+    const getUserDataFromFirestore = async () => {
+        return new Promise((resolve, reject) => {
+            getDocs(collection(db, uid))
+                .then((snapshot) => {
+                    const subscriptionData = { Project: [], Post: [] };
+                    snapshot.forEach((doc) => {
+                        const data = doc.data().data;
+                        console.log(doc.id, data);
+                        if (data.length) {
+                            data.forEach((docdata) => {
+                                subscriptionData[doc.id].push(docdata);
+                            });
+                        }
                     });
-                }
-            });
-            setProjectList(subscriptionData.Project);
-            dispatch(setProjects({ projects: subscriptionData.Project }));
-            return;
+                    resolve(subscriptionData);
+                })
+                .catch((err) => {
+                    reject(err);
+                });
+        });
+    };
+
+    const updateSubscriptions = async () => {
+        const subscriptionData = await getUserDataFromFirestore();
+        dispatch(setProjects({ projects: subscriptionData.Project }));
+    };
+
+    const processDataFromSubscriptions = () => {
+        setCurrentlyOnDisplay(projects);
+    };
+
+    const handleDataProcessing = async () => {
+        try {
+            if (!checkSubscriptions()) {
+                await updateSubscriptions();
+            }
+            await processDataFromSubscriptions();
         } catch (e) {
-            console.log(e);
+            throw new Error(`Data Fetching Error: ${e}`);
         }
     };
 
     useEffect(() => {
-        fetchFromStore();
+        handleDataProcessing();
     }, []);
 
     return (
         <div className="container">
-            {projectList !== null && projectList.length ? (
-                <div className="projectCards">
-                    {projectList.map((item, index) => (
+            {currentlyOnDisplay !== null && currentlyOnDisplay.length ? (
+                <div className="blogCards">
+                    {currentlyOnDisplay.map((item, index) => (
                         <Card
                             key={index}
                             anchor={'projects'}
@@ -63,11 +78,12 @@ function ProjectList() {
                             id={item.title}
                             title={item.title}
                             content={item.content}
+                            uid={uid}
                         />
                     ))}
                 </div>
             ) : (
-                <div className="projectCards">
+                <div className="blogCards">
                     <Card />
                     <Card />
                     <Card />

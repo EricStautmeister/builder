@@ -6,13 +6,13 @@ export const buildComponents = [
         data: {
             name: 'title',
             content: 'Title',
-            jsx: function () {
-                return (
-                    <>
-                        <div>{this.content}</div>
-                    </>
-                );
-            },
+        },
+        jsx: function () {
+            return (
+                <>
+                    <div>{this.data.content}</div>
+                </>
+            );
         },
         position: {
             left: 0,
@@ -26,13 +26,13 @@ export const buildComponents = [
         data: {
             name: 'text',
             content: 'Text',
-            jsx: function () {
-                return (
-                    <>
-                        <div>{this.content}</div>
-                    </>
-                );
-            },
+        },
+        jsx: function () {
+            return (
+                <>
+                    <div>{this.data.content}</div>
+                </>
+            );
         },
         position: {
             left: 0,
@@ -46,13 +46,13 @@ export const buildComponents = [
         data: {
             name: 'image',
             content: 'Image',
-            jsx: function () {
-                return (
-                    <>
-                        <div>{this.content}</div>
-                    </>
-                );
-            },
+        },
+        jsx: function () {
+            return (
+                <>
+                    <div>{this.data.content}</div>
+                </>
+            );
         },
         position: {
             left: 0,

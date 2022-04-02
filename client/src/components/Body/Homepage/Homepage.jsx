@@ -17,10 +17,13 @@ export default function Homepage() {
         setModal(!modal);
     };
 
+    /**
+     * Given a display context, return a list of movable items
+     * @param displayContext - The context in which the item is being displayed.
+     * @returns The `parseDisplay` function returns an array of `MovableItem` components.
+     */
     const parseDisplay = (displayContext) => {
-        return Items.filter(
-            (item) => item.displayContext === displayContext
-        ).map((item) => (
+        return Items.filter((item) => item.displayContext === displayContext).map((item) => (
             <MovableItem
                 key={item.id}
                 data={item.data}
@@ -31,22 +34,25 @@ export default function Homepage() {
         ));
     };
 
+    /**
+     * This function renders the core component if the mode is core, otherwise it renders the edit
+     * component
+     * @param mode - The current mode of the application.
+     * @returns The renderModeDependant function is being called with the current mode.
+     */
     const renderModeDependant = (mode) => {
         switch (mode) {
             case MODES.CORE:
-                return (
-                    <Core
-                        parseDisplay={parseDisplay}
-                        Items={Items}
-                        setItems={setItems}
-                    />
-                );
+                return <Core parseDisplay={parseDisplay} Items={Items} setItems={setItems} />;
             case MODES.EDIT:
                 return (
                     <Edit
                         parseDisplay={parseDisplay}
+                        Items={Items}
+                        setItems={setItems}
                         modal={modal}
                         modalData={modalData}
+                        setModal={setModal}
                     />
                 );
             default:
