@@ -3,14 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { db, auth } from '../../../fire';
-import {
-    doc,
-    setDoc,
-    getDocs,
-    collection,
-    updateDoc,
-    arrayUnion,
-} from 'firebase/firestore';
+import { doc, setDoc, getDocs, collection, updateDoc, arrayUnion } from 'firebase/firestore';
 import '../../styling/css/NewItem.css';
 
 export default function NewItem({ url }) {

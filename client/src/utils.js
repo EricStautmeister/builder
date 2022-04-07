@@ -37,3 +37,20 @@ export function sleep(ms) {
 export function redirect(url) {
     window.location.href = url;
 }
+
+/**
+ * It creates a deep copy of the object.
+ * @param obj - The object to be copied.
+ */
+export function deepCopy(obj) {
+    JSON.parse(JSON.stringify(obj));
+}
+
+/* A generator function that flattens an array of arrays. */
+export function* flatIterator(itr) {
+    for (let item of itr) {
+        if (item[Symbol.iterator]) yield* flatIterator(item);
+        else yield item;
+    }
+}
+

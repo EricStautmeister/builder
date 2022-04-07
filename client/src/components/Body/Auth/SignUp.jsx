@@ -27,9 +27,15 @@ export default function SignUp(props) {
     };
 
     const setupUserDatabase = async (uid, type) => {
-        await setDoc(doc(db, uid, type), {
-            data: [],
-        });
+        if (type === 'Meta') {
+            await setDoc(doc(db, uid, type), {
+                websiteData: [],
+            });
+        } else {
+            await setDoc(doc(db, uid, type), {
+                data: [],
+            });
+        }
     };
 
     const handleSubmit = (e) => {
@@ -63,9 +69,9 @@ export default function SignUp(props) {
                 /**==================
                  *   DATABASE SETUP
                  * ================== */
-
                 setupUserDatabase(auth.currentUser.uid, 'Project');
                 setupUserDatabase(auth.currentUser.uid, 'Post');
+                setupUserDatabase(auth.currentUser.uid, 'Meta');
             })
             .then((data) => {
                 return navigate('/');
@@ -83,18 +89,13 @@ export default function SignUp(props) {
             <main>
                 <div id="Body">
                     <div id="Anchor">
-                        <form
-                            id="loginForm"
-                            className="form"
-                            onSubmit={handleSubmit}>
+                        <form id="loginForm" className="form" onSubmit={handleSubmit}>
                             <div className="input-wrapper">
                                 <input
                                     id="username"
                                     name="username"
                                     type="text"
-                                    onChange={({ target }) =>
-                                        setUsername(target.value)
-                                    }
+                                    onChange={({ target }) => setUsername(target.value)}
                                     placeholder="Username"
                                     required
                                 />
@@ -103,9 +104,7 @@ export default function SignUp(props) {
                                     id="email"
                                     name="first email"
                                     type="email"
-                                    onChange={({ target }) =>
-                                        setEmail(target.value)
-                                    }
+                                    onChange={({ target }) => setEmail(target.value)}
                                     placeholder="Email"
                                     required
                                 />
@@ -114,9 +113,7 @@ export default function SignUp(props) {
                                     id="email"
                                     name="confirm email"
                                     type="email"
-                                    onChange={({ target }) =>
-                                        setEmailChecker(target.value)
-                                    }
+                                    onChange={({ target }) => setEmailChecker(target.value)}
                                     placeholder="Email"
                                     autoComplete="off"
                                     required
@@ -127,9 +124,7 @@ export default function SignUp(props) {
                                     name="first password"
                                     className="input"
                                     type="password"
-                                    onChange={({ target }) =>
-                                        setPassword(target.value)
-                                    }
+                                    onChange={({ target }) => setPassword(target.value)}
                                     placeholder="Password"
                                     required
                                 />
@@ -139,9 +134,7 @@ export default function SignUp(props) {
                                     name="confirm password"
                                     className="input"
                                     type="password"
-                                    onChange={({ target }) =>
-                                        setPasswordChecker(target.value)
-                                    }
+                                    onChange={({ target }) => setPasswordChecker(target.value)}
                                     placeholder="Password"
                                     autoComplete="off"
                                     required
@@ -156,10 +149,7 @@ export default function SignUp(props) {
                                 </p>
                                 <br />
                                 <div className="button">
-                                    <button
-                                        type="submit"
-                                        className="btn"
-                                        form="loginForm">
+                                    <button type="submit" className="btn" form="loginForm">
                                         Sign Up
                                     </button>
                                 </div>

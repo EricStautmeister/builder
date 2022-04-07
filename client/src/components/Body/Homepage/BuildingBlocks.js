@@ -11,11 +11,21 @@ export const buildComponents = [
         },
         jsx: function (ref, style, onClick) {
             return this.displayContext === WINDOWS.MAINWINDOW ? (
-                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                <div
+                    id={this.data.name}
+                    ref={ref}
+                    className={this.className}
+                    style={style}
+                    onClick={onClick}>
                     <h1>{this.data.content}</h1>
                 </div>
             ) : (
-                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                <div
+                    id={this.data.name}
+                    ref={ref}
+                    className={this.className}
+                    style={style}
+                    onClick={onClick}>
                     {this.data.name}
                 </div>
             );
@@ -35,11 +45,21 @@ export const buildComponents = [
         },
         jsx: function (ref, style, onClick) {
             return this.displayContext === WINDOWS.MAINWINDOW ? (
-                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                <div
+                    id={this.data.name}
+                    ref={ref}
+                    className={this.className}
+                    style={style}
+                    onClick={onClick}>
                     <h3>{this.data.content}</h3>
                 </div>
             ) : (
-                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                <div
+                    id={this.data.name}
+                    ref={ref}
+                    className={this.className}
+                    style={style}
+                    onClick={onClick}>
                     {this.data.name}
                 </div>
             );
@@ -59,11 +79,21 @@ export const buildComponents = [
         },
         jsx: function (ref, style, onClick) {
             return this.displayContext === WINDOWS.MAINWINDOW ? (
-                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                <div
+                    id={this.data.name}
+                    ref={ref}
+                    className={this.className}
+                    style={style}
+                    onClick={onClick}>
                     <p>{this.data.content}</p>
                 </div>
             ) : (
-                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                <div
+                    id={this.data.name}
+                    ref={ref}
+                    className={this.className}
+                    style={style}
+                    onClick={onClick}>
                     {this.data.name}
                 </div>
             );
@@ -83,11 +113,21 @@ export const buildComponents = [
         },
         jsx: function (ref, style, onClick) {
             return this.displayContext === WINDOWS.MAINWINDOW ? (
-                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                <div
+                    id={this.data.name}
+                    ref={ref}
+                    className={this.className}
+                    style={style}
+                    onClick={onClick}>
                     <img src={this.data.content} alt="" />
                 </div>
             ) : (
-                <div ref={ref} className={this.className} style={style} onClick={onClick}>
+                <div
+                    id={this.data.name}
+                    ref={ref}
+                    className={this.className}
+                    style={style}
+                    onClick={onClick}>
                     {this.data.name}
                 </div>
             );

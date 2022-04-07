@@ -13,7 +13,7 @@ export default function Homepage() {
     const [mode, setMode] = useState(MODES.CORE);
     const [modal, setModal] = useState(false);
     const [modalData, setModalData] = useState();
-    
+
     /**
      * * If the display context is the main window and the mode is edit, then if the modal is false,
      * set the modal data to the data passed in. Then set the modal to true
@@ -76,7 +76,7 @@ export default function Homepage() {
             <main>
                 <div id="Body">
                     <div id="homepage-wrapper">
-                        <Toolbar mode={mode} setMode={setMode} />
+                        <Toolbar Items={Items} mode={mode} setMode={setMode} />
                         {renderModeDependant(mode)}
                     </div>
                 </div>
