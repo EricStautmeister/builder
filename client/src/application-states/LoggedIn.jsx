@@ -4,7 +4,6 @@ import {
     Blog,
     Dashboard,
     Integrations,
-    PostList,
     Preferences,
     Profile,
     Projects,
@@ -13,7 +12,7 @@ import {
     NewItem,
     Homepage,
     User,
-    ProjectList,
+    Listing,
 } from '../components/Body';
 
 function LoggedIn() {
@@ -22,15 +21,15 @@ function LoggedIn() {
             <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/homepage" element={<Homepage />} />
-                <Route path="/projects" element={<Projects mode="projects" />}>
-                    <Route path="" element={<ProjectList />} />
-                    <Route path="add" element={<NewItem url={'/uploadProject'} />} />
-                    <Route path=":id" element={<FullPage />} />
+                <Route path="/projects" element={<Projects />}>
+                    <Route path="" element={<Listing mode="projects" />} />
+                    <Route path="add" element={<NewItem url={'/uploadprojects'} />} />
+                    <Route path=":id" element={<FullPage mode="projects" />} />
                 </Route>
                 <Route path="/posts" element={<Blog />}>
-                    <Route path="" element={<PostList />} />
-                    <Route path="add" element={<NewItem url={'/uploadPost'} />} />
-                    <Route path=":id" element={<FullPage />} />
+                    <Route path="" element={<Listing mode="posts" />} />
+                    <Route path="add" element={<NewItem url={'/uploadposts'} />} />
+                    <Route path=":id" element={<FullPage mode="posts" />} />
                 </Route>
                 <Route path="/user/*" element={<User />} />
                 <Route path="/profile" element={<Profile />} />

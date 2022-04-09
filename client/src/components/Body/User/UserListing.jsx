@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card } from './Core';
 import { setPosts, setProjects } from '../../../actions';
-import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
+import { doc, setDoc, getDocs, collection, query, where } from 'firebase/firestore';
 import { auth, db } from '../../../fire';
 import { useSearchParams } from 'react-router-dom';
 
@@ -17,18 +17,16 @@ function UserListing({ mode }) {
     const dispatch = useDispatch();
 
     /**
-     * Check if the user has any subscriptions for the given context
-     * @param context - The context of the subscription. This is either `projects`, `posts`, or `blog`.
+     * If the subscription mode is defined and the length of the array is greater than 0, return true, otherwise
+     * return false.
      * @returns a boolean value.
      */
-    const checkSubscriptions = (context) => {
-        if (context === 'projects') {
-            return subscriptions.projects.length > 0;
+    const checkSubscriptions = () => {
+        if (subscriptions[mode] !== undefined) {
+            if (subscriptions[mode].length === 0) return false;
+            return true;
         }
-        if (context === 'posts' || 'blog') {
-            return subscriptions.posts.length > 0;
-        }
-        throw new Error('Store Context Error');
+        return false;
     };
 
     /**
@@ -37,19 +35,20 @@ function UserListing({ mode }) {
      * array of objects.
      */
     const getUserDataFromFirestore = async () => {
+        const cardQuery = query(collection(db, uid), where('card', '==', true));
         return new Promise((resolve, reject) => {
-            getDocs(collection(db, uid))
-                .then((snapshot) => {
-                    const subscriptionData = { Project: [], Post: [] };
-                    snapshot.forEach((doc) => {
+            getDocs(cardQuery)
+                .then((querySnapshot) => {
+                    const subscriptionData = { projects: [], posts: [] };
+                    querySnapshot.forEach((doc) => {
                         const data = doc.data().data;
-                        console.log(doc.id, data);
                         if (data.length) {
                             data.forEach((docdata) => {
                                 subscriptionData[doc.id].push(docdata);
                             });
                         }
                     });
+                    console.log(subscriptionData);
                     resolve(subscriptionData);
                 })
                 .catch((err) => {
@@ -63,19 +62,18 @@ function UserListing({ mode }) {
      */
     const updateSubscriptions = async () => {
         const subscriptionData = await getUserDataFromFirestore();
-        dispatch(setPosts({ posts: subscriptionData.Post }));
-        dispatch(setProjects({ projects: subscriptionData.Project }));
+        dispatch(setPosts({ posts: subscriptionData.posts }));
+        dispatch(setProjects({ projects: subscriptionData.projects }));
     };
 
     /**
-     * This function is called when the user clicks on the "Projects" or "Posts" tab. 
-     * 
+     * This function is called when the user clicks on the "Projects" or "Posts" tab.
+     *
      * It sets the currentlyOnDisplay variable to the appropriate array of data
      * @param context - The context of the subscription. This is either projects or posts.
      */
-    const processDataFromSubscriptions = (context) => {
-        if (context === 'projects') setCurrentlyOnDisplay(subscriptions.projects);
-        if (context === 'posts') setCurrentlyOnDisplay(subscriptions.posts);
+    const processDataFromSubscriptions = () => {
+        setCurrentlyOnDisplay(subscriptions[mode]);
     };
 
     /**
@@ -86,10 +84,10 @@ function UserListing({ mode }) {
     const handleDataProcessing = async () => {
         try {
             if (!mode || !uid) return;
-            if (!checkSubscriptions(mode)) {
+            if (!checkSubscriptions()) {
                 await updateSubscriptions();
             }
-            await processDataFromSubscriptions(mode);
+            await processDataFromSubscriptions();
         } catch (e) {
             throw new Error(`Data Fetching Error: ${e}`);
         }

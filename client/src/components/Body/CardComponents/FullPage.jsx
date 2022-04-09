@@ -1,47 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
-import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
+import { doc, setDoc, getDocs, collection, query, where } from 'firebase/firestore';
 import { setPosts, setProjects } from '../../../actions';
-import { db } from '../../../fire';
+import { db, auth } from '../../../fire';
 import { useSelector, useDispatch } from 'react-redux';
 
 import '../../styling/css/FullPage.css';
 
-export default function FullPage() {
+export default function FullPage({ mode }) {
     const dispatch = useDispatch();
     const [data, setData] = useState(null);
 
     const [searchParams, setSearchParams] = useSearchParams();
     const subscriptions = useSelector((state) => state.subscriptions);
 
-    const context = window.location.pathname.split('/')[2];
-    const uid = searchParams.get('uid') || '';
-    const id = window.location.pathname.split('/')[3];
+    const uid = searchParams.get('uid') || auth.currentUser.uid;
+    const id = searchParams.get('id') || '';
+    const modeFallback = mode ? mode : window.location.pathname.split('/')[2];
 
     const checkSubscriptions = () => {
-        if (context === 'projects') {
-            return subscriptions.projects.filter((card) => card.title === id).length > 0;
+        if (subscriptions[modeFallback] !== undefined) {
+            return subscriptions[modeFallback].filter((card) => card.title === id).length > 0;
         }
-        if (context === 'posts' || 'blog') {
-            return subscriptions.posts.filter((card) => card.title === id).length > 0;
-        }
-        throw new Error('Store Context Error');
+        return false;
     };
 
     const getUserDataFromFirestore = async () => {
+        const cardQuery = query(collection(db, uid), where('card', '==', true));
         return new Promise((resolve, reject) => {
-            getDocs(collection(db, uid))
-                .then((snapshot) => {
-                    const subscriptionData = { Project: [], Post: [] };
-                    snapshot.forEach((doc) => {
+            getDocs(cardQuery)
+                .then((querySnapshot) => {
+                    const subscriptionData = { projects: [], posts: [] };
+                    querySnapshot.forEach((doc) => {
                         const data = doc.data().data;
-                        console.log(doc.id, data);
                         if (data.length) {
                             data.forEach((docdata) => {
                                 subscriptionData[doc.id].push(docdata);
                             });
                         }
                     });
+                    console.log(subscriptionData);
                     resolve(subscriptionData);
                 })
                 .catch((err) => {
@@ -52,37 +50,34 @@ export default function FullPage() {
 
     const updateSubscriptions = async () => {
         const subscriptionData = await getUserDataFromFirestore();
-        console.log({ subscriptionData, subscriptions });
-        dispatch(setPosts({ posts: subscriptionData.Post }));
-        dispatch(setProjects({ projects: subscriptionData.Project }));
+        dispatch(setPosts({ posts: subscriptionData.posts }));
+        dispatch(setProjects({ projects: subscriptionData.projects }));
     };
 
-    const parseCard = (context) => {
-        if (context === 'projects') {
-            return subscriptions.projects.filter((card) => card.title === id);
-        }
-        if (context === 'posts' || 'blog') {
-            console.log(`filtering ${context} id:${id}`, subscriptions.posts);
-            return subscriptions.posts.filter((card) => card.title === id);
+    const parseCard = () => {
+        try {
+            const title = id.replace('%20', ' ');
+            return subscriptions[modeFallback].filter((card) => card.title === title);
+        } catch (err) {
+            console.log(err);
         }
     };
 
-    const processDataFromSubscriptions = (context) => {
-        const filtered = parseCard(context);
-        console.log(parseCard(context));
+    const processDataFromSubscriptions = () => {
+        const filtered = parseCard();
         const { title, content } = filtered[0];
         setData({ title, content });
-
+        if (data !== null) return;
         throw new Error('Store Context Error');
     };
 
     const handleDataProcessing = async () => {
         try {
-            if (!context || !id) return;
+            if (!modeFallback || !id) return;
             if (!checkSubscriptions()) {
                 await updateSubscriptions();
             }
-            await processDataFromSubscriptions(context);
+            await processDataFromSubscriptions();
         } catch (e) {
             throw new Error(`Data Fetching Error: ${e}`);
         }

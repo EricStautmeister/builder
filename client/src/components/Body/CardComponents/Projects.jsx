@@ -5,7 +5,7 @@ import '../../styling/css/Projects.css';
 import { Header } from '../../Header';
 import { Footer } from '../../Footer';
 
-export default function Projects({ CSRFToken }) {
+export default function Projects() {
     //TODO: Shard this file and combine with blog for a better object
     return (
         <>

@@ -1,39 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from './Card';
-import { setProjects } from '../../../actions';
-import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
-import { db, auth } from '../../../fire';
+import { setPosts, setProjects } from '../../../actions';
+import { doc, setDoc, getDocs, collection, query, where } from 'firebase/firestore';
+import { auth, db } from '../../../fire';
 
 import '../../styling/css/Projects.css';
 
-function ProjectList() {
-    let dispatch = useDispatch();
-
-    const projects = useSelector((state) => state.subscriptions.projects);
-    const [currentlyOnDisplay, setCurrentlyOnDisplay] = useState(null);
-
+function Listing({ mode }) {
+    const dispatch = useDispatch();
     const uid = auth.currentUser.uid;
 
+    const subscriptions = useSelector((state) => state.subscriptions);
+    const [currentlyOnDisplay, setCurrentlyOnDisplay] = useState(null);
+
     const checkSubscriptions = () => {
-        if (projects === undefined) return false;
-        return projects.length > 0;
+        if (subscriptions[mode] !== undefined) {
+            if (subscriptions[mode].length === 0) return false;
+            return true;
+        }
+        return false;
     };
 
     const getUserDataFromFirestore = async () => {
+        const cardQuery = query(collection(db, uid), where('card', '==', true));
         return new Promise((resolve, reject) => {
-            getDocs(collection(db, uid))
-                .then((snapshot) => {
-                    const subscriptionData = { Project: [], Post: [] };
-                    snapshot.forEach((doc) => {
+            getDocs(cardQuery)
+                .then((querySnapshot) => {
+                    const subscriptionData = { projects: [], posts: [] };
+                    querySnapshot.forEach((doc) => {
                         const data = doc.data().data;
-                        console.log(doc.id, data);
                         if (data.length) {
                             data.forEach((docdata) => {
                                 subscriptionData[doc.id].push(docdata);
                             });
                         }
                     });
+                    console.log(subscriptionData);
                     resolve(subscriptionData);
                 })
                 .catch((err) => {
@@ -44,15 +47,17 @@ function ProjectList() {
 
     const updateSubscriptions = async () => {
         const subscriptionData = await getUserDataFromFirestore();
-        dispatch(setProjects({ projects: subscriptionData.Project }));
+        dispatch(setPosts({ posts: subscriptionData.posts }));
+        dispatch(setProjects({ projects: subscriptionData.projects }));
     };
 
     const processDataFromSubscriptions = () => {
-        setCurrentlyOnDisplay(projects);
+        setCurrentlyOnDisplay(subscriptions[mode]);
     };
 
     const handleDataProcessing = async () => {
         try {
+            if (!mode || !uid) return;
             if (!checkSubscriptions()) {
                 await updateSubscriptions();
             }
@@ -64,16 +69,16 @@ function ProjectList() {
 
     useEffect(() => {
         handleDataProcessing();
-    }, []);
+    }, [currentlyOnDisplay, mode, uid]);
 
     return (
         <div className="container">
             {currentlyOnDisplay !== null && currentlyOnDisplay.length ? (
-                <div className="blogCards">
+                <div className="contentWrapper no-deco">
                     {currentlyOnDisplay.map((item, index) => (
                         <Card
                             key={index}
-                            anchor={'projects'}
+                            anchor={mode}
                             to={index}
                             id={item.title}
                             title={item.title}
@@ -83,11 +88,7 @@ function ProjectList() {
                     ))}
                 </div>
             ) : (
-                <div className="blogCards">
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                <div className="contentWrapper no-deco">
                     <Card />
                     <Card />
                     <Card />
@@ -98,4 +99,4 @@ function ProjectList() {
     );
 }
 
-export default React.memo(ProjectList);
+export default React.memo(Listing);

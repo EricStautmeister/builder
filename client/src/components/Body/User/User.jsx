@@ -15,11 +15,11 @@ export default function User() {
                 <Route path="/" element={<UserLanding />} />
                 <Route path="projects" element={<UserProjects />}>
                     <Route path="" element={<UserListing mode="projects" />} />
-                    <Route path=":id" element={<FullPage />} />
+                    <Route path=":id" element={<FullPage mode="projects" />} />
                 </Route>
                 <Route path="posts" element={<UserBlog />}>
                     <Route path="" element={<UserListing mode="posts" />} />
-                    <Route path=":id" element={<FullPage />} />
+                    <Route path=":id" element={<FullPage mode="posts" />} />
                 </Route>
                 <Route path="*" element={<UserLanding />} />
             </Routes>

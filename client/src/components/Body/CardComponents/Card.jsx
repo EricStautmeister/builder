@@ -5,9 +5,7 @@ import '../../styling/css/Card.css';
 
 function Card(props) {
     return (
-        <NavLink
-            className="no-deco"
-            to={`/${props.anchor}/i?id=${props.id}&context=${props.anchor}`}>
+        <NavLink className="no-deco" to={`/${props.anchor}/i?id=${props.id}`}>
             <div id="cardAnchor">
                 <h1>{props.title}</h1>
                 <p>{props.content}</p>

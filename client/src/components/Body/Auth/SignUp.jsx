@@ -29,10 +29,12 @@ export default function SignUp(props) {
     const setupUserDatabase = async (uid, type) => {
         if (type === 'Meta') {
             await setDoc(doc(db, uid, type), {
+                card: false,
                 websiteData: [],
             });
         } else {
             await setDoc(doc(db, uid, type), {
+                card: true,
                 data: [],
             });
         }
@@ -69,8 +71,8 @@ export default function SignUp(props) {
                 /**==================
                  *   DATABASE SETUP
                  * ================== */
-                setupUserDatabase(auth.currentUser.uid, 'Project');
-                setupUserDatabase(auth.currentUser.uid, 'Post');
+                setupUserDatabase(auth.currentUser.uid, 'projects');
+                setupUserDatabase(auth.currentUser.uid, 'posts');
                 setupUserDatabase(auth.currentUser.uid, 'Meta');
             })
             .then((data) => {

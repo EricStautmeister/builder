@@ -13,7 +13,7 @@ export function Card(props) {
     return (
         <NavLink
             className="no-deco"
-            to={`/user/${props.anchor}/${props.title}?uid=${props.uid}`}>
+            to={`/user/${props.anchor}/i?id=${props.title}&uid=${props.uid}`}>
             <div id="cardAnchor">
                 <h1>{props.title}</h1>
                 <p>{props.content}</p>
@@ -29,9 +29,7 @@ export function Navigation({ uid }) {
                 <nav id="navBar">
                     <Button data="Home" to={`/user/?uid=${uid}`}></Button>
                     <Button data="Blog" to={`/user/posts/?uid=${uid}`}></Button>
-                    <Button
-                        data="Projects"
-                        to={`/user/projects/?uid=${uid}`}></Button>
+                    <Button data="Projects" to={`/user/projects/?uid=${uid}`}></Button>
                 </nav>
             </div>
         </header>
@@ -41,4 +39,3 @@ export function Navigation({ uid }) {
 export function Footer() {
     return <></>;
 }
-
