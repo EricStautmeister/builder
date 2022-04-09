@@ -12,42 +12,36 @@ import './components/styling/css/index.css';
 function App() {
     //TODO: Implement Subdomain dependant routing
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
-    const CSRFToken = useSelector((state) => state.CSRFToken);
+    // const CSRFToken = useSelector((state) => state.CSRFToken);
     const dispatch = useDispatch();
-
-    /**
-     * It gets the CSRF token from the server.
-     * @param httpAnchor - The anchor to the HTTP request.
-     * @returns The CSRF token.
-     */
-    const getCSRFToken = async (httpAnchor) => {
-        const serverUrl = 'http://localhost:5000';
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                mode: 'cors',
-            },
-            mode: 'cors',
-            credentials: 'include',
-        };
-        return new Promise((resolve, reject) => {
-            fetch(`${serverUrl}${httpAnchor}`, requestOptions)
-                .then((response) => {
-                    resolve(response.json());
-                })
-                .catch((err) => {
-                    reject(err);
-                });
-        });
-    };
-
-    useEffect(() => {
-        getCSRFToken('/process').then((token) => {
-            dispatch(setCSRFToken(token.csrfToken));
-        });
-    }, []);
+    // const getCSRFToken = async (httpAnchor) => {
+    // const serverUrl = 'http://localhost:5000';
+    // const requestOptions = {
+    //     method: 'GET',
+    //     headers: {
+    //         Accept: 'application/json',
+    //         'Content-Type': 'application/json',
+    //         mode: 'cors',
+    //     },
+    //     mode: 'cors',
+    //     credentials: 'include',
+    // };
+    // return new Promise((resolve, reject) => {
+    //     fetch(`${serverUrl}${httpAnchor}`, requestOptions)
+    //         .then((response) => {
+    //             resolve(response.json());
+    //         })
+    //         .catch((err) => {
+    //             reject(err);
+    //         });
+    // });
+    // };
+    //
+    // useEffect(() => {
+    // getCSRFToken('/process').then((token) => {
+    // dispatch(setCSRFToken(token.csrfToken));
+    // });
+    // }, []);
 
     onAuthStateChanged(auth, (user) => {
         return user ? dispatch(setLoggedIn()) : dispatch(setLoggedOut());
