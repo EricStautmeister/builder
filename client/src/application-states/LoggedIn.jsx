@@ -1,19 +1,21 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import {
-    Blog,
-    Dashboard,
-    Integrations,
-    Preferences,
-    Profile,
-    Projects,
-    Settings,
-    FullPage,
-    NewItem,
-    Homepage,
-    User,
-    Listing,
-} from '../components/Body';
+import { Dashboard, Blog, Projects } from '../components/Body';
+
+/* Heavy Items */
+const Homepage = React.lazy(() => import('../components/Body/Homepage/Homepage'));
+const User = React.lazy(() => import('../components/Body/User/User'));
+const Listing = React.lazy(() => import('../components/Body/CardComponents/Listing'));
+
+/* Far away from loading */
+const FullPage = React.lazy(() => import('../components/Body/CardComponents/FullPage'));
+const NewItem = React.lazy(() => import('../components/Body/CardComponents/NewItem'));
+
+/* Menu Items */
+const Profile = React.lazy(() => import('../components/Body/MenuComponents/Profile'));
+const Settings = React.lazy(() => import('../components/Body/MenuComponents/Settings'));
+const Preferences = React.lazy(() => import('../components/Body/MenuComponents/Preferences'));
+const Integrations = React.lazy(() => import('../components/Body/MenuComponents/Integrations'));
 
 function LoggedIn() {
     return (

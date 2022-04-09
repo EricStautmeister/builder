@@ -8,7 +8,7 @@ import { Header } from '../../Header';
 import { Footer } from '../../Footer';
 import { WINDOWS } from './constants';
 
-export default function Homepage() {
+function Homepage() {
     const [Items, setItems] = useState(buildComponents);
     const [mode, setMode] = useState(MODES.CORE);
     const [modal, setModal] = useState(false);
@@ -85,3 +85,5 @@ export default function Homepage() {
         </>
     );
 }
+
+export default React.memo(Homepage);

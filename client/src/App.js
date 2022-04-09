@@ -3,51 +3,28 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './fire';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLoggedIn, setLoggedOut, setCSRFToken } from './actions';
-import { LoggedIn, NotLoggedIn } from './application-states';
-// import SubdomainHandler from './SubdomainHandler';
+import { setLoggedIn, setLoggedOut } from './actions';
+
 import './components/styling/css/normalise.css';
 import './components/styling/css/index.css';
+
+const LoggedIn = React.lazy(() => import('./application-states/LoggedIn'));
+const NotLoggedIn = React.lazy(() => import('./application-states/NotLoggedIn'));
 
 function App() {
     //TODO: Implement Subdomain dependant routing
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
-    // const CSRFToken = useSelector((state) => state.CSRFToken);
     const dispatch = useDispatch();
-    // const getCSRFToken = async (httpAnchor) => {
-    // const serverUrl = 'http://localhost:5000';
-    // const requestOptions = {
-    //     method: 'GET',
-    //     headers: {
-    //         Accept: 'application/json',
-    //         'Content-Type': 'application/json',
-    //         mode: 'cors',
-    //     },
-    //     mode: 'cors',
-    //     credentials: 'include',
-    // };
-    // return new Promise((resolve, reject) => {
-    //     fetch(`${serverUrl}${httpAnchor}`, requestOptions)
-    //         .then((response) => {
-    //             resolve(response.json());
-    //         })
-    //         .catch((err) => {
-    //             reject(err);
-    //         });
-    // });
-    // };
-    //
-    // useEffect(() => {
-    // getCSRFToken('/process').then((token) => {
-    // dispatch(setCSRFToken(token.csrfToken));
-    // });
-    // }, []);
 
     onAuthStateChanged(auth, (user) => {
         return user ? dispatch(setLoggedIn()) : dispatch(setLoggedOut());
     });
 
-    return <Router>{isLoggedIn ? <LoggedIn /> : <NotLoggedIn />}</Router>;
+    return (
+        <React.Suspense fallback={<div>Loading...</div>}>
+            <Router>{isLoggedIn ? <LoggedIn /> : <NotLoggedIn />}</Router>
+        </React.Suspense>
+    );
 }
 
 export default React.memo(App);
