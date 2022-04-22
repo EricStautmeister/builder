@@ -20,13 +20,14 @@
     },
     "scripts": {
         "start": "react-scripts start",
+        "start:sass": "cd ./src/components/styling/ && sass -w sass:css",
+        "start:all": "concurrently -n 'CLIENT,SASS' -c 'blue,green' \"npm run start \" \"npm run start:sass\"",
         "build": "react-scripts build",
         "host": "firebase deploy --only hosting",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "flow": "flow"
     },
-    "proxy": "http://localhost:5000",
     "eslintConfig": {
         "extends": [
             "react-app",

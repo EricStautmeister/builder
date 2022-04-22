@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon, Image } from '../GLOBAL/Images';
 
 import '../styling/css/Footer.css';
 import facebookIcon from '../styling/media/facebook.png';
@@ -16,39 +17,43 @@ function Footer() {
             <div className="socials">
                 <h3>Socials</h3>
                 <div className="iconWrapper">
-                    <a className="icon facebook" href="http://facebook.com">
-                        <span>
-                            <img src={facebookIcon} alt="" className="icon" />
-                        </span>
-                    </a>
-                    <a className="icon twitter" href="http://twitter.com">
-                        <span>
-                            <img src={twitterIcon} alt="" className="icon" />
-                        </span>
-                    </a>
-                    <a className="icon instagram" href="http://instagram.com">
-                        <span>
-                            <img src={instagramIcon} alt="" className="icon" />
-                        </span>
-                    </a>
-                    <a
-                        className="icon github"
-                        href="http://github.com/EricStautmeister">
-                        <span>
-                            <img src={githubIcon} alt="" className="icon" />
-                        </span>
-                    </a>
-                    <a className="icon youtube" href="http://youtube.com">
-                        <span>
-                            <img src={youtubeIcon} alt="" className="icon" />
-                        </span>
-                    </a>
+                    <Icon
+                        src={facebookIcon}
+                        width={'50px'}
+                        height={'50px'}
+                        href="http://facebook.com"
+                    />
+                    <Icon
+                        src={twitterIcon}
+                        width={'50px'}
+                        height={'50px'}
+                        href="http://twitter.com"
+                    />
+                    <Icon
+                        src={instagramIcon}
+                        width={'50px'}
+                        height={'50px'}
+                        href="http://instagram.com"
+                    />
+                    <Icon
+                        src={githubIcon}
+                        width={'50px'}
+                        height={'50px'}
+                        href="http://github.com/EricStautmeister"
+                    />
+                    <Icon
+                        src={youtubeIcon}
+                        width={'50px'}
+                        height={'50px'}
+                        href="http://youtube.com"
+                    />
                 </div>
             </div>
             <div className="refrences">
+                <Image src={firebaseLight} href="https://firebase.google.com/" />
                 <a className="firebase" href="https://firebase.google.com/">
                     <span>
-                        <img src={firebaseLight} alt="" className="firebase" />
+                        <img src={firebaseLight} alt="" className="" />
                     </span>
                 </a>
             </div>
