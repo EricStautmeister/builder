@@ -10,7 +10,6 @@ import { Footer } from '../../Footer';
 import '../../styling/css/SignUp.css';
 
 export default function SignUp(props) {
-    //TODO: Email Verification
     const [username, setUsername] = useState();
     const [email, setEmail] = useState();
     const [emailChecker, setEmailChecker] = useState();
