@@ -1,4 +1,3 @@
-//TODO: Implement a CSRFToken reducer
 const ACTIONS = {
     SET_TOKEN: 'SET_TOKEN',
 };
