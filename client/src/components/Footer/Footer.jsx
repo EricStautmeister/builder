@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Image } from '../GLOBAL/Images';
+import { Icon, Image } from '../GLOBAL';
 
 import '../styling/css/Footer.css';
 import facebookIcon from '../styling/media/facebook.png';
