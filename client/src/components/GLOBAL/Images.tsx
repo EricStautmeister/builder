@@ -1,6 +1,15 @@
 import React from 'react';
 
-export function Icon({ src, height, width, classname, href, altText }) {
+type Props = {
+    src: string;
+    altText: string;
+    classname?: string;
+    height?: string;
+    width?: string;
+    href?: string;
+};
+
+export function Icon({ src, height, width, classname, href, altText }: Props) {
     const link = href ? href : '';
     const alt = altText ? altText : '';
     const classes = classname ? classname : '';
@@ -25,7 +34,7 @@ export function Icon({ src, height, width, classname, href, altText }) {
     );
 }
 
-export function Image({ src, height, width, classname, href, altText }) {
+export function Image({ src, height, width, classname, href, altText }: Props) {
     const link = href ? href : '';
     const alt = altText ? altText : '';
     const classes = classname ? classname : '';

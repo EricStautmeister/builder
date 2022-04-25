@@ -1,7 +1,6 @@
 import React, { useState } from 'react'; //useEffect, useState
 import { useDrag, useDrop } from 'react-dnd';
 import { ItemTypes } from './constants';
-import update from 'immutability-helper';
 
 export default function MainWindow({
     children,
