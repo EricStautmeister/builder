@@ -1,16 +1,31 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Modal({ className, data, modal, setModal, Items, setItems }) {
-    const [itemContent, setContent] = useState();
+type Props = {
+    className: string;
+    data: any;
+    modal: boolean;
+    setModal: any;
+    Items?: any;
+    setItems?: any;
+};
+export default function Modal({
+    className,
+    data,
+    modal,
+    setModal,
+    Items,
+    setItems,
+}: Props): JSX.Element {
+    const [itemContent, setContent] = useState<any | null>();
     /**
      * It sets the value of the itemContent variable to the value of the input field and then updates
      * the items array with the new value.
      * @param e - The event object.
      */
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault();
         setItems(
-            Items.map((Item) => {
+            Items.map((Item: any) => {
                 if (Item.data.name === data.name) {
                     return {
                         ...Item,

@@ -7,20 +7,20 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import '../../styling/css/FullPage.css';
 
-export default function FullPage({ mode }) {
+export default function FullPage({ mode }: { mode: string }) {
     const dispatch = useDispatch();
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<any | null>(null);
 
     const [searchParams, setSearchParams] = useSearchParams();
-    const subscriptions = useSelector((state) => state.subscriptions);
+    const subscriptions = useSelector((state: any) => state.subscriptions);
 
-    const uid = searchParams.get('uid') || auth.currentUser.uid;
+    const uid = searchParams.get('uid') || auth.currentUser!.uid;
     const id = searchParams.get('id') || '';
     const modeFallback = mode ? mode : window.location.pathname.split('/')[2];
 
     const checkSubscriptions = () => {
         if (subscriptions[modeFallback] !== undefined) {
-            return subscriptions[modeFallback].filter((card) => card.title === id).length > 0;
+            return subscriptions[modeFallback].filter((card: any) => card.title === id).length > 0;
         }
         return false;
     };
@@ -30,11 +30,11 @@ export default function FullPage({ mode }) {
         return new Promise((resolve, reject) => {
             getDocs(cardQuery)
                 .then((querySnapshot) => {
-                    const subscriptionData = { projects: [], posts: [] };
+                    const subscriptionData: any = { projects: [], posts: [] };
                     querySnapshot.forEach((doc) => {
                         const data = doc.data().data;
                         if (data.length) {
-                            data.forEach((docdata) => {
+                            data.forEach((docdata: any) => {
                                 subscriptionData[doc.id].push(docdata);
                             });
                         }
@@ -49,7 +49,7 @@ export default function FullPage({ mode }) {
     };
 
     const updateSubscriptions = async () => {
-        const subscriptionData = await getUserDataFromFirestore();
+        const subscriptionData: any = await getUserDataFromFirestore();
         dispatch(setPosts({ posts: subscriptionData.posts }));
         dispatch(setProjects({ projects: subscriptionData.projects }));
     };
@@ -57,7 +57,7 @@ export default function FullPage({ mode }) {
     const parseCard = () => {
         try {
             const title = id.replace('%20', ' ');
-            return subscriptions[modeFallback].filter((card) => card.title === title);
+            return subscriptions[modeFallback].filter((card: any) => card.title === title);
         } catch (err) {
             console.log(err);
         }

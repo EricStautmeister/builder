@@ -5,7 +5,22 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { MainWindow } from '../index';
 import Modal from './Modal';
 
-export default function Edit({ parseDisplay, modal, setModal, modalData, Items, setItems }) {
+type Props = {
+    parseDisplay: (window: string) => JSX.Element;
+    Items: any;
+    setItems: any;
+    modal: any;
+    setModal: any;
+    modalData: any;
+};
+export default function Edit({
+    parseDisplay,
+    modal,
+    setModal,
+    modalData,
+    Items,
+    setItems,
+}: Props): JSX.Element {
     return (
         <>
             <div id="homepage-edit">

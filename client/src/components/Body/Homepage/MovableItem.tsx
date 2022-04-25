@@ -3,7 +3,12 @@ import { useDrag, useDrop } from 'react-dnd';
 import { ItemTypes, WINDOWS } from './constants';
 import '../../styling/css/MovableComponent.css';
 
-export default function MovableItem({ Item, setItems, onClick }) {
+type Props = {
+    Item: any;
+    setItems: any;
+    onClick: any;
+};
+export default function MovableItem({ Item, setItems, onClick }: Props): JSX.Element {
     const data = Item.data;
     const position = Item.position;
 
@@ -13,9 +18,9 @@ export default function MovableItem({ Item, setItems, onClick }) {
      * @param currentItem - The item that is currently being dragged.
      * @param displayContext - The display context of the item.
      */
-    const changePosition = (currentItem, displayContext) => {
-        setItems((previousState) => {
-            return previousState.map((previousItem) => {
+    const changePosition = (currentItem: any, displayContext: string) => {
+        setItems((previousState: any) => {
+            return previousState.map((previousItem: any) => {
                 return {
                     ...previousItem,
                     displayContext:
@@ -36,7 +41,7 @@ export default function MovableItem({ Item, setItems, onClick }) {
         item: { name: data.name, left: position.left, top: position.top },
         type: ItemTypes.CORE,
         end: (item, monitor) => {
-            const dropResult = monitor.getDropResult();
+            const dropResult: any = monitor.getDropResult();
             console.log();
             if (dropResult && dropResult.name === WINDOWS.MAINWINDOW) {
                 changePosition(item, WINDOWS.MAINWINDOW);
@@ -51,7 +56,6 @@ export default function MovableItem({ Item, setItems, onClick }) {
 
     const opacity = isDragging ? 0.6 : 1;
 
-    
     const options = {
         ref: drag,
         style: { opacity },

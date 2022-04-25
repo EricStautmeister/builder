@@ -7,12 +7,12 @@ import { auth, db } from '../../../fire';
 
 import '../../styling/css/Projects.css';
 
-function Listing({ mode }) {
-    const dispatch = useDispatch();
-    const uid = auth.currentUser.uid;
+function Listing({ mode }: { mode: string }) {
+    const subscriptions = useSelector((state: any) => state.subscriptions);
+    const [currentlyOnDisplay, setCurrentlyOnDisplay] = useState<any | null>(null);
 
-    const subscriptions = useSelector((state) => state.subscriptions);
-    const [currentlyOnDisplay, setCurrentlyOnDisplay] = useState(null);
+    const dispatch = useDispatch();
+    const uid = auth.currentUser!.uid;
 
     const checkSubscriptions = () => {
         if (subscriptions[mode] !== undefined) {
@@ -27,11 +27,11 @@ function Listing({ mode }) {
         return new Promise((resolve, reject) => {
             getDocs(cardQuery)
                 .then((querySnapshot) => {
-                    const subscriptionData = { projects: [], posts: [] };
+                    const subscriptionData: any = { projects: [], posts: [] };
                     querySnapshot.forEach((doc) => {
                         const data = doc.data().data;
                         if (data.length) {
-                            data.forEach((docdata) => {
+                            data.forEach((docdata: any) => {
                                 subscriptionData[doc.id].push(docdata);
                             });
                         }
@@ -46,7 +46,7 @@ function Listing({ mode }) {
     };
 
     const updateSubscriptions = async () => {
-        const subscriptionData = await getUserDataFromFirestore();
+        const subscriptionData: any = await getUserDataFromFirestore();
         dispatch(setPosts({ posts: subscriptionData.posts }));
         dispatch(setProjects({ projects: subscriptionData.projects }));
     };
@@ -75,7 +75,7 @@ function Listing({ mode }) {
         <div className="container">
             {currentlyOnDisplay !== null && currentlyOnDisplay.length ? (
                 <div className="contentWrapper no-deco">
-                    {currentlyOnDisplay.map((item, index) => (
+                    {currentlyOnDisplay.map((item: any, index: Number) => (
                         <Card
                             key={index}
                             anchor={mode}

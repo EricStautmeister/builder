@@ -9,10 +9,10 @@ import { Footer } from '../../Footer';
 import { WINDOWS } from './constants';
 
 function Homepage() {
-    const [Items, setItems] = useState(buildComponents);
-    const [mode, setMode] = useState(MODES.CORE);
-    const [modal, setModal] = useState(false);
-    const [modalData, setModalData] = useState();
+    const [Items, setItems] = useState<any | null>(buildComponents);
+    const [mode, setMode] = useState<any | null>(MODES.CORE);
+    const [modal, setModal] = useState<any | null>(false);
+    const [modalData, setModalData] = useState<any | null>();
 
     /**
      * * If the display context is the main window and the mode is edit, then if the modal is false,
@@ -21,7 +21,7 @@ function Homepage() {
      * @returns The `toggle` function returns a `boolean` value. This is used to determine whether or
      * not the modal should be displayed.
      */
-    const toggle = (toggleData) => {
+    const toggle = (toggleData: any) => {
         if (toggleData.displayContext === WINDOWS.MAINWINDOW && mode === MODES.EDIT) {
             if (modal === false) setModalData(toggleData.data);
             setModal(!modal);
@@ -34,14 +34,16 @@ function Homepage() {
      * @param displayContext - The context in which the item is being displayed.
      * @returns The `parseDisplay` function returns an array of `MovableItem` components.
      */
-    const parseDisplay = (displayContext) => {
-        return Items.filter((item) => item.displayContext === displayContext).map((item) => (
-            <MovableItem
-                key={item.id}
-                Item={item}
-                setItems={setItems}
-                onClick={toggle}></MovableItem>
-        ));
+    const parseDisplay = (displayContext: string) => {
+        return Items.filter((item: any) => item.displayContext === displayContext).map(
+            (item: any) => (
+                <MovableItem
+                    key={item.id}
+                    Item={item}
+                    setItems={setItems}
+                    onClick={toggle}></MovableItem>
+            )
+        );
     };
 
     /**
@@ -50,7 +52,7 @@ function Homepage() {
      * @param mode - The current mode of the application.
      * @returns The renderModeDependant function is being called with the current mode.
      */
-    const renderModeDependant = (mode) => {
+    const renderModeDependant = (mode: string) => {
         switch (mode) {
             case MODES.CORE:
                 return <Core parseDisplay={parseDisplay} Items={Items} setItems={setItems} />;

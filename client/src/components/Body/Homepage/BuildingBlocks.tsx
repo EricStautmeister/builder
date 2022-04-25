@@ -1,3 +1,4 @@
+import React from 'react';
 import { WINDOWS } from './constants';
 import LogoIcon from '../../styling/media/logo.png';
 
@@ -9,7 +10,7 @@ export const buildComponents = [
             name: 'Title',
             content: 'Title',
         },
-        jsx: function (ref, style, onClick) {
+        jsx: function (ref: any, style: any, onClick: any): JSX.Element {
             return this.displayContext === WINDOWS.MAINWINDOW ? (
                 <div
                     id={this.data.name}
@@ -43,7 +44,7 @@ export const buildComponents = [
             name: 'Subtitle',
             content: 'Subtitle',
         },
-        jsx: function (ref, style, onClick) {
+        jsx: function (ref: any, style: any, onClick: any): JSX.Element {
             return this.displayContext === WINDOWS.MAINWINDOW ? (
                 <div
                     id={this.data.name}
@@ -77,7 +78,7 @@ export const buildComponents = [
             name: 'Text',
             content: 'Text',
         },
-        jsx: function (ref, style, onClick) {
+        jsx: function (ref: any, style: any, onClick: any): JSX.Element {
             return this.displayContext === WINDOWS.MAINWINDOW ? (
                 <div
                     id={this.data.name}
@@ -111,7 +112,7 @@ export const buildComponents = [
             name: 'Image',
             content: LogoIcon,
         },
-        jsx: function (ref, style, onClick) {
+        jsx: function (ref: any, style: any, onClick: any): JSX.Element {
             return this.displayContext === WINDOWS.MAINWINDOW ? (
                 <div
                     id={this.data.name}

@@ -6,7 +6,13 @@ import { Sidebar, MainWindow } from '../index';
 import { ItemTypes } from '../constants';
 import { useDrag, useDrop } from 'react-dnd';
 
-export default function Core({ parseDisplay, Items, setItems }) {
+type Props = {
+    parseDisplay: (window: string) => JSX.Element,
+    Items: any,
+    setItems: any,
+}
+
+export default function Core({ parseDisplay, Items, setItems }: Props): JSX.Element {
     return (
         <>
             <div id="homepage-setup">

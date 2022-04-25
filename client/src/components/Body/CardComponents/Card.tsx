@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import '../../styling/css/Card.css';
 
-function Card(props) {
+function Card(props: any) {
     return (
         <NavLink className="no-deco" to={`/${props.anchor}/i?id=${props.id}`}>
             <div id="cardAnchor">

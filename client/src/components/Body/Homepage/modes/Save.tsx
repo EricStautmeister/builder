@@ -5,25 +5,28 @@ import { WINDOWS } from '../constants';
 import { db, auth } from '../../../../fire';
 import { doc, setDoc, getDocs, collection, updateDoc, arrayUnion } from 'firebase/firestore';
 
-export default function Save({ Items }) {
-    const uid = auth.currentUser.uid;
+type Props = {
+    Items: any;
+};
+export default function Save({ Items }: Props): JSX.Element {
+    const uid = auth.currentUser!.uid;
     let navigate = useNavigate();
 
-    const filterForUsedItems = (items) => {
-        return items.filter((item) => item.displayContext === WINDOWS.MAINWINDOW);
+    const filterForUsedItems = (items: any) => {
+        return items.filter((item: any) => item.displayContext === WINDOWS.MAINWINDOW);
     };
 
-    const compileData = (items) => {
+    const compileData = (items: any) => {
         if (!items) return false;
         if (items.length === 0) return false;
-        const allJsx = items.map((item) => {
+        const allJsx = items.map((item: any) => {
             return item.jsx();
         });
 
         return {
             compiledHomepage: (
                 <React.Fragment>
-                    {allJsx.map((jsxElement) => (
+                    {allJsx.map((jsxElement: JSX.Element) => (
                         <>{jsxElement}</>
                     ))}
                 </React.Fragment>
@@ -31,10 +34,11 @@ export default function Save({ Items }) {
         };
     };
 
-    const upload = async (uid, collection, data) => {
+    const upload = async (uid: string, collection: any, data: any) => {
         try {
             //TODO: First Add some Verification/Buffer for less saves
             const uploadData = data
+            // @ts-ignore
                 ? compileData(filterForUsedItems(data)).compiledHomepage
                 : false;
             const stringifiedData = JSON.stringify(uploadData);
@@ -52,7 +56,7 @@ export default function Save({ Items }) {
             console.error('Error adding document: ', e);
         }
     };
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         try {
             event.preventDefault();
             upload(uid, 'Meta', Items);

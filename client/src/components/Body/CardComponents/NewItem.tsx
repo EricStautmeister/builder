@@ -6,15 +6,20 @@ import { db, auth } from '../../../fire';
 import { doc, setDoc, getDocs, collection, updateDoc, arrayUnion } from 'firebase/firestore';
 import '../../styling/css/NewItem.css';
 
-export default function NewItem({ url }) {
-    const [formTitle, setFormTitle] = useState('');
-    const [formContent, setFormContent] = useState('');
+export default function NewItem({ url }: { url: string }): JSX.Element {
+    const [formTitle, setFormTitle] = useState<any | null>('');
+    const [formContent, setFormContent] = useState<any | null>('');
 
-    const user = useSelector((state) => state.user.user);
+    const user = useSelector((state: any) => state.user.user);
 
     let navigate = useNavigate();
 
-    const upload = async (uid, type, title, content) => {
+    const upload = async (
+        uid: string,
+        type: string,
+        title: string,
+        content: string
+    ): Promise<void> => {
         try {
             await updateDoc(doc(db, uid, type), {
                 data: arrayUnion({ title, content }),
@@ -24,11 +29,11 @@ export default function NewItem({ url }) {
         }
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         try {
             event.preventDefault();
             const type = url.replace('/upload', '');
-            upload(auth.currentUser.uid, type, formTitle, formContent);
+            upload(auth.currentUser!.uid, type, formTitle, formContent);
         } catch (e) {
             console.error('Error submitting: ', e);
         } finally {
@@ -51,7 +56,6 @@ export default function NewItem({ url }) {
                     <textarea
                         id="itemContent"
                         className="textArea"
-                        type="text"
                         value={formContent}
                         onChange={({ target }) => setFormContent(target.value)}
                         placeholder="Type Entry Here"

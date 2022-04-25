@@ -3,8 +3,14 @@ import { NavLink } from 'react-router-dom';
 import { MODES } from './constants';
 import { Save } from './modes';
 
-export default function Toolbar({ Items, mode, setMode }) {
-    const parseMode = (option) => {
+type Props = {
+    Items: any;
+    mode: string;
+    setMode: any;
+};
+
+export default function Toolbar({ Items, mode, setMode }: Props): JSX.Element {
+    const parseMode = (option: string) => {
         if (option === mode) return;
         setMode(option);
     };

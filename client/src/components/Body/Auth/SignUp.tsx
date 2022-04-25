@@ -60,15 +60,10 @@ export default function SignUp() {
                     });
                 dispatch(
                     setUser({
-                        //FIXME: find better solution than ignoring
-                        // @ts-ignore: Object is possibly 'null'.
-                        email: auth.currentUser.email,
-                        // @ts-ignore: Object is possibly 'null'.
-                        phoneNumber: auth.currentUser.phoneNumber,
-                        // @ts-ignore: Object is possibly 'null'.
-                        displayName: auth.currentUser.displayName,
-                        // @ts-ignore: Object is possibly 'null'.
-                        uid: auth.currentUser.uid,
+                        email: auth.currentUser!.email,
+                        phoneNumber: auth.currentUser!.phoneNumber,
+                        displayName: auth.currentUser!.displayName,
+                        uid: auth.currentUser!.uid,
                     })
                 );
                 const user = userCredential.user;
@@ -77,12 +72,9 @@ export default function SignUp() {
                 /**==================
                  *   DATABASE SETUP
                  * ================== */
-                // @ts-ignore: Object is possibly 'null'.
-                setupUserDatabase(auth.currentUser.uid, 'projects');
-                // @ts-ignore: Object is possibly 'null'.
-                setupUserDatabase(auth.currentUser.uid, 'posts');
-                // @ts-ignore: Object is possibly 'null'.
-                setupUserDatabase(auth.currentUser.uid, 'Meta');
+                setupUserDatabase(auth.currentUser!.uid, 'projects');
+                setupUserDatabase(auth.currentUser!.uid, 'posts');
+                setupUserDatabase(auth.currentUser!.uid, 'Meta');
             })
             .then((data) => {
                 return navigate('/');
