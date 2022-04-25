@@ -16,60 +16,60 @@ const ACTIONS = {
     SET_TOKEN: 'SET_TOKEN',
 };
 
-export const setProjects = (payload) => {
+export const setProjects = (payload: any) => {
     return {
         type: ACTIONS.SET_PROJECTS,
         payload,
     };
 };
 
-export const setPosts = (payload) => {
+export const setPosts = (payload: any) => {
     return {
         type: ACTIONS.SET_POSTS,
         payload,
     };
 };
 
-export const updateProjects = (payload) => {
+export const updateProjects = (payload: any) => {
     return {
         type: ACTIONS.UPDATE_PROJECTS,
         payload,
     };
 };
 
-export const updatePosts = (payload) => {
+export const updatePosts = (payload: any) => {
     return {
         type: ACTIONS.UPDATE_POSTS,
         payload,
     };
 };
 
-export const setUser = (payload) => {
+export const setUser = (payload: any) => {
     return {
         type: ACTIONS.SET_USER,
         payload,
     };
 };
-export const setDisplayName = (payload) => {
+export const setDisplayName = (payload: any) => {
     return {
         type: ACTIONS.SET_DISPLAY_NAME,
         payload,
     };
 };
-export const setEmail = (payload) => {
+export const setEmail = (payload: any) => {
     return {
         type: ACTIONS.SET_EMAIL,
         payload,
     };
 };
-export const setPhoneNumber = (payload) => {
+export const setPhoneNumber = (payload: any) => {
     return {
         type: ACTIONS.SET_PHONE_NUMBER,
         payload,
     };
 };
 
-export const setCSRFToken = (payload) => {
+export const setCSRFToken = (payload: any) => {
     return {
         type: ACTIONS.SET_TOKEN,
         payload,

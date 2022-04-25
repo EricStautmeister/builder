@@ -5,7 +5,10 @@ const ACTIONS = {
     SET_PHONE_NUMBER: 'SET_PHONE_NUMBER',
     SET_UID: 'SET_UID',
 };
-
+type ActionType = {
+    type: string;
+    payload: any;
+};
 //REDUCER
 const initialState = {
     displayName: null,
@@ -14,30 +17,30 @@ const initialState = {
     uid: null,
 };
 
-const userReducer = (state = initialState, action) => {
-    switch (action.type) {
+const userReducer = (state = initialState, { type, payload }: ActionType) => {
+    switch (type) {
         case ACTIONS.SET_USER:
             return {
-                displayName: action.payload.displayName,
-                email: action.payload.email,
-                phoneNumber: action.payload.phoneNumber,
-                uid: action.payload.uid,
+                displayName: payload.displayName,
+                email: payload.email,
+                phoneNumber: payload.phoneNumber,
+                uid: payload.uid,
             };
 
         case ACTIONS.SET_DISPLAY_NAME:
-            state.displayName = action.payload.displayName;
+            state.displayName = payload.displayName;
             return state;
 
         case ACTIONS.SET_EMAIL:
-            state.email = action.payload.displayName;
+            state.email = payload.displayName;
             return state;
 
         case ACTIONS.SET_PHONE_NUMBER:
-            state.phoneNumber = action.payload.phoneNumber;
+            state.phoneNumber = payload.phoneNumber;
             return state;
 
         case ACTIONS.SET_UID:
-            state.uid = action.payload.uid;
+            state.uid = payload.uid;
             return state;
 
         default:

@@ -1,14 +1,14 @@
 import React from 'react'; //useEffect, useState
 import { Header } from '../../Header';
 import { Footer } from '../../Footer';
-import '../../styling/css/Preferences.css';
+import '../../styling/css/Integrations.css';
 
-export default function Preferences({ CSRFToken }) {
+export default function Integrations() {
     return (
         <>
             <Header />
             <main>
-                <div id="Body">Preferences</div>
+                <div id="Body">Integrations</div>
             </main>
             <Footer />
         </>

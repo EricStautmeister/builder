@@ -3,7 +3,7 @@ import { Header } from '../../Header';
 import { Footer } from '../../Footer';
 import '../../styling/css/Settings.css';
 
-export default function Settings({ CSRFToken }) {
+export default function Settings() {
     return (
         <>
             <Header />

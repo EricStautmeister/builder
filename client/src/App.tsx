@@ -15,11 +15,11 @@ const NotLoggedIn = React.lazy(() => import('./application-states/NotLoggedIn'))
 function App() {
     const [show, setShow] = useState(false);
 
-    const isLoggedIn = useSelector((state) => state.isLoggedIn);
-    const dispatch = useDispatch();
+    const isLoggedIn: Boolean = useSelector((state: any): Boolean => state.isLoggedIn);
+    const dispatch: Function = useDispatch();
 
-    const loadApp = async () => {
-        const promise = new Promise((resolve, reject) => {
+    const loadApp = async (): Promise<void> => {
+        const promise = new Promise<void>((resolve, reject) => {
             setTimeout(() => {
                 setShow(true);
                 resolve();

@@ -8,24 +8,28 @@ import { Header } from '../../Header';
 import { Footer } from '../../Footer';
 import '../../styling/css/Login.css';
 
-export default function Login(props) {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+export default function Login() {
+    const [email, setEmail] = useState<string | null>();
+    const [password, setPassword] = useState<string | null>();
 
-    const user = useSelector((state) => state.user.user);
-    const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    // const user = useSelector((state: any) => state.user.user);
     let navigate = useNavigate();
     let dispatch = useDispatch();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        signInWithEmailAndPassword(auth, email!, password!)
             .then((userCredential) => {
                 dispatch(
                     setUser({
+                        //FIXME: find better solution than ignoring
+                        // @ts-ignore: Object is possibly 'null'.
                         email: auth.currentUser.email,
+                        // @ts-ignore: Object is possibly 'null'.
                         phoneNumber: auth.currentUser.phoneNumber,
+                        // @ts-ignore: Object is possibly 'null'.
                         displayName: auth.currentUser.displayName,
+                        // @ts-ignore: Object is possibly 'null'.
                         uid: auth.currentUser.uid,
                     })
                 );
@@ -46,17 +50,12 @@ export default function Login(props) {
             <main>
                 <div id="Body">
                     <div id="Anchor">
-                        <form
-                            id="loginForm"
-                            className="form"
-                            onSubmit={handleSubmit}>
+                        <form id="loginForm" className="form" onSubmit={handleSubmit}>
                             <div className="input-wrapper">
                                 <input
                                     id="email"
                                     type="email"
-                                    onChange={({ target }) =>
-                                        setEmail(target.value)
-                                    }
+                                    onChange={({ target }) => setEmail(target.value)}
                                     placeholder="Email"
                                     autoComplete="username"
                                     required
@@ -66,18 +65,13 @@ export default function Login(props) {
                                     id="password"
                                     className="input"
                                     type="password"
-                                    onChange={({ target }) =>
-                                        setPassword(target.value)
-                                    }
+                                    onChange={({ target }) => setPassword(target.value)}
                                     placeholder="Password"
                                     autoComplete="current-password"
                                     required
                                 />
                                 <div className="button">
-                                    <button
-                                        type="submit"
-                                        className="btn"
-                                        form="loginForm">
+                                    <button type="submit" className="btn" form="loginForm">
                                         Login
                                     </button>
                                 </div>
