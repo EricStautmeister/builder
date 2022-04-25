@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../../actions';
 import { signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../../../fire.js';
+import { auth } from '../../../fire';
 import { Header } from '../../Header';
 import { Footer } from '../../Footer';
 import '../../styling/css/Login.css';

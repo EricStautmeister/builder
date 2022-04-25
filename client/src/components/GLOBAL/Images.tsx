@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = {
     src: string;
-    altText: string;
+    altText?: string;
     classname?: string;
     height?: string;
     width?: string;

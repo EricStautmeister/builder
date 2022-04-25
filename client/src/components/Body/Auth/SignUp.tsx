@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../../actions';
 import { doc, setDoc, getDocs, collection, addDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth, db } from '../../../fire.js';
+import { auth, db } from '../../../fire';
 import { Header } from '../../Header';
 import { Footer } from '../../Footer';
 import '../../styling/css/SignUp.css';

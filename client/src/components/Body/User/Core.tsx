@@ -1,7 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export function Button({ data, to }) {
+type Props = {
+    data: any;
+    to: string;
+};
+
+export function Button({ data, to }: Props) {
     return (
         <NavLink className="button" to={to}>
             <div className="btn">{data}</div>
@@ -9,7 +14,7 @@ export function Button({ data, to }) {
     );
 }
 
-export function Card(props) {
+export function Card(props: any) {
     return (
         <NavLink
             className="no-deco"
@@ -22,7 +27,7 @@ export function Card(props) {
     );
 }
 
-export function Navigation({ uid }) {
+export function Navigation({ uid }: { uid: string }) {
     return (
         <header>
             <div id="navWrapper">

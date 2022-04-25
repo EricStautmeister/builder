@@ -1,13 +1,13 @@
 import React from 'react'; //useEffect, useState
 import { Route, Routes, useSearchParams } from 'react-router-dom';
-import { FullPage } from '../';
+import { FullPage } from '..';
 import { UserBlog, UserProjects, UserLanding, UserListing } from './index';
 
 import '../../styling/css/Blog.css';
 
 export default function User() {
     const [searchParams, setSearchParams] = useSearchParams();
-    const uid = searchParams.get('uid') || '';
+    // const uid = searchParams.get('uid') || '';
 
     return (
         <>

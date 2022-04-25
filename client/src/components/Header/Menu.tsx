@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import '../styling/css/Menu.css';
-import { ReactComponent as MenuIcon } from '../styling/media/menu.svg';
+import MenuIcon from '../styling/media/menu.svg';
 
-function Menu({ isLoggedIn }) {
+function Menu(): JSX.Element {
     const [dropdownClass, setDropdownClass] = useState('dropdown-inactive');
     const [isActive, setIsActive] = useState(false);
+
+    const isLoggedIn: Boolean = useSelector((state: any) => state.isLoggedIn);
 
     const unfoldMenu = () => {
         setIsActive(!isActive);
@@ -23,7 +26,7 @@ function Menu({ isLoggedIn }) {
 
     return (
         <div id="menu" onClick={unfoldMenu}>
-            <MenuIcon />
+            <img src={MenuIcon} alt="" />
             {isLoggedIn ? (
                 <div id="dropdown" className={dropdownClass}>
                     <div id="menu-list">

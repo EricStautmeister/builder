@@ -8,10 +8,10 @@ import { useSearchParams } from 'react-router-dom';
 
 import '../../styling/css/Projects.css';
 
-function UserListing({ mode }) {
+function UserListing({ mode }: { mode: string }) {
     const [searchParams, setSearchParams] = useSearchParams();
-    const subscriptions = useSelector((state) => state.subscriptions);
-    const [currentlyOnDisplay, setCurrentlyOnDisplay] = useState(null);
+    const subscriptions = useSelector((state: any) => state.subscriptions);
+    const [currentlyOnDisplay, setCurrentlyOnDisplay] = useState<any | null>();
 
     const uid = searchParams.get('uid') || '';
     const dispatch = useDispatch();
@@ -39,11 +39,11 @@ function UserListing({ mode }) {
         return new Promise((resolve, reject) => {
             getDocs(cardQuery)
                 .then((querySnapshot) => {
-                    const subscriptionData = { projects: [], posts: [] };
+                    const subscriptionData: any = { projects: [], posts: [] };
                     querySnapshot.forEach((doc) => {
                         const data = doc.data().data;
                         if (data.length) {
-                            data.forEach((docdata) => {
+                            data.forEach((docdata: any) => {
                                 subscriptionData[doc.id].push(docdata);
                             });
                         }
@@ -61,7 +61,7 @@ function UserListing({ mode }) {
      * It gets the user data from Firestore and updates the Redux store with the data.
      */
     const updateSubscriptions = async () => {
-        const subscriptionData = await getUserDataFromFirestore();
+        const subscriptionData: any = await getUserDataFromFirestore();
         dispatch(setPosts({ posts: subscriptionData.posts }));
         dispatch(setProjects({ projects: subscriptionData.projects }));
     };
@@ -101,7 +101,7 @@ function UserListing({ mode }) {
         <div className="container">
             {currentlyOnDisplay !== null && currentlyOnDisplay.length ? (
                 <div className="blogCards">
-                    {currentlyOnDisplay.map((item, index) => (
+                    {currentlyOnDisplay.map((item: any, index: Number) => (
                         <Card
                             key={index}
                             anchor={mode}

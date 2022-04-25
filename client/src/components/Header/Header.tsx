@@ -5,11 +5,11 @@ import { auth } from '../../fire';
 import { useSelector } from 'react-redux';
 
 import '../styling/css/Header.css';
-import Menu from './Menu.jsx';
+import Menu from './Menu';
 import LogoIcon from '../styling/media/logo.png';
 
 function Header() {
-    const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    const isLoggedIn: Boolean = useSelector((state: any) => state.isLoggedIn);
 
     const signout = () => {
         signOut(auth)
@@ -25,12 +25,7 @@ function Header() {
                     <div id="navWrapper">
                         <nav id="navBar">
                             <NavLink id="icon" className="icon" to="/">
-                                <img
-                                    src={LogoIcon}
-                                    alt=""
-                                    height={80}
-                                    width={80}
-                                />
+                                <img src={LogoIcon} alt="" height={80} width={80} />
                                 <p id="app-version">Pre-Alpha</p>
                             </NavLink>
                             <NavLink className="button" to="/homepage">
@@ -44,6 +39,7 @@ function Header() {
                             </NavLink>
                             <NavLink
                                 className="button"
+                                // @ts-ignore: auth might be null
                                 to={`/user/?uid=${auth.currentUser.uid}`}>
                                 <button className="btn">Go to Website</button>
                             </NavLink>
@@ -59,7 +55,7 @@ function Header() {
                                 </div>
                             </NavLink>
                         </div>
-                        <Menu isLoggedIn={isLoggedIn} />
+                        <Menu />
                     </div>
                 </>
             ) : (
@@ -67,12 +63,7 @@ function Header() {
                     <div id="navWrapper">
                         <nav id="navBar">
                             <NavLink id="icon" className="icon" to="/">
-                                <img
-                                    src={LogoIcon}
-                                    alt=""
-                                    height={80}
-                                    width={80}
-                                />
+                                <img src={LogoIcon} alt="" height={80} width={80} />
                                 <p id="app-version">Pre-Alpha</p>
                             </NavLink>
                         </nav>
@@ -88,7 +79,7 @@ function Header() {
                                 <button className="btn">Sign Up</button>
                             </NavLink>
                         </div>
-                        <Menu isLoggedIn={isLoggedIn} />
+                        <Menu />
                     </div>
                 </>
             )}

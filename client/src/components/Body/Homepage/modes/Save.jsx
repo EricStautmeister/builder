@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { WINDOWS } from '../constants';
-import { db, auth } from '../../../../fire.js';
+import { db, auth } from '../../../../fire';
 import { doc, setDoc, getDocs, collection, updateDoc, arrayUnion } from 'firebase/firestore';
 
 export default function Save({ Items }) {

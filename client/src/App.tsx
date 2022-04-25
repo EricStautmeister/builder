@@ -23,7 +23,7 @@ function App() {
             setTimeout(() => {
                 setShow(true);
                 resolve();
-            }, 4000);
+            }, 2500);
         });
         await promise;
     };
