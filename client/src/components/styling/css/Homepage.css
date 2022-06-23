@@ -107,6 +107,7 @@
   padding: 1rem;
   border: 4px solid #0095777c;
   background: #009577;
+  color: #fff;
 }
 #edit-modal .active {
   transition: all 0.2s;

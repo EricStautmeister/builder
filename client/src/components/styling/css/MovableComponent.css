@@ -1,16 +1,43 @@
 .movable-item {
-  border-radius: 10px;
-  background-color: #fff3f3;
-  width: 20rem;
-  height: 50px;
   margin: 10px auto;
+  width: 80%;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1;
+}
+.movable-item .title-item {
+  margin-top: 8%;
+  margin-bottom: 2%;
+  height: 6rem;
+  min-width: 500px;
+  max-width: 70%;
+  width: auto;
+  font-size: 4rem;
+}
+.movable-item .text-item {
+  height: 3.5rem;
+  max-width: 60%;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.movable-item .image-item {
+  max-width: 40%;
+  max-height: 40%;
+}
+
+.Sidebar .movable-item {
+  border-radius: 10px;
+  background-color: #fff3f3;
+  width: 20rem;
+  height: 50px;
   cursor: pointer;
 }
-.movable-item:hover, .movable-item:focus {
+.Sidebar .movable-item:hover, .Sidebar .movable-item:focus {
   background-color: rgba(172, 172, 172, 0.137);
 }
 

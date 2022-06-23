@@ -97,67 +97,57 @@ div {
 }
 
 #Anchor {
-    position: relative;
+    margin-top: 5%;
     @include wrapperFlex($justify: center);
     flex-direction: column;
     min-height: 100%;
     height: auto;
-    .form {
-        @include wrapperFlex($justify: space-around, $align: space-around);
-        flex-wrap: nowrap;
-        flex-direction: column;
-        padding: 3%;
+    #loginForm {
         height: 50vh;
+        width: 20%;
         border: 2px solid #0095777c;
         .input-wrapper {
-            #itemTitle {
-                width: 500px;
+            width: 100%;
+            height: 100%;
+            @include wrapperFlex($justify: center, $align: center);
+            flex-direction: column;
+
+            #username {
+                width: 90%;
                 padding: 10px;
-                cursor: text;
+                background: #fff;
                 color: #000;
                 border: 4px solid #0095777c;
-                position: relative;
-                background: #fff;
-                z-index: 3;
+                cursor: text;
+                &:focus-visible {
+                    outline: none;
+                }
             }
 
-            #itemTitle:focus-visible {
-                outline: none;
-            }
-
-            .input {
-                margin-top: 0%;
-                width: 500px;
+            #email {
+                width: 90%;
                 padding: 10px;
-                cursor: text;
+                background: #fff;
                 color: #000;
                 border: 4px solid #0095777c;
-                // border-radius: 10px;
-                position: relative;
-                z-index: 3;
-                background: #fff;
-            }
-
-            .textArea {
-                margin: 10px;
-                padding: 0;
-                background: #fff;
-                width: 100%;
-                height: 70%;
-                padding: 25px;
-                font-family: 'Quicksand', sans-serif;
-                font-weight: 500;
-                font-size: 20px;
                 cursor: text;
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+            #password {
+                width: 90%;
+                padding: 10px;
+                background: #fff;
                 color: #000;
                 border: 4px solid #0095777c;
-                border-radius: 10px;
-                position: relative;
-                z-index: 3;
-            }
-
-            #itemContent:focus-visible {
-                outline: none;
+                cursor: pointer;
+                &:focus-visible {
+                    outline: none;
+                }
+                &:last-of-type {
+                    margin-bottom: 10%;
+                }
             }
         }
     }
@@ -185,7 +175,7 @@ ul {
     text-decoration: none;
     cursor: pointer;
     width: 10rem;
-    height: auto;
+    height: 2rem;
 
     .btn {
         border: none;
@@ -196,6 +186,7 @@ ul {
         font-weight: 600;
         font-size: 1.1rem;
         line-height: 1;
+        cursor: pointer;
 
         &:hover,
         &:focus {
@@ -204,18 +195,8 @@ ul {
         }
     }
 }
-
-.form-btn {
-    background-color: #01755e7c;
-    text-decoration-color: #000;
-    width: auto;
-    // border: 1px solid #555;
-    padding: 20px;
-    border-radius: 4px;
-    color: #fff;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    line-height: 1;
+.extra-wide {
+    width: 15rem;
 }
 
 .right-align {
@@ -224,4 +205,12 @@ ul {
 
 .no-deco {
     text-decoration: none;
+}
+
+.centeringDiv {
+    @include wrapperFlex($justify: center, $align: center);
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
 }

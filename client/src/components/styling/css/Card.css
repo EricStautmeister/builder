@@ -1,22 +1,29 @@
 #cardAnchor {
   background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 10px;
   border: 1px solid white;
   height: 30vh;
   overflow: auto;
+  transition: all 0.1s;
 }
 #cardAnchor h1 {
+  display: flex;
+  justify-content: center;
   margin: 3%;
   margin-top: 6%;
   margin-left: 6%;
   color: #000000;
 }
 #cardAnchor p {
+  font-display: block;
   margin-left: 9%;
   color: #000000;
+}
+#cardAnchor:hover, #cardAnchor:focus {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
 /*# sourceMappingURL=Card.css.map */
