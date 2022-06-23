@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigation, Footer } from './Core';
 import { useSearchParams } from 'react-router-dom';
-import { db, auth } from '../../../fire.js';
+import { db, auth } from '../../../fire';
 import {
     doc,
     setDoc,
