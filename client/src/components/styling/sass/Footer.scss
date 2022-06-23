@@ -26,8 +26,6 @@ $site-width: 100% /* variable */;
             border-radius: 50%;
             padding: 15px;
             margin: 10px;
-            width: 50px;
-            height: 50px;
             font-size: 18px;
             display: flex;
             justify-content: center;
@@ -45,6 +43,5 @@ $site-width: 100% /* variable */;
     align-items: center;
     .firebase {
         margin-right: 5rem;
-        width: 50%;
     }
 }
