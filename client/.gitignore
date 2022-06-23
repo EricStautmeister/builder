@@ -8,6 +8,7 @@
 
 # templates
 /redux-js-template
+utils.*
 
 # testing
 /coverage
